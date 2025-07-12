@@ -61,3 +61,25 @@
 2025-07-12 01:09:57 info: 🚀 Server is running on port 8000
 2025-07-12 01:09:57 info: Redis connected
 2025-07-12 01:09:58 info: ✅ Connected to PostgreSQL
+2025-07-12 01:11:58 info: 🚀 Server is running on port 8000
+2025-07-12 01:11:58 info: Redis connected
+2025-07-12 01:11:58 info: ✅ Connected to PostgreSQL
+2025-07-12 01:12:48 info: 🚀 Server is running on port 8000
+2025-07-12 01:12:48 info: Redis connected
+2025-07-12 01:12:48 info: ✅ Connected to PostgreSQL
+2025-07-12 01:13:28 info: 🚀 Server is running on port 8000
+2025-07-12 01:13:28 info: Redis connected
+2025-07-12 01:13:28 info: ✅ Connected to PostgreSQL
+2025-07-12 01:13:48 error: Error fetching user: kk
+2025-07-12 01:13:48 error: Error fetching user with id 1: Internal Server Error
+2025-07-12 01:13:49 error: Error fetching user: kk
+2025-07-12 01:13:49 error: Error fetching user with id 1: Internal Server Error
+2025-07-12 01:13:51 error: Error fetching user: kk
+2025-07-12 01:13:51 error: Error fetching user with id 1: Internal Server Error
+2025-07-12 01:13:54 error: Error fetching user: kk
+2025-07-12 01:13:54 error: Error fetching user with id 1: Internal Server Error
+2025-07-12 01:14:17 info: 🚀 Server is running on port 8000
+2025-07-12 01:14:17 info: Redis connected
+2025-07-12 01:14:17 info: ✅ Connected to PostgreSQL
+2025-07-12 15:40:49 info: 🚀 Server is running on port 8000
+2025-07-12 15:40:49 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379

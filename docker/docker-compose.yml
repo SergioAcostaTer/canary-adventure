@@ -23,7 +23,7 @@ services:
     restart: unless-stopped
 
   postgres:
-    image: postgres:17
+    image: postgis/postgis:17-3.4
     container_name: postgres
     ports:
       - "5432:5432"
