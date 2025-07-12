@@ -5,7 +5,6 @@ import { authGuard } from '@/guards/authGuard'
 import { authMiddleware } from '@/middlewares/authMiddleware'
 
 export const users = (router: Router): void => {
-  // ✅ Obtener perfil autenticado
   router.get(
     '/user/me',
     authMiddleware,
@@ -13,7 +12,6 @@ export const users = (router: Router): void => {
     userController.getCurrentUser
   )
 
-  // 🗑️ Eliminar cuenta autenticada
   router.delete(
     '/user/me',
     authMiddleware,

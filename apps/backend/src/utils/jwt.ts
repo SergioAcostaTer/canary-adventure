@@ -1,6 +1,6 @@
-import jwt, { SignOptions } from 'jsonwebtoken'
-
+import { JWT_EXPIRES_IN_SECONDS } from '@/config/auth'
 import { IAccessToken, IJwtUser } from '@/contracts/jwt'
+import jwt, { SignOptions } from 'jsonwebtoken'
 
 export const jwtSign = (id: string): IAccessToken => {
   const secret = process.env.JWT_SECRET
@@ -9,11 +9,10 @@ export const jwtSign = (id: string): IAccessToken => {
   }
 
   const options: SignOptions = {
-    expiresIn: 1000 * 60 * 60 * 24 * 7
+    expiresIn: JWT_EXPIRES_IN_SECONDS
   }
 
   const accessToken = jwt.sign({ id }, secret, options)
-
   return { accessToken }
 }
 

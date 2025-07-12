@@ -1,5 +1,6 @@
 import { join } from 'path'
 
+import cookieParser from 'cookie-parser'
 import 'dotenv/config'
 import express, { Express } from 'express'
 
@@ -21,6 +22,8 @@ app.use(
   join('/', process.env.STORAGE_PATH),
   express.static(join(__dirname, process.env.STORAGE_PATH))
 )
+
+app.use(cookieParser())
 
 app.use(
   express.json({ limit: '10mb' }),

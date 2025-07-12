@@ -6,10 +6,6 @@ GET http://localhost:8000/user/me
 Authorization: Bearer {{accessToken}}
 
 
-### 🔍 Obtener usuario por ID (público o admin)
-GET http://localhost:8000/user/b8499449-3383-4127-8390-6ab63163f4e9
-
-
 ### 🗑️ Eliminar tu cuenta
 DELETE http://localhost:8000/user/me
 Authorization: Bearer {{accessToken}}
