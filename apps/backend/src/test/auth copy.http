@@ -1,0 +1,15 @@
+### 🔐 Obtener perfil actual (requiere token)
+# 👇 Reemplaza con tu accessToken generado tras login
+@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4ODQ5NDQ5LTMzODMtNDEyNy04MzkwLTZhYjYzMTYzZjRlOSIsImlhdCI6MTc1MjMzOTAwMSwiZXhwIjoyMzU3MTM5MDAxfQ.1c5vCV4xaVc-w3sqxkPgKfhaL8TLaVFVCDr--ngAThs
+
+GET http://localhost:8000/user/me
+Authorization: Bearer {{accessToken}}
+
+
+### 🔍 Obtener usuario por ID (público o admin)
+GET http://localhost:8000/user/b8499449-3383-4127-8390-6ab63163f4e9
+
+
+### 🗑️ Eliminar tu cuenta
+DELETE http://localhost:8000/user/me
+Authorization: Bearer {{accessToken}}

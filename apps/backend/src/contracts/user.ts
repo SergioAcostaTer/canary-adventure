@@ -1,48 +1,46 @@
-import { Model, ObjectId } from 'mongoose'
-
-export interface IVerification {
-  email: string
-  accessToken: string
-  expiresIn: Date
-  user: ObjectId
-}
-
-export interface IResetPassword {
-  accessToken: string
-  expiresIn: Date
-  user: ObjectId
-}
-
+/** 👤 Usuario base */
 export interface IUser {
-  id: ObjectId
+  id: string
+  email: string
+  username: string
+  full_name?: string
+  avatar_url?: string
+  oauth_provider: 'google'
+  oauth_id: string
+  role: UserRole
+  plan: UserPlan
+  locale?: string
+  is_active: boolean
+  verified?: boolean
+  created_at: string
+  updated_at: string
+  last_login_at?: string
+}
+
+/** 🎟 Roles posibles del usuario */
+export type UserRole = 'user' | 'admin' | 'moderator'
+
+/** 💳 Planes de suscripción */
+export type UserPlan = 'free' | 'premium' | 'enterprise'
+
+/** 📦 Payloads de usuario */
+
+export type UpdateProfilePayload = {
+  full_name?: string
+  avatar_url?: string
+  locale?: string
+}
+
+export type UpdateEmailPayload = {
   email: string
   password: string
-  firstName?: string
-  lastName?: string
-  verified: boolean
-  verifications?: ObjectId[]
-  resetPasswords?: ObjectId[]
 }
 
-export interface IUserMethods {
-  comparePassword: (password: string) => boolean
-}
-
-export type UserModel = Model<IUser, unknown, IUserMethods>
-
-export type VerificationRequestPayload = Pick<IUser, 'email'>
-
-export type UpdateProfilePayload = Required<
-  Pick<IUser, 'firstName' | 'lastName'>
->
-
-export type UpdateEmailPayload = Pick<IUser, 'email' | 'password'>
-
-export interface UpdatePasswordPayload {
+export type UpdatePasswordPayload = {
   oldPassword: string
   newPassword: string
 }
 
-export interface DeleteProfilePayload {
+export type DeleteProfilePayload = {
   password: string
 }

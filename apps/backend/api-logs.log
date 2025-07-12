@@ -163,3 +163,77 @@
 2025-07-12 16:37:33 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
 2025-07-12 16:37:33 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
 2025-07-12 16:37:34 info: Redis connected
+2025-07-12 16:53:05 info: 🚀 Server is running on port 8000
+2025-07-12 16:53:05 info: Redis connected
+2025-07-12 16:53:05 info: ✅ Connected to PostgreSQL
+2025-07-12 17:00:16 info: 🚀 Server is running on port 8000
+2025-07-12 17:00:16 info: Redis connected
+2025-07-12 17:00:16 info: ✅ Connected to PostgreSQL
+2025-07-12 17:04:29 info: 🚀 Server is running on port 8000
+2025-07-12 17:04:29 info: Redis connected
+2025-07-12 17:04:29 info: ✅ Connected to PostgreSQL
+2025-07-12 17:06:29 info: 🚀 Server is running on port 8000
+2025-07-12 17:06:29 info: Redis connected
+2025-07-12 17:06:29 info: ✅ Connected to PostgreSQL
+2025-07-12 17:06:58 info: 🚀 Server is running on port 8000
+2025-07-12 17:06:58 info: Redis connected
+2025-07-12 17:06:58 info: ✅ Connected to PostgreSQL
+2025-07-12 17:07:00 info: 🚀 Server is running on port 8000
+2025-07-12 17:07:00 info: Redis connected
+2025-07-12 17:07:00 info: ✅ Connected to PostgreSQL
+2025-07-12 17:16:10 info: 🚀 Server is running on port 8000
+2025-07-12 17:16:10 info: Redis connected
+2025-07-12 17:16:10 info: ✅ Connected to PostgreSQL
+2025-07-12 17:21:29 info: 🚀 Server is running on port 8000
+2025-07-12 17:21:29 info: Redis connected
+2025-07-12 17:21:29 info: ✅ Connected to PostgreSQL
+2025-07-12 17:21:35 info: 🚀 Server is running on port 8000
+2025-07-12 17:21:35 info: Redis connected
+2025-07-12 17:21:35 info: ✅ Connected to PostgreSQL
+2025-07-12 17:21:45 info: 🚀 Server is running on port 8000
+2025-07-12 17:21:45 info: Redis connected
+2025-07-12 17:21:45 info: ✅ Connected to PostgreSQL
+2025-07-12 17:29:35 info: 🚀 Server is running on port 8000
+2025-07-12 17:29:35 info: Redis connected
+2025-07-12 17:29:35 info: ✅ Connected to PostgreSQL
+2025-07-12 17:29:45 info: 🚀 Server is running on port 8000
+2025-07-12 17:29:45 info: Redis connected
+2025-07-12 17:29:45 info: ✅ Connected to PostgreSQL
+2025-07-12 17:30:06 info: 🚀 Server is running on port 8000
+2025-07-12 17:30:07 info: Redis connected
+2025-07-12 17:30:07 info: ✅ Connected to PostgreSQL
+2025-07-12 17:30:22 info: 🚀 Server is running on port 8000
+2025-07-12 17:30:22 info: Redis connected
+2025-07-12 17:30:22 info: ✅ Connected to PostgreSQL
+2025-07-12 17:30:25 info: 🚀 Server is running on port 8000
+2025-07-12 17:30:25 info: Redis connected
+2025-07-12 17:30:25 info: ✅ Connected to PostgreSQL
+2025-07-12 17:32:16 info: 🚀 Server is running on port 8000
+2025-07-12 17:32:16 info: Redis connected
+2025-07-12 17:32:16 info: ✅ Connected to PostgreSQL
+2025-07-12 17:34:14 info: 🚀 Server is running on port 8000
+2025-07-12 17:34:14 info: Redis connected
+2025-07-12 17:34:14 info: ✅ Connected to PostgreSQL
+2025-07-12 17:34:38 info: 🚀 Server is running on port 8000
+2025-07-12 17:34:38 info: Redis connected
+2025-07-12 17:34:38 info: ✅ Connected to PostgreSQL
+2025-07-12 17:36:38 error: authService.authenticateWithGoogle: Request failed with status code 400
+2025-07-12 17:42:11 error: userService.getUserByEmail: Cannot read properties of undefined (reading 'toLowerCase')
+2025-07-12 17:42:11 error: authService.authenticateWithGoogle: Internal Server Error
+2025-07-12 17:42:13 error: userService.getUserByEmail: Cannot read properties of undefined (reading 'toLowerCase')
+2025-07-12 17:42:13 error: authService.authenticateWithGoogle: Internal Server Error
+2025-07-12 17:42:31 error: userService.getUserByEmail: Cannot read properties of undefined (reading 'toLowerCase')
+2025-07-12 17:42:31 error: authService.authenticateWithGoogle: Internal Server Error
+2025-07-12 17:42:58 error: userService.getUserByEmail: Cannot read properties of undefined (reading 'toLowerCase')
+2025-07-12 17:42:58 error: authService.authenticateWithGoogle: Internal Server Error
+2025-07-12 17:45:01 info: 🚀 Server is running on port 8000
+2025-07-12 17:45:01 info: Redis connected
+2025-07-12 17:45:01 info: ✅ Connected to PostgreSQL
+2025-07-12 17:45:06 error: userService.getUserByEmail: Cannot read properties of undefined (reading 'toLowerCase')
+2025-07-12 17:45:06 error: authService.authenticateWithGoogle: Internal Server Error
+2025-07-12 17:49:46 info: 🚀 Server is running on port 8000
+2025-07-12 17:49:46 info: Redis connected
+2025-07-12 17:49:46 info: ✅ Connected to PostgreSQL
+2025-07-12 17:49:59 info: 🚀 Server is running on port 8000
+2025-07-12 17:49:59 info: Redis connected
+2025-07-12 17:49:59 info: ✅ Connected to PostgreSQL

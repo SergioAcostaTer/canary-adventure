@@ -4,45 +4,58 @@ import { redis } from '@/dataSources'
 import { postgres } from '@/dataSources/postgres'
 import logger from '@/infrastructure/logger'
 
-const TTL_ONE_HOUR = 3600
+/** 🔧 Configuración del cache de usuarios */
+const USER_CACHE_TTL = 3600 * 24 // 24 horas
+
+const userCache = {
+  byId: (id: string) => `user:${id}`,
+  byEmail: (email: string) => `user:email:${email.toLowerCase()}`
+}
 
 export const userService = {
   async getUserById(userId: string) {
     try {
-      const cacheKey = `user:${userId}`
-      const cachedUser = await redis.get(cacheKey)
-
-      if (cachedUser) {
-        return JSON.parse(cachedUser)
-      }
+      const cacheKey = userCache.byId(userId)
+      const cached = await redis.get(cacheKey)
+      if (cached) return JSON.parse(cached)
 
       const pool = postgres.getPool()
       const { rows } = await pool.query(
         'SELECT * FROM users WHERE id = $1 AND deleted_at IS NULL',
         [userId]
       )
-      const user = rows[0]
 
+      const user = rows[0]
       if (!user) return null
 
-      await redis.set(cacheKey, JSON.stringify(user), { EX: TTL_ONE_HOUR })
+      await redis.set(cacheKey, JSON.stringify(user), { EX: USER_CACHE_TTL })
       return user
     } catch (error) {
-      logger.error('Error fetching user:', error)
+      logger.error('userService.getUserById:', error)
       throw new Error(STATUS_CODES[500] || 'Internal Server Error')
     }
   },
 
   async getUserByEmail(email: string) {
     try {
+      const cacheKey = userCache.byEmail(email)
+      const cached = await redis.get(cacheKey)
+      if (cached) return JSON.parse(cached)
+
       const pool = postgres.getPool()
       const { rows } = await pool.query(
         'SELECT * FROM users WHERE email = $1 AND deleted_at IS NULL',
         [email]
       )
-      return rows[0] || null
+
+      const user = rows[0]
+      if (user) {
+        await redis.set(cacheKey, JSON.stringify(user), { EX: USER_CACHE_TTL })
+      }
+
+      return user || null
     } catch (error) {
-      logger.error('Error fetching user by email:', error)
+      logger.error('userService.getUserByEmail:', error)
       throw new Error(STATUS_CODES[500] || 'Internal Server Error')
     }
   },
@@ -67,17 +80,22 @@ export const userService = {
         [
           user.email,
           user.username,
-          user.full_name || null,
-          user.avatar_url || null,
+          user.full_name ?? null,
+          user.avatar_url ?? null,
           user.oauth_provider,
           user.oauth_id,
-          user.locale || 'en'
+          user.locale ?? 'en'
         ]
       )
 
-      return rows[0]
+      const createdUser = rows[0]
+
+      // Invalida caché por email (en caso de que existiera antes)
+      await redis.del(userCache.byEmail(user.email))
+
+      return createdUser
     } catch (error) {
-      logger.error('Error creating user:', error)
+      logger.error('userService.createUser:', error)
       throw new Error(STATUS_CODES[500] || 'Internal Server Error')
     }
   },
@@ -89,23 +107,41 @@ export const userService = {
         'UPDATE users SET last_login_at = now(), updated_at = now() WHERE id = $1',
         [userId]
       )
-      await redis.del(`user:${userId}`) // Invalidate cache
+
+      // Invalida caché
+      await redis.del(userCache.byId(userId))
     } catch (error) {
-      logger.error('Error updating last login:', error)
+      logger.error('userService.updateLastLogin:', error)
     }
   },
 
-  async softDeleteUser(userId: string) {
+  async softDeleteUser(userId: string, email?: string) {
     try {
       const pool = postgres.getPool()
       await pool.query(
         'UPDATE users SET deleted_at = now(), is_active = false, updated_at = now() WHERE id = $1',
         [userId]
       )
-      await redis.del(`user:${userId}`)
+
+      await redis.del(userCache.byId(userId))
+
+      if (email) {
+        await redis.del(userCache.byEmail(email))
+      }
     } catch (error) {
-      logger.error('Error soft deleting user:', error)
+      logger.error('userService.softDeleteUser:', error)
       throw new Error(STATUS_CODES[500] || 'Internal Server Error')
+    }
+  },
+
+  async invalidateUserSession(userId: string, email?: string) {
+    try {
+      await redis.del(userCache.byId(userId))
+      if (email) {
+        await redis.del(userCache.byEmail(email))
+      }
+    } catch (error) {
+      logger.error('userService.invalidateUserSession:', error)
     }
   }
 }

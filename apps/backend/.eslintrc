@@ -28,7 +28,7 @@
     // Core formatting
     "quotes": ["error", "single"],
     "semi": ["error", "never"],
-    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "indent": ["off", 2, { "SwitchCase": 1 }],
     "comma-dangle": ["error", "only-multiline"],
     "object-curly-spacing": ["error", "always"],
     "array-bracket-spacing": ["error", "never"],
@@ -62,7 +62,8 @@
     "no-promise-executor-return": "warn",
 
     // Disabled for convenience
-    "no-unused-vars": "off"
+    "no-unused-vars": "off",
+
   },
   "ignorePatterns": ["node_modules/", "dist/", "build/"]
 }

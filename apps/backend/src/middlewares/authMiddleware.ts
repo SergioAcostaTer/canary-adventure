@@ -11,31 +11,24 @@ export const authMiddleware = async (
   next: NextFunction
 ): Promise<void> => {
   try {
-    Object.assign(req, { context: {} })
-
     const { accessToken } = getAccessTokenFromHeaders(req.headers)
     if (!accessToken) return next()
 
+    const isRevoked = await redis.get(`expiredToken:${accessToken}`)
+    if (isRevoked) return next()
+
     const { id } = jwtVerify({ accessToken })
     if (!id) return next()
-
-    const isAccessTokenExpired = await redis.client.get(
-      `expiredToken:${accessToken}`
-    )
-    if (isAccessTokenExpired) return next()
 
     const user = await userService.getUserById(id)
     if (!user) return next()
 
     Object.assign(req, {
-      context: {
-        user,
-        accessToken
-      }
+      context: { user, accessToken }
     })
 
-    return next()
-  } catch (error) {
-    return next()
+    next()
+  } catch {
+    next()
   }
 }
