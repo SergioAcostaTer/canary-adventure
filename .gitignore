@@ -68,6 +68,7 @@ out/
 .history
 **/.history/
 
-.log
+
+*.log
 
 storage
