@@ -1,0 +1,25 @@
+### Get place by ID
+GET http://localhost:8000/places/6bcd98e3-3f68-43e2-bf92-123456789abc
+Accept: application/json
+Accept-Language: es
+
+###
+
+### Get place by slug
+GET http://localhost:8000/places/slug/timanfaya-national-park-lanzarote
+Accept: application/json
+Accept-Language: es
+
+###
+
+### Search places
+GET http://localhost:8000/places/search?q=beach&page=1&limit=5
+Accept: application/json
+Accept-Language: en
+
+###
+
+### Get featured places
+GET http://localhost:8000/places/featured?limit=4
+Accept: application/json
+Accept-Language: es
