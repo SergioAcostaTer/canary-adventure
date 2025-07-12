@@ -1,4 +1,6 @@
 // src/services/user.service.ts
+import { STATUS_CODES } from 'http'
+
 import { redis } from '@/dataSources'
 import { postgres } from '@/dataSources/postgres'
 import logger from '@/infrastructure/logger'
@@ -27,7 +29,7 @@ export const userService = {
       return user
     } catch (error) {
       logger.error('Error fetching user:', error)
-      throw new Error('Internal server error')
+      throw new Error(STATUS_CODES[500] || 'Internal Server Error')
     }
   }
 }
