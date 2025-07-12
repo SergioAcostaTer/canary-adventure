@@ -24,8 +24,8 @@ const app: Express = express()
 setupSwagger(app)
 
 app.use(
-  join('/', process.env.STORAGE_PATH),
-  express.static(join(__dirname, process.env.STORAGE_PATH))
+  `/${process.env.STORAGE_PATH}`,
+  express.static(join(__dirname, '../', process.env.STORAGE_PATH))
 )
 
 app.use(cookieParser())

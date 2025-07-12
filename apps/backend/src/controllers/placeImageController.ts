@@ -1,7 +1,17 @@
+import { existsSync, unlinkSync } from 'fs'
+import { join } from 'path'
+
 import { Request, Response } from 'express'
 
 import { postgres } from '@/dataSources'
+import logger from '@/infrastructure/logger'
 import { imageService } from '@/services/imageService'
+
+const STORAGE_DIR = join(
+  __dirname,
+  '../../',
+  process.env.STORAGE_PATH || 'storage/uploads'
+)
 
 export const placeImageController = {
   async addImagesToPlace(req: Request, res: Response) {
@@ -14,8 +24,10 @@ export const placeImageController = {
         .json({ error: 'imageUrls must be a non-empty array' })
     }
 
+    let savedPaths: string[] = []
+
     try {
-      const newPaths = await imageService.downloadMultipleImages(imageUrls)
+      savedPaths = await imageService.downloadMultipleImages(imageUrls, slug)
 
       const pool = postgres.getPool()
       const query = `
@@ -30,14 +42,29 @@ export const placeImageController = {
         WHERE slug = $2
         RETURNING id, slug, image_urls
       `
-      const { rows } = await pool.query(query, [newPaths, slug])
+      const { rows } = await pool.query(query, [savedPaths, slug])
 
       if (!rows.length) {
+        logger.warn(`Place not found: ${slug}`)
         return res.status(404).json({ error: 'Place not found' })
       }
 
+      logger.info(`Images added to place: ${slug}`)
       return res.status(200).json({ success: true, place: rows[0] })
     } catch (error) {
+      logger.error('Failed to add images to place:', error)
+
+      for (const relPath of savedPaths) {
+        const absPath = join(STORAGE_DIR, relPath)
+        try {
+          if (existsSync(absPath)) {
+            unlinkSync(absPath)
+          }
+        } catch (unlinkError) {
+          logger.error(`Failed to delete image ${absPath}:`, unlinkError)
+        }
+      }
+
       return res.status(500).json({ error: 'Failed to add images to place' })
     }
   }
