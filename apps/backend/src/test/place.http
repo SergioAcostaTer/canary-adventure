@@ -6,7 +6,7 @@ Accept-Language: es
 ###
 
 ### Get place by slug
-GET http://localhost:8000/places/slug/timanfaya-national-park-lanzarote
+GET http://localhost:8000/places/slug/teide-national-park-tenerife
 Accept: application/json
 Accept-Language: es
 
