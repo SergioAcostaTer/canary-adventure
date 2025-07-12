@@ -1,6 +1,7 @@
 import { Router } from 'express'
 
 import { placeController } from '@/controllers/placeController'
+import { placeImageController } from '@/controllers/placeImageController'
 
 export const places = (router: Router): void => {
   /**
@@ -145,4 +146,43 @@ export const places = (router: Router): void => {
    *         description: Lugar no encontrado
    */
   router.get('/places/:id', placeController.getById)
+
+  /**
+   * @openapi
+   * /places/{slug}/images:
+   *   post:
+   *     summary: Añadir imágenes desde URLs a un lugar
+   *     tags:
+   *       - Places
+   *     parameters:
+   *       - name: placeId
+   *         in: path
+   *         required: true
+   *         schema:
+   *           type: string
+   *     requestBody:
+   *       required: true
+   *       content:
+   *         application/json:
+   *           schema:
+   *             type: object
+   *             required:
+   *               - imageUrls
+   *             properties:
+   *               imageUrls:
+   *                 type: array
+   *                 items:
+   *                   type: string
+   *                 description: Lista de URLs de imágenes
+   *     responses:
+   *       200:
+   *         description: Imágenes añadidas
+   *       400:
+   *         description: Datos inválidos
+   *       404:
+   *         description: Lugar no encontrado
+   *       500:
+   *         description: Error interno
+   */
+  router.post('/places/:slug/images', placeImageController.addImagesToPlace)
 }

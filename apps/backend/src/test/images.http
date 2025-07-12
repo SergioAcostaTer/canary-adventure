@@ -1,0 +1,8 @@
+POST http://localhost:8000/places/teide-national-park-tenerife/images
+Content-Type: application/json
+
+{
+  "imageUrls": [
+    "https://wp-content.miviaje.com/2018/12/volcan-teide-tenerife.jpg"
+  ]
+}
