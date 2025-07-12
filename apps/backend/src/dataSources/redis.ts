@@ -69,6 +69,11 @@ class Redis {
     if (!this.isConnected) await this.run()
     return this.client.set(key, value, options)
   }
+
+  public async del(key: string) {
+    if (!this.isConnected) await this.run()
+    return this.client.del(key)
+  }
 }
 
 export const redis = Redis.getInstance()

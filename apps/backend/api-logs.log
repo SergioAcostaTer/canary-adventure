@@ -83,3 +83,83 @@
 2025-07-12 01:14:17 info: ✅ Connected to PostgreSQL
 2025-07-12 15:40:49 info: 🚀 Server is running on port 8000
 2025-07-12 15:40:49 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 15:42:29 info: 🚀 Server is running on port 8000
+2025-07-12 15:42:29 info: Redis connected
+2025-07-12 15:42:29 info: ✅ Connected to PostgreSQL
+2025-07-12 16:37:03 error: Redis Client Error: Error: Socket closed unexpectedly
+2025-07-12 16:37:03 info: Redis connected
+2025-07-12 16:37:03 error: Redis Client Error: Error: Socket closed unexpectedly
+2025-07-12 16:37:03 error: Redis Client Error: Error: Socket closed unexpectedly
+2025-07-12 16:37:03 info: Redis connected
+2025-07-12 16:37:03 error: Redis Client Error: Error: Socket closed unexpectedly
+2025-07-12 16:37:03 error: Redis Client Error: Error: Socket closed unexpectedly
+2025-07-12 16:37:03 info: Redis connected
+2025-07-12 16:37:03 error: Redis Client Error: Error: Socket closed unexpectedly
+2025-07-12 16:37:03 error: Redis Client Error: Error: Socket closed unexpectedly
+2025-07-12 16:37:03 info: Redis connected
+2025-07-12 16:37:03 error: Redis Client Error: Error: Socket closed unexpectedly
+2025-07-12 16:37:03 error: Redis Client Error: Error: Socket closed unexpectedly
+2025-07-12 16:37:04 info: Redis connected
+2025-07-12 16:37:04 error: Redis Client Error: Error: Socket closed unexpectedly
+2025-07-12 16:37:04 error: Redis Client Error: Error: Socket closed unexpectedly
+2025-07-12 16:37:04 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:04 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:04 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:05 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:05 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:06 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:06 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:07 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:07 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:08 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:08 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:09 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:09 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:10 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:10 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:11 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:11 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:12 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:12 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:13 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:13 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:14 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:14 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:15 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:15 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:16 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:16 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:17 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:17 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:18 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:18 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:19 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:19 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:20 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:20 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:21 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:21 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:22 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:22 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:23 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:23 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:24 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:24 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:25 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:25 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:26 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:27 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:27 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:28 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:28 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:29 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:29 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:30 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:30 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:31 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:31 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:32 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:32 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:33 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:33 error: Redis Client Error: Error: connect ECONNREFUSED 127.0.0.1:6379
+2025-07-12 16:37:34 info: Redis connected
