@@ -4,6 +4,8 @@ import cookieParser from 'cookie-parser'
 import 'dotenv/config'
 import express, { Express } from 'express'
 
+import { setupSwagger } from './infrastructure/docs/swagger'
+
 import { postgres, redis } from '@/dataSources'
 import logger from '@/infrastructure/logger'
 import {
@@ -17,6 +19,8 @@ postgres.run()
 redis.run()
 
 const app: Express = express()
+
+setupSwagger(app)
 
 app.use(
   join('/', process.env.STORAGE_PATH),
