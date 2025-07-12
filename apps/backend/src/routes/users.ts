@@ -1,9 +1,7 @@
 import { Router } from 'express'
 
-import { authGuard } from '@/guards'
+import { userController } from '@/controllers'
 
 export const users = (router: Router): void => {
-  router.get('/me', authGuard.isAuth, (req, res) => {
-    res.send('User profile endpoint')
-  })
+  router.get('/user/:id', userController.getUserById)
 }

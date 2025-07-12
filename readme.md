@@ -189,7 +189,7 @@ canary-adventure/
 
 | Función           | Tecnología    | Justificación Rentable                |
 | ----------------- | ------------- | ------------------------------------- |
-| **Frontend**      | Next.js 14    | SEO optimizado = más tráfico orgánico |
+| **Frontend**      | Next.js 15    | SEO optimizado = más tráfico orgánico |
 | **Backend**       | Express.js    | Flexibilidad total para monetización  |
 | **Base de Datos** | PostgreSQL    | Consultas complejas para analytics    |
 | **Cache**         | Redis         | Respuestas rápidas = mejor UX         |

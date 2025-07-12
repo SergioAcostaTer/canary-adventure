@@ -1,17 +1,33 @@
 // src/services/user.service.ts
+import { redis } from '@/dataSources'
 import { postgres } from '@/dataSources/postgres'
+import logger from '@/infrastructure/logger'
 
 export const userService = {
   async getUserById(userId: string) {
-    const pool = postgres.getPool()
-    const query = 'SELECT * FROM users WHERE id = $1'
-    const values = [userId]
-
     try {
-      const res = await pool.query(query, values)
-      return res.rows[0]
+      const cacheKey = `user:${userId}`
+      const cachedUser = await redis.get(cacheKey)
+
+      if (cachedUser) {
+        return JSON.parse(cachedUser)
+      }
+
+      const pool = postgres.getPool()
+      const result = await pool.query('SELECT * FROM users WHERE id = $1', [
+        userId
+      ])
+      const user = result.rows[0]
+
+      if (!user) {
+        return null
+      }
+
+      await redis.set(cacheKey, JSON.stringify(user), { EX: 3600 })
+      return user
     } catch (error) {
-      throw new Error('Error fetching user: ' + (error as Error).message)
+      logger.error('Error fetching user:', error)
+      throw new Error('Internal server error')
     }
   }
 }
