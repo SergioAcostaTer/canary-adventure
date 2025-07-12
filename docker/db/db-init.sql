@@ -358,3 +358,49 @@ INSERT INTO category_translations (category_id, language_code, name, description
   ((SELECT id FROM categories WHERE slug = 'family'), 'en', 'Family', 'Perfect activities to enjoy as a family with children'),
   ((SELECT id FROM categories WHERE slug = 'adventure'), 'en', 'Adventure', 'Experience thrills and adrenaline-filled activities'),
   ((SELECT id FROM categories WHERE slug = 'viewpoints'), 'en', 'Viewpoints', 'Contemplate panoramic views from the best viewpoints');
+
+
+CREATE MATERIALIZED VIEW place_summaries_es AS
+SELECT
+  p.id,
+  p.slug,
+  p.category_id,
+  pt.name,
+  pt.short_description,
+  pt.language_code,
+  p.location,
+  p.image_urls,
+  p.tags,
+  p.emotion_tags,
+  p.average_rating,
+  p.total_reviews,
+  p.price_level,
+  p.is_featured
+FROM places p
+JOIN place_translations pt ON pt.place_id = p.id
+WHERE pt.language_code = 'es'
+  AND p.is_active = true
+  AND p.deleted_at IS NULL;
+
+
+  CREATE MATERIALIZED VIEW place_summaries_es AS
+SELECT
+  p.id,
+  p.slug,
+  p.category_id,
+  pt.name,
+  pt.short_description,
+  pt.language_code,
+  p.location,
+  p.image_urls,
+  p.tags,
+  p.emotion_tags,
+  p.average_rating,
+  p.total_reviews,
+  p.price_level,
+  p.is_featured
+FROM places p
+JOIN place_translations pt ON pt.place_id = p.id
+WHERE pt.language_code = 'en'
+  AND p.is_active = true
+  AND p.deleted_at IS NULL;

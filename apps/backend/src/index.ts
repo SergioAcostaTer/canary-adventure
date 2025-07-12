@@ -5,6 +5,7 @@ import 'dotenv/config'
 import express, { Express } from 'express'
 
 import { setupSwagger } from './infrastructure/docs/swagger'
+import { languageMiddleware } from './middlewares/lamguageMiddleware'
 
 import { postgres, redis } from '@/dataSources'
 import logger from '@/infrastructure/logger'
@@ -34,6 +35,7 @@ app.use(
   express.urlencoded({ limit: '10mb', extended: true }),
   corsMiddleware,
   authMiddleware,
+  languageMiddleware,
   router,
   notFoundMiddleware
 )
