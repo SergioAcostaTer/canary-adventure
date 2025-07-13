@@ -2,7 +2,7 @@ import { redis } from '@/dataSources'
 import { postgres } from '@/dataSources/postgres'
 import logger from '@/infrastructure/logger'
 
-const TTL = 60 * 60 * 6 // 6 horas
+const TTL = 60 * 60 * 6 // 6 hours
 
 const cacheKey = {
   byId: (id: string, lang: string) => `place:${id}:${lang}`,
@@ -19,7 +19,14 @@ export const placeRepository = {
       const pool = postgres.getPool()
       const { rows } = await pool.query(
         `
-        SELECT p.*, pt.name, pt.description, pt.short_description, pt.tips
+        SELECT 
+          p.*, 
+          ST_X(p.location::geometry) AS longitude,
+          ST_Y(p.location::geometry) AS latitude,
+          pt.name, 
+          pt.description, 
+          pt.short_description, 
+          pt.tips
         FROM places p
         JOIN place_translations pt ON pt.place_id = p.id
         WHERE p.id = $1 AND pt.language_code = $2 AND p.deleted_at IS NULL
@@ -46,7 +53,14 @@ export const placeRepository = {
       const pool = postgres.getPool()
       const { rows } = await pool.query(
         `
-        SELECT p.*, pt.name, pt.description, pt.short_description, pt.tips
+        SELECT 
+          p.*, 
+          ST_X(p.location::geometry) AS longitude,
+          ST_Y(p.location::geometry) AS latitude,
+          pt.name, 
+          pt.description, 
+          pt.short_description, 
+          pt.tips
         FROM places p
         JOIN place_translations pt ON pt.place_id = p.id
         WHERE p.slug = $1 AND pt.language_code = $2 AND p.deleted_at IS NULL
@@ -71,7 +85,12 @@ export const placeRepository = {
       const pool = postgres.getPool()
       const { rows } = await pool.query(
         `
-        SELECT p.id, p.slug, pt.name, pt.short_description, p.image_urls
+        SELECT 
+          p.id, 
+          p.slug, 
+          pt.name, 
+          pt.short_description, 
+          p.image_urls
         FROM places p
         JOIN place_translations pt ON pt.place_id = p.id
         WHERE pt.language_code = $1
@@ -98,7 +117,12 @@ export const placeRepository = {
       const pool = postgres.getPool()
       const { rows } = await pool.query(
         `
-        SELECT p.id, p.slug, pt.name, pt.short_description, p.image_urls
+        SELECT 
+          p.id, 
+          p.slug, 
+          pt.name, 
+          pt.short_description, 
+          p.image_urls
         FROM places p
         JOIN place_translations pt ON pt.place_id = p.id
         WHERE pt.language_code = $1

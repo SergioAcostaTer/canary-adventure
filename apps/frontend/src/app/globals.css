@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --header-background: #f8f8f8;
+  --header-foreground: #171717;
+  --header-border: #e0e0e0;
+
+  /* Canary Adventure brand colors */
+  --brand-primary: #0071eb;
+  --brand-primary-hover: #005bb5;
+  --brand-yellow: #facc15; /* Tailwind yellow-400 */
+  --icon-default: #6b7280; /* Tailwind gray-500 */
+  --text-muted: #4b5563; /* Tailwind gray-600 */
+
+  --text-primary: #171717; /* Tailwind gray-900 */
+  --text-secondary: #6b7280; /* Tailwind gray-500 */
+  --text-tertiary: #9ca3af; /* Tailwind gray-400 */
+}
+
+[data-theme="dark"] {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --header-background: #171717;
+  --header-foreground: #ededed;
+  --header-border: #333333;
+
+  --brand-primary: #3399ff;
+  --brand-primary-hover: #2670cc;
+  --brand-yellow: #facc15;
+  --icon-default: #9ca3af;
+  --text-muted: #d1d5db;
+  --text-primary: #ededed;
+  --text-secondary: #9ca3af;
+  --text-tertiary: #6b7280;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.noselect, img{
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}

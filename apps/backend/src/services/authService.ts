@@ -5,14 +5,18 @@ import logger from '@/infrastructure/logger'
 import { userService } from '@/services'
 import { jwtSign, jwtVerify } from '@/utils/jwt'
 
-const GOOGLE_TOKEN_INFO_URL = 'https://www.googleapis.com/oauth2/v3/tokeninfo'
+const GOOGLE_USERINFO_URL = 'https://www.googleapis.com/oauth2/v3/userinfo'
 
 export const authService = {
   async authenticateWithGoogle(idToken: string) {
     try {
-      const { data: payload } = await axios.get(
-        `${GOOGLE_TOKEN_INFO_URL}?id_token=${idToken}`
-      )
+      const response = await axios.get(GOOGLE_USERINFO_URL, {
+        headers: {
+          Authorization: `Bearer ${idToken}`
+        }
+      })
+
+      const payload = response.data
 
       const { email, name, sub: oauthId, picture: avatarUrl, locale } = payload
 

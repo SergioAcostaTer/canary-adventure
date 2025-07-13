@@ -2,7 +2,8 @@ import { NextFunction, Request, Response } from 'express'
 
 import { redis } from '@/dataSources'
 import { userService } from '@/services'
-import { getAccessTokenFromHeaders } from '@/utils/headers'
+import { cookieUtils } from '@/utils/cookies'
+import { getAccessToken } from '@/utils/headers'
 import { jwtVerify } from '@/utils/jwt'
 
 export const authMiddleware = async (
@@ -11,7 +12,7 @@ export const authMiddleware = async (
   next: NextFunction
 ): Promise<void> => {
   try {
-    const { accessToken } = getAccessTokenFromHeaders(req.headers)
+    const accessToken = getAccessToken(req)
     if (!accessToken) return next()
 
     const isRevoked = await redis.get(`expiredToken:${accessToken}`)
@@ -21,7 +22,10 @@ export const authMiddleware = async (
     if (!id) return next()
 
     const user = await userService.getUserById(id)
-    if (!user) return next()
+    if (!user) {
+      cookieUtils.clearAccessToken(req.res as Response)
+      return next()
+    }
 
     Object.assign(req, {
       context: { user, accessToken }

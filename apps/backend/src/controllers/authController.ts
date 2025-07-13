@@ -1,5 +1,7 @@
-import { authService } from '@/services/authService'
 import { Request, Response } from 'express'
+
+import { authService } from '@/services/authService'
+import { cookieUtils } from '@/utils/cookies'
 
 export const authController = {
   async loginWithGoogle(req: Request, res: Response) {
@@ -12,6 +14,7 @@ export const authController = {
     try {
       const { user, accessToken } =
         await authService.authenticateWithGoogle(idToken)
+      cookieUtils.setAccessToken(res, accessToken)
       return res.status(200).json({ user, accessToken })
     } catch (error) {
       return res.status(401).json({ error: 'Authentication failed' })
@@ -27,6 +30,7 @@ export const authController = {
 
     try {
       await authService.revokeToken(token)
+      cookieUtils.clearAccessToken(res)
       return res.status(200).json({ success: true })
     } catch (error) {
       return res.status(500).json({ error: 'Logout failed' })

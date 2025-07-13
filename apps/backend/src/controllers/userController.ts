@@ -1,10 +1,10 @@
-import logger from '@/infrastructure/logger'
-import { userService } from '@/services/userService'
 import { Request, Response } from 'express'
 import { StatusCodes } from 'http-status-codes'
 
+import logger from '@/infrastructure/logger'
+import { userService } from '@/services/userService'
+
 export const userController = {
-  /** 🧠 Obtener perfil del usuario autenticado */
   async getCurrentUser(req: Request, res: Response) {
     try {
       const user = req.context?.user
@@ -15,7 +15,7 @@ export const userController = {
         })
       }
 
-      return res.status(StatusCodes.OK).json({ user })
+      return res.status(StatusCodes.OK).json(user)
     } catch (error) {
       logger.error('userController.getCurrentUser:', error)
       return res
@@ -24,7 +24,6 @@ export const userController = {
     }
   },
 
-  /** 🔍 Obtener usuario por ID (admin o soporte) */
   async getUserById(req: Request, res: Response) {
     try {
       const userId = req.params.id
@@ -36,7 +35,7 @@ export const userController = {
           .json({ message: 'User not found' })
       }
 
-      return res.status(StatusCodes.OK).json({ user })
+      return res.status(StatusCodes.OK).json(user)
     } catch (error) {
       logger.error('userController.getUserById:', error)
       return res

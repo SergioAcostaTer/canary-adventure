@@ -1,11 +1,10 @@
-import { join } from 'path'
-
 import cookieParser from 'cookie-parser'
 import 'dotenv/config'
 import express, { Express } from 'express'
 
 import { setupSwagger } from './infrastructure/docs/swagger'
-import { languageMiddleware } from './middlewares/lamguageMiddleware'
+import { storageService } from './infrastructure/storage'
+import { languageMiddleware } from './middlewares/languageMiddleware'
 
 import { postgres, redis } from '@/dataSources'
 import logger from '@/infrastructure/logger'
@@ -24,10 +23,13 @@ const app: Express = express()
 setupSwagger(app)
 
 app.use(
-  `/${process.env.STORAGE_PATH}`,
-  express.static(join(__dirname, '../', process.env.STORAGE_PATH))
+  `/${storageService.STORAGE_FOLDER}`,
+  express.static(storageService.STORAGE_BASE_PATH, {
+    setHeaders: res => {
+      res.setHeader('Cache-Control', 'public, max-age=315576000')
+    }
+  })
 )
-
 app.use(cookieParser())
 
 app.use(

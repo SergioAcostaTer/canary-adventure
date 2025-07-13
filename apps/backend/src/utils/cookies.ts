@@ -5,7 +5,7 @@ import { ACCESS_TOKEN_COOKIE, COOKIE_MAX_AGE_MS } from '@/config/auth'
 export const cookieUtils = {
   setAccessToken(res: Response, token: string) {
     res.cookie(ACCESS_TOKEN_COOKIE, token, {
-      httpOnly: true,
+      httpOnly: false,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
       maxAge: COOKIE_MAX_AGE_MS
@@ -14,7 +14,7 @@ export const cookieUtils = {
 
   clearAccessToken(res: Response) {
     res.clearCookie(ACCESS_TOKEN_COOKIE, {
-      httpOnly: true,
+      httpOnly: false,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax'
     })

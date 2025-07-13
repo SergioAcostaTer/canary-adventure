@@ -3,8 +3,7 @@ import { StatusCodes } from 'http-status-codes'
 
 import { placeService } from '@/services/placeService'
 
-const getLangFromRequest = (req: Request) =>
-  req.headers['accept-language']?.split(',')[0] || 'es'
+const getLangFromRequest = (req: Request) => req.language
 
 export const placeController = {
   async getById(req: Request, res: Response) {

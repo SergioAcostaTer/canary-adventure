@@ -1,8 +1,8 @@
-POST http://localhost:8000/places/teide-national-park-tenerife/images
+POST http://localhost:8000/places/loro-parque-tenerife/images
 Content-Type: application/json
 
 {
   "imageUrls": [
-    "https://wp-content.miviaje.com/2018/12/volcan-teide-tenerife.jpg"
+    "https://upload.wikimedia.org/wikipedia/commons/c/c1/Orcas_at_Loro_Parque_08.JPG"
   ]
 }

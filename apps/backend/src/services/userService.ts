@@ -1,11 +1,14 @@
 import { STATUS_CODES } from 'http'
 
+import { imageService } from './imageService'
+
 import { redis } from '@/dataSources'
 import { postgres } from '@/dataSources/postgres'
 import logger from '@/infrastructure/logger'
+import { avatarImageStrategy } from '@/strategies/avatarImageStrategy'
 
 /** 🔧 Configuración del cache de usuarios */
-const USER_CACHE_TTL = 3600 * 24 // 24 horas
+const USER_CACHE_TTL = 3600 * 24
 
 const userCache = {
   byId: (id: string) => `user:${id}`,
@@ -21,12 +24,35 @@ export const userService = {
 
       const pool = postgres.getPool()
       const { rows } = await pool.query(
-        'SELECT * FROM users WHERE id = $1 AND deleted_at IS NULL',
+        `
+        SELECT
+          email,
+          username,
+          full_name,
+          avatar_url,
+          role,
+          plan,
+          locale,
+          is_active
+        FROM users
+        WHERE id = $1 AND deleted_at IS NULL
+      `,
         [userId]
       )
 
-      const user = rows[0]
-      if (!user) return null
+      const row = rows[0]
+      if (!row) return null
+
+      const user = {
+        email: row.email,
+        username: row.username,
+        fullName: row.full_name,
+        avatarUrl: row.avatar_url,
+        role: row.role,
+        plan: row.plan,
+        locale: row.locale,
+        isActive: row.is_active
+      }
 
       await redis.set(cacheKey, JSON.stringify(user), { EX: USER_CACHE_TTL })
       return user
@@ -35,7 +61,6 @@ export const userService = {
       throw new Error(STATUS_CODES[500] || 'Internal Server Error')
     }
   },
-
   async getUserByEmail(email: string) {
     try {
       const cacheKey = userCache.byEmail(email)
@@ -70,6 +95,21 @@ export const userService = {
     locale?: string
   }) {
     try {
+      let localAvatarPath: string | null = null
+
+      if (user.avatar_url?.startsWith('http')) {
+        try {
+          localAvatarPath = await imageService.downloadImageFromUrl(
+            user.avatar_url,
+            avatarImageStrategy,
+            user.username
+          )
+        } catch (err) {
+          logger.warn(`Failed to download avatar for ${user.email}`, err)
+          localAvatarPath = null
+        }
+      }
+
       const pool = postgres.getPool()
       const { rows } = await pool.query(
         `INSERT INTO users (
@@ -81,7 +121,7 @@ export const userService = {
           user.email,
           user.username,
           user.full_name ?? null,
-          user.avatar_url ?? null,
+          localAvatarPath ?? user.avatar_url ?? null,
           user.oauth_provider,
           user.oauth_id,
           user.locale ?? 'en'

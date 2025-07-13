@@ -1,17 +1,14 @@
 import { existsSync, unlinkSync } from 'fs'
-import { join } from 'path'
+import { resolve } from 'path'
 
 import { Request, Response } from 'express'
 
 import { postgres } from '@/dataSources'
 import logger from '@/infrastructure/logger'
 import { imageService } from '@/services/imageService'
+import { placeImageStrategy } from '@/strategies/placeImageStrategy'
 
-const STORAGE_DIR = join(
-  __dirname,
-  '../../',
-  process.env.STORAGE_PATH || 'storage/uploads'
-)
+const STORAGE_ROOT = resolve(process.env.STORAGE_PATH || 'storage/uploads')
 
 export const placeImageController = {
   async addImagesToPlace(req: Request, res: Response) {
@@ -24,10 +21,16 @@ export const placeImageController = {
         .json({ error: 'imageUrls must be a non-empty array' })
     }
 
-    let savedPaths: string[] = []
+    let savedUrls: string[] = []
 
     try {
-      savedPaths = await imageService.downloadMultipleImages(imageUrls, slug)
+      savedUrls = await imageService.downloadMultipleImages(
+        imageUrls,
+        placeImageStrategy,
+        slug
+      )
+
+      console.log('Saved URLs:', savedUrls)
 
       const pool = postgres.getPool()
       const query = `
@@ -42,7 +45,7 @@ export const placeImageController = {
         WHERE slug = $2
         RETURNING id, slug, image_urls
       `
-      const { rows } = await pool.query(query, [savedPaths, slug])
+      const { rows } = await pool.query(query, [savedUrls, slug])
 
       if (!rows.length) {
         logger.warn(`Place not found: ${slug}`)
@@ -54,14 +57,15 @@ export const placeImageController = {
     } catch (error) {
       logger.error('Failed to add images to place:', error)
 
-      for (const relPath of savedPaths) {
-        const absPath = join(STORAGE_DIR, relPath)
+      for (const publicUrl of savedUrls) {
         try {
-          if (existsSync(absPath)) {
-            unlinkSync(absPath)
+          const relativePath = publicUrl.replace(`${process.env.APP_URL}`, '')
+          const absolutePath = resolve(STORAGE_ROOT, `.${relativePath}`)
+          if (existsSync(absolutePath)) {
+            unlinkSync(absolutePath)
           }
         } catch (unlinkError) {
-          logger.error(`Failed to delete image ${absPath}:`, unlinkError)
+          logger.error(`Failed to delete image: ${unlinkError}`)
         }
       }
 

@@ -1,6 +1,8 @@
-import { authController } from '@/controllers'
-import { authMiddleware } from '@/middlewares'
 import { Router } from 'express'
+
+import { authController } from '@/controllers'
+import { authGuard } from '@/guards'
+import { authMiddleware } from '@/middlewares'
 
 export const auth = (router: Router): void => {
   /**
@@ -39,7 +41,12 @@ export const auth = (router: Router): void => {
    *       401:
    *         description: Fallo de autenticación
    */
-  router.post('/auth/google', authController.loginWithGoogle)
+  router.post(
+    '/auth/google',
+    authMiddleware,
+    authGuard.isGuest,
+    authController.loginWithGoogle
+  )
 
   /**
    * @openapi
