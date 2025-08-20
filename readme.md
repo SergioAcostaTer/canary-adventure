@@ -87,53 +87,75 @@ CanaryAdventure doesn't just show you activities—it understands the rhythm of 
 
 ---
 
-## 🛠 Technical Architecture
+## 🚀 Go-to-Market Strategy
 
-### Backend Stack
-```
-Framework: Node.js + Express.js with TypeScript
-Database: PostgreSQL with Prisma ORM + pgvector for AI embeddings
-Cache Layer: Redis for sessions, caching, and real-time data
-AI Services: OpenAI GPT-4 + Embeddings for trip planning
-Authentication: JWT with refresh tokens + OAuth providers
-File Storage: Cloudinary for images/videos with AI tagging
-Payments: Stripe Connect for marketplace payments
-Email: Resend with beautiful templates
-Background Jobs: Bull Queue with Redis for async processing
-Weather API: OpenWeatherMap for activity suggestions
-Social APIs: Instagram Basic Display for content integration
-WebSockets: Socket.io for real-time features
-```
+### Marketing Focus: Attracting Users Through Immersive Web Design
 
-### Frontend Stack
-```
-Framework: Next.js 14/15 with TypeScript
-Styling: Tailwind CSS + Framer Motion for animations
-State Management: Zustand + TanStack Query
-Forms: React Hook Form + Zod validation
-UI Components: Radix UI + Custom Design System
-Maps: Mapbox GL JS for interactive heatmaps
-Charts: Recharts for analytics dashboards
-```
+To truly attract visitors, the website must be visually captivating and user-centric, emphasizing immersion in the Canary Islands' magic from the first click. Focus on:
 
-### Hosting & Infrastructure
-```
-Backend: Node.js on dedicated VPS (Ubuntu/CentOS)
-Frontend: Vercel or VPS with Nginx reverse proxy
-Database: PostgreSQL on VPS with automated backups
-Cache: Redis on same VPS or separate instance
-CDN: Cloudinary + Cloudflare for static assets
-SSL: Let's Encrypt with automatic renewal
-Monitoring: PM2 for process management + custom logging
-```
+- **Hero Section and Visual Hooks**: Start with stunning, high-resolution hero images or short looping videos of iconic scenes (e.g., Teide sunrises, Famara waves) that auto-play subtly. Overlay AI-driven personalization prompts like "Tell me your island vibe" to immediately engage users and generate tailored suggestions.
+  
+- **Storytelling and Emotional Appeal**: Prioritize narrative-driven content over lists—use AI-generated stories like "A Day in the Life of a Lanzarote Local" with embedded user photos and testimonials. Highlight authenticity by featuring real locals and user-generated content prominently to build trust and FOMO (fear of missing out).
 
-### Hosting & Infrastructure
-```
-Platform: Vercel (seamless Next.js deployment)
-Database: Supabase or Railway PostgreSQL
-Domain: canaryadventure.com
-SSL: Automatic via Vercel
-```
+- **Interactivity for Retention**: Make exploration fun with interactive elements like draggable heatmaps, swipeable activity cards, and a conversational AI chat bubble that pops up for quick queries. Focus on mobile-first design with fast load times (<2 seconds) to cater to on-the-go travelers.
+
+- **SEO and Content Optimization**: Target high-intent keywords like "best Canary Islands adventures" and "AI trip planner Tenerife." Use blog-style sections for evergreen content (e.g., "Top 10 Hidden Gems") optimized with meta descriptions, alt tags, and schema markup to drive organic traffic.
+
+- **Call-to-Actions (CTAs)**: Strategically place bold, benefit-focused CTAs like "Plan Your Adventure Now" that lead to the AI planner. A/B test colors (using accent Canary Sunset) and placements to maximize conversions.
+
+- **Social Proof and Urgency**: Integrate live counters (e.g., "500+ bookings this week") and urgency signals like "Limited spots for today's sunset hike." Embed social feeds from Instagram to show real-time user shares.
+
+Overall, the web should feel like a portal to the islands: vibrant, intuitive, and AI-smart, focusing on discovery, personalization, and community to convert visitors into loyal users.
+
+### Content-First Approach: "The Island Intelligence Hub"
+
+**Pre-Launch Content Engine (Weeks 15-18):**
+- **AI-Generated Island Guides**: "Best Time to Visit Teide Observatory" with real-time data
+- **Seasonal Activity Calendars**: Interactive guides showing what's happening when
+- **Hidden Gems Database**: Crowdsourced local secrets with GPS coordinates
+- **Weather-Activity Correlation**: "Perfect Surfing Days in Famara" predictive content
+- **Local Festival Integration**: Real-time updates on island celebrations and events
+
+### Social Media Strategy: "Islands Through Local Eyes"
+
+**Platform-Specific Content:**
+- **Instagram**: User-generated adventure photos with AI-enhanced captions
+- **TikTok**: "Island Life Hacks" and "Secret Spots" short-form content
+- **YouTube**: "AI Plans My Perfect Day in [Island]" documentary series
+- **LinkedIn**: Data-driven insights about sustainable tourism trends
+
+**Community Building:**
+- **#CanaryInsider**: Hashtag for locals sharing hidden gems
+- **Ambassador Program**: Partner with local influencers and nomad community
+- **User Story Features**: Weekly spotlight on unique adventures and discoveries
+
+### Partnership Strategy
+
+**Strategic Alliances:**
+- **Coworking Spaces**: NomadList integration, digital nomad communities
+- **Accommodation**: Hotel concierge integration, Airbnb experience partnerships
+- **Transportation**: Ferry companies, car rental services, airport partnerships
+- **Tourism Boards**: Official partnerships with island tourism offices
+- **Local Businesses**: Cross-promotion with restaurants, shops, services
+
+### Launch Sequence: "The Island Intelligence Launch"
+
+**Week 1-2: Soft Launch**
+- Invite-only access for local providers and beta testers
+- AI trip planner stress testing with real user scenarios
+- Social proof collection and testimonial gathering
+
+**Week 3-4: Public Launch**
+- "Your AI Island Guide is Here" campaign across all channels
+- Live demo sessions: "Plan a Perfect Day in 30 Seconds"
+- PR push: "First AI-Powered Canary Islands Experience Platform"
+- Influencer collaborations with travel and tech communities
+
+**Growth Hacking Tactics:**
+- **Viral Trip Sharing**: Beautiful, shareable AI-generated itineraries
+- **Local Business Referrals**: QR codes at popular tourist spots
+- **Seasonal Push Notifications**: "Sunset viewing is perfect today at..."
+- **Social Proof Automation**: Auto-share user achievements and discoveries
 
 ---
 
@@ -209,6 +231,45 @@ SSL: Automatic via Vercel
 
 ---
 
+## 🛠 Technical Architecture
+
+### Backend Stack
+```
+Framework: Node.js + Express.js with TypeScript
+Database: PostgreSQL with Prisma ORM + pgvector for AI embeddings
+Cache Layer: Redis for sessions, caching, and real-time data
+AI Services: OpenAI GPT-4 + Embeddings for trip planning
+Authentication: JWT with refresh tokens + OAuth providers
+File Storage: Cloudinary for images/videos with AI tagging
+Payments: Stripe Connect for marketplace payments
+Email: Resend with beautiful templates
+Background Jobs: Bull Queue with Redis for async processing
+Weather API: OpenWeatherMap for activity suggestions
+Social APIs: Instagram Basic Display for content integration
+WebSockets: Socket.io for real-time features
+```
+
+### Frontend Stack
+```
+Framework: Next.js 14/15 with TypeScript
+Styling: Tailwind CSS + Framer Motion for animations
+State Management: Zustand + TanStack Query
+Forms: React Hook Form + Zod validation
+UI Components: Radix UI + Custom Design System
+Maps: Mapbox GL JS for interactive heatmaps
+Charts: Recharts for analytics dashboards
+```
+
+### Hosting & Infrastructure
+```
+Platform: Vercel (seamless Next.js deployment)
+Database: Supabase or Railway PostgreSQL
+Domain: canaryadventure.com
+SSL: Automatic via Vercel
+```
+
+---
+
 ## 🔑 MVP Success Metrics
 
 ### Engagement Metrics
@@ -273,60 +334,6 @@ SSL: Automatic via Vercel
 
 ---
 
-## 🚀 Go-to-Market Strategy
-
-### Content-First Approach: "The Island Intelligence Hub"
-
-**Pre-Launch Content Engine (Weeks 15-18):**
-- **AI-Generated Island Guides**: "Best Time to Visit Teide Observatory" with real-time data
-- **Seasonal Activity Calendars**: Interactive guides showing what's happening when
-- **Hidden Gems Database**: Crowdsourced local secrets with GPS coordinates
-- **Weather-Activity Correlation**: "Perfect Surfing Days in Famara" predictive content
-- **Local Festival Integration**: Real-time updates on island celebrations and events
-
-### Social Media Strategy: "Islands Through Local Eyes"
-
-**Platform-Specific Content:**
-- **Instagram**: User-generated adventure photos with AI-enhanced captions
-- **TikTok**: "Island Life Hacks" and "Secret Spots" short-form content
-- **YouTube**: "AI Plans My Perfect Day in [Island]" documentary series
-- **LinkedIn**: Data-driven insights about sustainable tourism trends
-
-**Community Building:**
-- **#CanaryInsider**: Hashtag for locals sharing hidden gems
-- **Ambassador Program**: Partner with local influencers and nomad community
-- **User Story Features**: Weekly spotlight on unique adventures and discoveries
-
-### Partnership Strategy
-
-**Strategic Alliances:**
-- **Coworking Spaces**: NomadList integration, digital nomad communities
-- **Accommodation**: Hotel concierge integration, Airbnb experience partnerships
-- **Transportation**: Ferry companies, car rental services, airport partnerships
-- **Tourism Boards**: Official partnerships with island tourism offices
-- **Local Businesses**: Cross-promotion with restaurants, shops, services
-
-### Launch Sequence: "The Island Intelligence Launch"
-
-**Week 1-2: Soft Launch**
-- Invite-only access for local providers and beta testers
-- AI trip planner stress testing with real user scenarios
-- Social proof collection and testimonial gathering
-
-**Week 3-4: Public Launch**
-- "Your AI Island Guide is Here" campaign across all channels
-- Live demo sessions: "Plan a Perfect Day in 30 Seconds"
-- PR push: "First AI-Powered Canary Islands Experience Platform"
-- Influencer collaborations with travel and tech communities
-
-**Growth Hacking Tactics:**
-- **Viral Trip Sharing**: Beautiful, shareable AI-generated itineraries
-- **Local Business Referrals**: QR codes at popular tourist spots
-- **Seasonal Push Notifications**: "Sunset viewing is perfect today at..."
-- **Social Proof Automation**: Auto-share user achievements and discoveries
-
----
-
 ## 📋 MVP Feature Priorities
 
 ### Must Have (Core MVP)
@@ -355,28 +362,6 @@ SSL: Automatic via Vercel
 
 ---
 
-## 🎓 Learning & Iteration Plan
-
-**Week 1-2 Post-Launch:**
-- Monitor user behavior with analytics
-- Collect feedback from first 20 bookings
-- Identify most popular experience types
-- Note common user pain points
-
-**Month 2:**
-- A/B test booking flow improvements
-- Add most requested features
-- Expand to 2nd most popular island
-- Optimize based on conversion data
-
-**Month 3:**
-- Implement user feedback
-- Scale marketing efforts
-- Consider additional revenue streams
-- Plan for next major feature release
-
----
-
 ## 🔧 Technical Considerations
 
 ### Database Schema (Core Entities)
@@ -393,6 +378,18 @@ Social_Content (user photos, stories, shared experiences)
 Seasonal_Events (local festivals, optimal activity windows)
 Weather_History (historical data for AI recommendations)
 ```
+
+### Temporal Domain Model Overview
+The domain model incorporates temporal (time-based) aspects to handle seasonality, real-time updates, and historical trends. Key ideas include:
+- **Time-Series Entities**: Heatmap_Data and Weather_History store timestamped metrics for trends over days/weeks/months, enabling predictions like crowd levels or optimal activity times.
+- **Event-Based Entities**: Seasonal_Events and Bookings include start/end dates, recurrence patterns, and validity windows to align with festivals or weather forecasts.
+- **Overall Model Flow**: Entities like Experiences link to temporal data via foreign keys (e.g., availability slots), allowing AI to query time-sensitive info. This creates a dynamic model where queries can filter by "now" (real-time), "season" (monthly aggregates), or "history" (past patterns), without deep normalization—focus on views or indexes for performance.
+
+### Translations and Multi-Language Support
+To appeal to international visitors (e.g., from Spain, Germany, UK), implement translations via i18n libraries like next-i18next. Core approach:
+- **AI-Assisted Translations**: Use GPT for dynamic content (e.g., itineraries, descriptions) in English (default), Spanish, and German.
+- **Static Content**: Translate UI strings, activity names, and guides manually or via tools like DeepL for accuracy.
+- **User Detection**: Auto-detect browser language and allow manual switches. In MVP, prioritize high-traffic languages; expand post-launch based on analytics. Ensure cultural nuances, like local Spanish idioms, are preserved for authenticity.
 
 ### Key Integrations & APIs
 - **OpenAI GPT-4**: Trip planning and content generation
@@ -413,6 +410,28 @@ Weather_History (historical data for AI recommendations)
 - **Image Optimization**: WebP/AVIF with lazy loading and CDN
 - **GDPR Compliance**: Privacy-first data handling for EU users
 - **SSL/TLS**: Full encryption with Let's Encrypt certificates
+
+---
+
+## 🎓 Learning & Iteration Plan
+
+**Week 1-2 Post-Launch:**
+- Monitor user behavior with analytics
+- Collect feedback from first 20 bookings
+- Identify most popular experience types
+- Note common user pain points
+
+**Month 2:**
+- A/B test booking flow improvements
+- Add most requested features
+- Expand to 2nd most popular island
+- Optimize based on conversion data
+
+**Month 3:**
+- Implement user feedback
+- Scale marketing efforts
+- Consider additional revenue streams
+- Plan for next major feature release
 
 ---
 
