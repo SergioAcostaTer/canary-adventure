@@ -1,4 +1,4 @@
-import { Header } from "@/components/ui/header/Header";
+import { Header } from "@/features/ui/header/Header";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";

@@ -1,4 +1,4 @@
-import GoogleSignInButton from "@/components/ui/auth/GoogleSignInButton";
+import GoogleSignInButton from "@/features/ui/auth/GoogleSignInButton";
 import { Suspense } from "react";
 
 // Server Component - handles SSR
@@ -27,7 +27,7 @@ export default function LoginPage() {
             </h2>
           </div>
 
-          {/* Google Sign-In Button - Client Component */}  
+          {/* Google Sign-In Button - Client Component */}
           <Suspense fallback={<LoginButtonSkeleton />}>
             <GoogleSignInButton />
           </Suspense>

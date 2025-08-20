@@ -1,5 +1,6 @@
-import { ShareAndSaveButtons } from "@/components/shared/ShareAndSaveButtons";
-import ImageGrid from "@/components/ui/ImageGrid";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { ShareAndSaveButtons } from "@/features/shared/ShareAndSaveButtons";
+import ImageGrid from "@/features/ui/ImageGrid";
 import {
   Bookmark,
   Bus,
@@ -174,7 +175,7 @@ export default async function PlacePage({
             Place not found
           </h1>
           <p className="text-gray-600 text-sm sm:text-base">
-            The place you're looking for doesn't exist or couldn't be loaded.
+            The place you are looking for does not exist or has been removed.
           </p>
         </div>
       </div>

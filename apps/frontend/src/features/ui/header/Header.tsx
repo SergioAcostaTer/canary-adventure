@@ -1,4 +1,4 @@
-import { ToggleThemeButton } from "@/components/shared/ToggleThemeButton";
+import { ToggleThemeButton } from "@/features/shared/ToggleThemeButton";
 import { Globe, Heart, Search } from "lucide-react";
 import Link from "next/link";
 import { UserAvatar } from "./UserAvatar";
