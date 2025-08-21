@@ -1,12 +1,16 @@
 import { ProviderCTA } from "@/components/ui/ProviderCTA";
 import { TestimonialsGrid } from "@/components/ui/TestimonialsGrid";
-import TrendingExperiences from "@/features/TrendingExperiences";
+import AdventureHero from "@/features/home/Hero";
+import TrendingExperiences from "@/features/home/TrendingExperiences";
 
-export const revalidate = 60 * 15; // 15 minutes
+const FIFTEEN_MINUTES = 60 * 15;
+
+export const revalidate = FIFTEEN_MINUTES; // 15 minutes
 
 export default function Home() {
   return (
     <div>
+      <AdventureHero />
       <TrendingExperiences />
       <TestimonialsGrid />
       <ProviderCTA />
