@@ -139,16 +139,17 @@ const AdventureHero: React.FC = () => {
           </div>
  */}
           {/* Buttons - enhanced for visibility */}
-          <div className="mt-8 flex flex-row gap-4 justify-center items-center">
-            <button className="group relative px-8 py-4 bg-amber-500 hover:bg-amber-600 dark:bg-amber-600 dark:hover:bg-amber-700 text-white font-bold rounded-xl transition-all duration-300 shadow-xl hover:shadow-2xl backdrop-blur-sm border border-amber-400/50 dark:border-amber-500/50">
+          <div className="mt-8 flex flex-row gap-4 justify-center items-center text-sm sm:text-base">
+            <button className="group flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-amber-500 hover:bg-amber-600 dark:bg-amber-600 dark:hover:bg-amber-700 text-white font-bold rounded-xl transition-all duration-300 shadow-xl hover:shadow-2xl backdrop-blur-sm border border-amber-400/50 dark:border-amber-500/50 min-h-[52px] sm:min-h-[56px]">
               <span className="relative z-10 drop-shadow-sm">
                 Start planning
               </span>
             </button>
-            <button className="group px-8 py-4 border-2 border-teal-400/80 hover:border-teal-300 dark:border-teal-400 dark:hover:border-teal-300 text-white hover:text-teal-100 dark:text-gray-100 dark:hover:text-teal-200 font-bold rounded-xl bg-white/20 hover:bg-white/30 dark:bg-gray-800/40 dark:hover:bg-gray-700/50 transition-all backdrop-blur-sm shadow-lg hover:shadow-xl">
+
+            <button className="group flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 border-2 border-teal-400/80 hover:border-teal-300 dark:border-teal-400 dark:hover:border-teal-300 text-white hover:text-teal-100 dark:text-gray-100 dark:hover:text-teal-200 font-bold rounded-xl bg-white/20 hover:bg-white/30 dark:bg-gray-800/40 dark:hover:bg-gray-700/50 transition-all backdrop-blur-sm shadow-lg hover:shadow-xl min-h-[52px] sm:min-h-[56px]">
               <span className="drop-shadow-sm">Browse experiences</span>
               <svg
-                className="inline-block ml-2 w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300 drop-shadow-sm"
+                className="ml-2 w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300 drop-shadow-sm"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
