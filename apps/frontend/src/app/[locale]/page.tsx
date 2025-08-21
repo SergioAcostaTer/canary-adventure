@@ -1,5 +1,3 @@
-import { ProviderCTA } from "@/components/ui/ProviderCTA";
-import { TestimonialsGrid } from "@/components/ui/TestimonialsGrid";
 import AdventureHero from "@/features/home/Hero";
 import TrendingExperiences from "@/features/home/TrendingExperiences";
 
@@ -12,8 +10,6 @@ export default function Home() {
     <div>
       <AdventureHero />
       <TrendingExperiences />
-      <TestimonialsGrid />
-      <ProviderCTA />
     </div>
   );
 }

@@ -9,7 +9,7 @@ import React from "react";
  */
 const AdventureHero: React.FC = () => {
   return (
-    <div className="relative w-full overflow-hidden rounded-lg shadow-lg">
+    <div className="relative max-w-full overflow-hidden sm:rounded-lg shadow-lg px-4 sm:mt-8 sm:mx-4">
       <div className="absolute inset-0 bg-white dark:bg-gray-900">
         <video
           className="w-full h-full object-cover"
@@ -55,7 +55,7 @@ const AdventureHero: React.FC = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-12 flex items-center justify-center min-h-[400px]">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-8 flex items-center justify-center min-h-[400px]">
         <div className="text-center">
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-white/20 dark:border-gray-700/50 text-gray-800 dark:text-gray-200 text-sm font-medium shadow-lg">
             <svg
@@ -75,13 +75,13 @@ const AdventureHero: React.FC = () => {
           </span>
 
           <div className="mt-4 p-6 rounded-2xl bg-white/20 dark:bg-gray-900/30 backdrop-blur-md border border-white/30 dark:border-gray-700/30 shadow-2xl">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white dark:text-gray-100 drop-shadow-lg">
+            <h1 className="text-xl md:text-4xl font-bold tracking-tight text-white dark:text-gray-100 drop-shadow-lg">
               Find unforgettable adventures in the{" "}
               <span className="text-amber-400 dark:text-amber-300 drop-shadow-lg">
                 Canary Islands
               </span>
             </h1>
-            <p className="mt-4 text-lg md:text-xl text-gray-100 dark:text-gray-200 max-w-2xl mx-auto drop-shadow-md">
+            <p className="mt-4 text-md md:text-xl text-gray-100 dark:text-gray-200 max-w-2xl mx-auto drop-shadow-md">
               Surf world‑class beaches, hike ancient volcanoes, and stargaze
               above the clouds — curated by trusted local providers.
             </p>
