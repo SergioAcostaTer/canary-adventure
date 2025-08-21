@@ -1,9 +1,7 @@
 import AdventureHero from "@/features/home/Hero";
 import TrendingExperiences from "@/features/home/TrendingExperiences";
 
-const FIFTEEN_MINUTES = 60 * 15;
-
-export const revalidate = FIFTEEN_MINUTES; // 15 minutes
+export const revalidate = 3600; // 1 hour
 
 export default function Home() {
   return (
