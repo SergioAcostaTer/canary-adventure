@@ -2,43 +2,62 @@
 
 import { ExperienceCard } from "@/components/ui/experience";
 
-// Keep data external or fetch from API in real-world apps
 const TRENDING = [
   {
-    id: "teide-sunrise",
+    img: "https://www.volcanoteide.com/source/roques-de-garcia.webp",
     title: "Teide Sunrise & Stargazing",
     island: "Tenerife",
     price: 49,
+    offerPrice: undefined,
     rating: 4.9,
-    img: "https://www.volcanoteide.com/source/roques-de-garcia.webp",
     badges: ["Free cancel", "Small group"],
+    href: "/experiences/teide-sunrise",
+    widthClass: "min-w-[280px] max-w-[320px] w-full",
+    imageHeightClass: "h-48",
+    className: "",
+    onClick: undefined,
   },
   {
-    id: "famara-surf",
+    img: "https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=800&auto=format&fit=crop",
     title: "Famara Surf Lesson",
     island: "Lanzarote",
     price: 39,
+    offerPrice: 29,
     rating: 4.8,
-    img: "https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=800&auto=format&fit=crop",
     badges: ["Top rated", "All gear"],
+    href: "/experiences/famara-surf",
+    widthClass: "min-w-[280px] max-w-[320px] w-full",
+    imageHeightClass: "h-48",
+    className: "",
+    onClick: undefined,
   },
   {
-    id: "laurel-forest",
-    title: "La Gomera Laurel Forest Hike",
+    img: "https://images.unsplash.com/photo-1508780709619-79562169bc64?q=80&w=800&auto=format&fit=crop",
+    title: "La Gomera Rainforest Hike",
     island: "La Gomera",
     price: 59,
-    rating: 4.9,
-    img: "https://images.unsplash.com/photo-1473443444230-1865f4bf9f9f?q=80&w=800&auto=format&fit=crop",
-    badges: ["Local guide", "Family friendly"],
+    offerPrice: undefined,
+    rating: 4.7,
+    badges: ["Nature", "Guided tour"],
+    href: "/experiences/la-gomera-hike",
+    widthClass: "min-w-[280px] max-w-[320px] w-full",
+    imageHeightClass: "h-48",
+    className: "",
+    onClick: undefined,
   },
   {
-    id: "dolphin-whale",
-    title: "Dolphin & Whale Watching",
-    island: "Tenerife",
+    img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800&auto=format&fit=crop",
+    title: "Gran Canaria Dolphin Cruise",
+    island: "Gran Canaria",
     price: 45,
-    rating: 4.7,
-    img: "https://images.unsplash.com/photo-1531730331038-7804a3f65c1b?q=80&w=800&auto=format&fit=crop",
-    badges: ["Eco-friendly", "Live commentary"],
+    offerPrice: 35,
+    rating: 4.6,
+    badges: ["Family friendly", "Snacks included"],
+    href: "/experiences/gran-canaria-boat",
+    widthClass: "min-w-[280px] max-w-[320px] w-full",
+    imageHeightClass: "h-48",
+    className: "",
+    onClick: undefined,
   },
 ];
 
@@ -60,7 +79,7 @@ export default function TrendingExperiences() {
         className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
       >
         {TRENDING.map((item) => (
-          <li key={item.id}>
+          <li key={item.title} className="flex">
             <ExperienceCard {...item} />
           </li>
         ))}

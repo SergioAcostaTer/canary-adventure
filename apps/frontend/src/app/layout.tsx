@@ -2,7 +2,6 @@ import { Header } from "@/features/ui/header/Header";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import { Providers } from "./providers";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -44,12 +43,10 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className={`${poppins.variable} font-sans antialiased`}>
-        <Providers>
-          <Header />
-          <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-8 bg-[var(--background)] text-[var(--foreground)]">
-            {children}
-          </main>
-        </Providers>
+        <Header />
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-8 bg-[var(--background)] text-[var(--foreground)]">
+          {children}
+        </main>
       </body>
     </html>
   );
