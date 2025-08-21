@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils/cn";
 import { Star } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
+import Link from "next/link";
 import * as React from "react";
 import { Card, CardContent } from "../cards";
 import { BadgePill } from "./BadgePill";
@@ -22,15 +23,6 @@ export type ExperienceCardProps = {
   /** Default: "h-48" */
   imageHeightClass?: string;
   className?: string;
-  onClick?: () => void;
-};
-
-const isExternalUrl = (url: string): boolean => {
-  return (
-    url.startsWith("http://") ||
-    url.startsWith("https://") ||
-    url.startsWith("//")
-  );
 };
 
 export const ExperienceCard = React.forwardRef<
@@ -50,7 +42,6 @@ export const ExperienceCard = React.forwardRef<
       widthClass = "min-w-[280px] max-w-[320px] w-full",
       imageHeightClass = "h-48",
       className,
-      onClick,
     },
     ref
   ) => {
@@ -59,40 +50,6 @@ export const ExperienceCard = React.forwardRef<
     const originalPrice = hasOffer ? price : null;
 
     const t = useTranslations("common");
-
-    const isExternal = href ? isExternalUrl(href) : false;
-    const linkProps = href
-      ? {
-          href,
-          ...(isExternal && {
-            target: "_blank",
-            rel: "noopener noreferrer",
-          }),
-        }
-      : {};
-
-    const handleKeyDown = (e: React.KeyboardEvent) => {
-      if (!onClick && !href) return;
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        if (onClick) {
-          onClick();
-        } else if (href) {
-          if (isExternal) {
-            window.open(href, "_blank", "noopener,noreferrer");
-          } else {
-            window.location.href = href;
-          }
-        }
-      }
-    };
-
-    const handleClick = (e: React.MouseEvent) => {
-      if (onClick) {
-        e.preventDefault();
-        onClick();
-      }
-    };
 
     const cardContent = (
       <>
@@ -198,39 +155,31 @@ export const ExperienceCard = React.forwardRef<
       "bg-card border border-border",
       "hover:border-border/80 hover:shadow-md",
       "focus-within:border-ring focus-within:ring-2 focus-within:ring-ring/20",
-      (onClick || href) && "cursor-pointer",
+      href && "cursor-pointer",
       className
     );
 
+    const ariaLabel = `${title} in ${island} - From €${displayPrice}${
+      hasOffer ? " (Special Offer)" : ""
+    }`;
+
     if (href) {
       return (
-        <Card ref={ref} className={cardClassName}>
-          <a
-            {...linkProps}
-            onClick={handleClick}
-            onKeyDown={handleKeyDown}
-            aria-label={`${title} in ${island} - From €${displayPrice}${
-              hasOffer ? " (Special Offer)" : ""
-            }`}
-          >
+        <Link
+          href={href}
+          aria-label={ariaLabel}
+          className="block w-full"
+          passHref
+        >
+          <Card ref={ref} className={cardClassName}>
             {cardContent}
-          </a>
-        </Card>
+          </Card>
+        </Link>
       );
     }
 
     return (
-      <Card
-        ref={ref}
-        onClick={onClick}
-        onKeyDown={handleKeyDown}
-        className={cardClassName}
-        role={onClick ? "button" : undefined}
-        tabIndex={onClick ? 0 : -1}
-        aria-label={
-          onClick ? `${title} in ${island} - From €${displayPrice}` : undefined
-        }
-      >
+      <Card ref={ref} className={cardClassName}>
         {cardContent}
       </Card>
     );

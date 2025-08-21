@@ -1,5 +1,3 @@
-"use client";
-
 import { ExperienceCard } from "@/components/ui/experience";
 
 const TRENDING = [

@@ -10,6 +10,50 @@ import React from "react";
 const AdventureHero: React.FC = () => {
   return (
     <div className="relative max-w-full overflow-hidden sm:rounded-lg shadow-lg px-4 sm:mt-8 sm:mx-4">
+      <div className="absolute inset-0 bg-white dark:bg-gray-900">
+        <video
+          className="w-full h-full object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          poster="/videos/intro/intro.webp"
+        >
+          {/* AV1 (if generated) */}
+          <source
+            src="/videos/intro/intro-720-av1.mp4"
+            type="video/mp4; codecs=av01"
+            media="(min-width:640px)"
+          />
+          <source
+            src="/videos/intro/intro-480-av1.mp4"
+            type="video/mp4; codecs=av01"
+          />
+          {/* VP9 primary */}
+          <source
+            src="/videos/intro/intro-720.webm"
+            type="video/webm"
+            media="(min-width:640px)"
+          />
+          <source src="/videos/intro/intro-480.webm" type="video/webm" />
+          {/* H.264 fallback */}
+          <source
+            src="/videos/intro/intro-720.mp4"
+            type="video/mp4"
+            media="(min-width:640px)"
+          />
+          <source src="/videos/intro/intro-480.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
+        {/* Enhanced overlay for better content visibility */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50 dark:from-black/60 dark:via-black/50 dark:to-black/70"></div>
+
+        {/* Additional subtle overlay for extra contrast */}
+        <div className="absolute inset-0 bg-white/10 dark:bg-gray-900/20"></div>
+      </div>
+
       {/* Content */}
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-8 flex items-center justify-center min-h-[400px]">
         <div className="text-center">
