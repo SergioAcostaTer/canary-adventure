@@ -1,79 +1,95 @@
 import React from "react";
 
 /**
- * Hero section restyled to better match Canary Adventure's vibe:
- * - Bright, optimistic sunrise-to-ocean gradient
- * - Subtle island/wave illustration background (pure SVG, no assets)
- * - Warmer marketing palette (amber/teal/sky)
- * - Simplified: no input form, max-h 400
+ * Hero section with enhanced visibility over video background:
+ * - Strong contrast overlays for readability
+ * - Dark mode support with dark: classes
+ * - Enhanced shadows and backgrounds
+ * - All content remains highly visible over video
  */
 const AdventureHero: React.FC = () => {
   return (
-    <div className="relative w-full max-h-[400px] overflow-hidden rounded-lg shadow-lg">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-sky-200 via-sky-100 to-emerald-50" />
+    <div className="relative w-full overflow-hidden rounded-lg shadow-lg">
+      <div className="absolute inset-0 bg-white dark:bg-gray-900">
+        <video
+          className="w-full h-full object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          poster="/videos/intro/intro.webp"
+        >
+          {/* AV1 (if generated) */}
+          <source
+            src="/videos/intro/intro-720-av1.mp4"
+            type="video/mp4; codecs=av01"
+            media="(min-width:640px)"
+          />
+          <source
+            src="/videos/intro/intro-480-av1.mp4"
+            type="video/mp4; codecs=av01"
+          />
+          {/* VP9 primary */}
+          <source
+            src="/videos/intro/intro-720.webm"
+            type="video/webm"
+            media="(min-width:640px)"
+          />
+          <source src="/videos/intro/intro-480.webm" type="video/webm" />
+          {/* H.264 fallback */}
+          <source
+            src="/videos/intro/intro-720.mp4"
+            type="video/mp4"
+            media="(min-width:640px)"
+          />
+          <source src="/videos/intro/intro-480.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
 
-      {/* Sun + glow */}
-      <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[42rem] h-[42rem] rounded-full bg-amber-300/70 blur-3xl opacity-60" />
-      <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-64 h-64 rounded-full bg-amber-400 shadow-[0_0_120px_rgba(251,191,36,0.8)]" />
+        {/* Enhanced overlay for better content visibility */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50 dark:from-black/60 dark:via-black/50 dark:to-black/70"></div>
 
-      {/* Decorative waves (SVG) */}
-      <svg
-        aria-hidden
-        className="absolute bottom-0 left-0 w-[140%] max-w-none translate-y-1"
-        viewBox="0 0 1440 280"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M0 140 C 180 120, 360 180, 540 160 C 720 140, 900 100, 1080 120 C 1260 140, 1350 130, 1440 120 L 1440 300 L 0 300 Z"
-          fill="url(#wave1)"
-        />
-        <path
-          d="M0 170 C 200 160, 380 200, 560 190 C 740 180, 940 150, 1140 170 C 1300 185, 1380 180, 1440 175 L 1440 300 L 0 300 Z"
-          fill="url(#wave2)"
-          opacity=".9"
-        />
-        <path
-          d="M0 200 C 240 210, 420 230, 700 220 C 980 210, 1200 190, 1440 210 L 1440 300 L 0 300 Z"
-          fill="url(#wave3)"
-          opacity=".85"
-        />
-        <defs>
-          <linearGradient id="wave1" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#bae6fd" />
-            <stop offset="100%" stopColor="#99f6e4" />
-          </linearGradient>
-          <linearGradient id="wave2" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#7dd3fc" />
-            <stop offset="100%" stopColor="#5eead4" />
-          </linearGradient>
-          <linearGradient id="wave3" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#38bdf8" />
-            <stop offset="100%" stopColor="#34d399" />
-          </linearGradient>
-        </defs>
-      </svg>
+        {/* Additional subtle overlay for extra contrast */}
+        <div className="absolute inset-0 bg-white/10 dark:bg-gray-900/20"></div>
+      </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-12 flex items-center justify-center min-h-[400px]">
         <div className="text-center">
-          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/70 backdrop-blur border border-sky-200 text-sky-700 text-sm font-medium shadow-sm">
-            <span className="i-lucide-sparkles" aria-hidden /> Trending island
-            experiences
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-white/20 dark:border-gray-700/50 text-gray-800 dark:text-gray-200 text-sm font-medium shadow-lg">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09z" />
+              <path d="M18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456z" />
+            </svg>
+            Trending island experiences
           </span>
-          <h1 className="mt-6 text-4xl md:text-5xl font-semibold tracking-tight text-slate-900">
-            Find unforgettable adventures in the{" "}
-            <span className="text-amber-600">Canary Islands</span>
-          </h1>
-          <p className="mt-3 text-lg md:text-xl text-slate-700 max-w-3xl mx-auto">
-            Surf world‑class beaches, hike ancient volcanoes, and stargaze above
-            the clouds — curated by trusted local providers.
-          </p>
 
-          {/* Value props */}
-          <div className="mt-5 flex flex-col sm:flex-row items-center justify-center gap-4 text-slate-700">
-            <div className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/70 border border-slate-200 shadow-sm">
+          <div className="mt-4 p-6 rounded-2xl bg-white/20 dark:bg-gray-900/30 backdrop-blur-md border border-white/30 dark:border-gray-700/30 shadow-2xl">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white dark:text-gray-100 drop-shadow-lg">
+              Find unforgettable adventures in the{" "}
+              <span className="text-amber-400 dark:text-amber-300 drop-shadow-lg">
+                Canary Islands
+              </span>
+            </h1>
+            <p className="mt-4 text-lg md:text-xl text-gray-100 dark:text-gray-200 max-w-2xl mx-auto drop-shadow-md">
+              Surf world‑class beaches, hike ancient volcanoes, and stargaze
+              above the clouds — curated by trusted local providers.
+            </p>
+          </div>
+
+          {/* Value props - enhanced for visibility */}
+          {/*     <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4 text-gray-100 dark:text-gray-200">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 dark:bg-gray-800/40 backdrop-blur-sm border border-white/30 dark:border-gray-600/50 shadow-lg">
               <svg
                 width="18"
                 height="18"
@@ -88,7 +104,7 @@ const AdventureHero: React.FC = () => {
               </svg>
               Free cancellation on many tours
             </div>
-            <div className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/70 border border-slate-200 shadow-sm">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 dark:bg-gray-800/40 backdrop-blur-sm border border-white/30 dark:border-gray-600/50 shadow-lg">
               <svg
                 width="18"
                 height="18"
@@ -104,7 +120,7 @@ const AdventureHero: React.FC = () => {
               </svg>
               Instant booking & secure payments
             </div>
-            <div className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/70 border border-slate-200 shadow-sm">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 dark:bg-gray-800/40 backdrop-blur-sm border border-white/30 dark:border-gray-600/50 shadow-lg">
               <svg
                 width="18"
                 height="18"
@@ -121,16 +137,18 @@ const AdventureHero: React.FC = () => {
               Local guides, top‑rated reviews
             </div>
           </div>
-
-          {/* Buttons */}
-          <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button className="group relative px-8 py-4 bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-xl transition-all duration-300 shadow-md hover:shadow-xl">
-              <span className="relative z-10">Start planning</span>
+ */}
+          {/* Buttons - enhanced for visibility */}
+          <div className="mt-8 flex flex-row gap-4 justify-center items-center">
+            <button className="group relative px-8 py-4 bg-amber-500 hover:bg-amber-600 dark:bg-amber-600 dark:hover:bg-amber-700 text-white font-bold rounded-xl transition-all duration-300 shadow-xl hover:shadow-2xl backdrop-blur-sm border border-amber-400/50 dark:border-amber-500/50">
+              <span className="relative z-10 drop-shadow-sm">
+                Start planning
+              </span>
             </button>
-            <button className="group px-8 py-4 border-2 border-teal-500/40 hover:border-teal-600 text-teal-700 hover:text-teal-800 font-semibold rounded-xl bg-white/70 backdrop-blur transition-all">
-              Browse experiences
+            <button className="group px-8 py-4 border-2 border-teal-400/80 hover:border-teal-300 dark:border-teal-400 dark:hover:border-teal-300 text-white hover:text-teal-100 dark:text-gray-100 dark:hover:text-teal-200 font-bold rounded-xl bg-white/20 hover:bg-white/30 dark:bg-gray-800/40 dark:hover:bg-gray-700/50 transition-all backdrop-blur-sm shadow-lg hover:shadow-xl">
+              <span className="drop-shadow-sm">Browse experiences</span>
               <svg
-                className="inline-block ml-2 w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300"
+                className="inline-block ml-2 w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300 drop-shadow-sm"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
