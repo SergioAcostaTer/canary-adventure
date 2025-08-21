@@ -9,5 +9,14 @@
     "reset": "Reset",
     "quantity": "Quantity",
     "total": "Total"
+  },
+  "experiences": {
+    "title": "Experiences",
+    "description": "Explore our curated list of experiences.",
+    "noExperiences": "No experiences found.",
+    "filterBy": "Filter by",
+    "sortBy": "Sort by",
+    "viewDetails": "View Details",
+    "bookNow": "Book Now"
   }
 }
