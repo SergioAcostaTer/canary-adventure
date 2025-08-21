@@ -2,9 +2,11 @@ import { ProviderCTA } from "@/components/ui/ProviderCTA";
 import { TestimonialsGrid } from "@/components/ui/TestimonialsGrid";
 import TrendingExperiences from "@/features/TrendingExperiences";
 
-export default async function Home() {
+export const revalidate = 60;
+
+export default function Home() {
   return (
-    <div className="">
+    <div>
       <TrendingExperiences />
       <TestimonialsGrid />
       <ProviderCTA />

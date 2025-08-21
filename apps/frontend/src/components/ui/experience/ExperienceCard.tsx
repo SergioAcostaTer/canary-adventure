@@ -1,5 +1,7 @@
 import { cn } from "@/lib/utils/cn";
 import { Star } from "lucide-react";
+import { useTranslations } from "next-intl";
+import Image from "next/image";
 import * as React from "react";
 import { Card, CardContent } from "../cards";
 import { BadgePill } from "./BadgePill";
@@ -8,10 +10,10 @@ export type ExperienceCardProps = {
   img: string;
   title: string;
   island: string;
-  price: number | string;
+  price: number | string | null;
   /** Optional offer price to show discounted price */
-  offerPrice?: number | string;
-  rating?: number | string;
+  offerPrice?: number | string | null;
+  rating?: number | string | null;
   badges?: string[];
   /** Link destination - can be relative path or external URL */
   href?: string;
@@ -55,7 +57,8 @@ export const ExperienceCard = React.forwardRef<
     const hasOffer = offerPrice != null;
     const displayPrice = hasOffer ? offerPrice : price;
     const originalPrice = hasOffer ? price : null;
-    const savings = hasOffer ? Number(originalPrice) - Number(offerPrice) : 0;
+
+    const t = useTranslations("common");
 
     const isExternal = href ? isExternalUrl(href) : false;
     const linkProps = href
@@ -100,11 +103,17 @@ export const ExperienceCard = React.forwardRef<
             imageHeightClass
           )}
         >
-          <img
+          <Image
             src={img}
             alt={title}
             loading="lazy"
             className="h-full w-full object-cover"
+            width={320}
+            height={192}
+            quality={80}
+            placeholder="blur"
+            blurDataURL={img}
+            unoptimized
           />
 
           {/* Badges */}
@@ -113,33 +122,24 @@ export const ExperienceCard = React.forwardRef<
               {badges.map((badge) => (
                 <BadgePill
                   key={badge}
-                  className="shadow-sm bg-white/95 backdrop-blur-sm dark:bg-gray-900/95"
+                  className="shadow-sm bg-white/95 backdrop-blur-sm dark:bg-gray-900/95 text-gray-800 dark:text-gray-200"
                 >
                   {badge}
                 </BadgePill>
               ))}
             </div>
           )}
-
-          {/* Professional Offer Badge */}
-          {hasOffer && (
-            <div className="absolute right-3 top-3">
-              <div className="inline-flex items-center px-2.5 py-1 rounded-md bg-red-600 dark:bg-red-500 text-white text-xs font-semibold tracking-wide shadow-sm">
-                -{Math.round((savings / Number(originalPrice)) * 100)}%
-              </div>
-            </div>
-          )}
         </div>
 
         {/* Content */}
-        <CardContent className="p-4">
+        <CardContent className="p-4 bg-white dark:bg-gray-900">
           {/* Island */}
           <div className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1">
             {island}
           </div>
 
           {/* Title */}
-          <h3 className="line-clamp-2 text-base font-semibold text-foreground leading-tight mb-3 min-h-[2.5rem]">
+          <h3 className="line-clamp-1 text-base font-semibold text-foreground leading-tight mb-2 min-h-6">
             {title}
           </h3>
 
@@ -148,23 +148,28 @@ export const ExperienceCard = React.forwardRef<
             {/* Price Section */}
             <div className="flex flex-col space-y-1">
               <div className="flex items-baseline gap-2">
-                <span className="text-sm text-muted-foreground">From</span>
-                <div className="flex items-baseline gap-2">
-                  <span className="text-xl font-bold text-foreground">
-                    €{displayPrice}
-                  </span>
-                  {originalPrice && (
-                    <span className="text-sm text-muted-foreground line-through font-medium">
-                      €{originalPrice}
+                {displayPrice != null ? (
+                  <>
+                    <span className="text-md text-muted-foreground">
+                      {t("from")}{" "}
                     </span>
-                  )}
-                </div>
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-xl font-bold text-foreground">
+                        €{displayPrice}
+                      </span>
+                      {originalPrice && (
+                        <span className="text-md text-muted-foreground line-through font-medium text-gray-500 dark:text-gray-400">
+                          €{originalPrice}
+                        </span>
+                      )}
+                    </div>
+                  </>
+                ) : (
+                  <span className="text-xl font-bold text-foreground">
+                    FREE
+                  </span>
+                )}
               </div>
-              {hasOffer && (
-                <div className="inline-flex items-center text-xs font-medium text-green-600 dark:text-green-400">
-                  Save €{savings}
-                </div>
-              )}
             </div>
 
             {/* Rating Section */}

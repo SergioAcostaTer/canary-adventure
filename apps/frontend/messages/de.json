@@ -1,0 +1,13 @@
+{
+  "common": {
+    "from": "Von",
+    "to": "Bis",
+    "price": "Preis",
+    "date": "Datum",
+    "search": "Suchen",
+    "submit": "Absenden",
+    "reset": "Zurücksetzen",
+    "quantity": "Menge",
+    "total": "Gesamt"
+  }
+}

@@ -7,7 +7,7 @@ const TRENDING = [
     img: "https://www.volcanoteide.com/source/roques-de-garcia.webp",
     title: "Teide Sunrise & Stargazing",
     island: "Tenerife",
-    price: 49,
+    price: null,
     offerPrice: undefined,
     rating: 4.9,
     badges: ["Free cancel", "Small group"],
@@ -18,7 +18,7 @@ const TRENDING = [
     onClick: undefined,
   },
   {
-    img: "https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=800&auto=format&fit=crop",
+    img: "https://live.staticflickr.com/1275/1251152959_98054e7e7c_c.jpg",
     title: "Famara Surf Lesson",
     island: "Lanzarote",
     price: 39,
@@ -32,7 +32,7 @@ const TRENDING = [
     onClick: undefined,
   },
   {
-    img: "https://images.unsplash.com/photo-1508780709619-79562169bc64?q=80&w=800&auto=format&fit=crop",
+    img: "https://upload.wikimedia.org/wikipedia/commons/2/2a/La_gomera_%28344678704%29.jpg",
     title: "La Gomera Rainforest Hike",
     island: "La Gomera",
     price: 59,
@@ -46,7 +46,7 @@ const TRENDING = [
     onClick: undefined,
   },
   {
-    img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800&auto=format&fit=crop",
+    img: "https://live.staticflickr.com/8343/8190490359_59b47c957d_b.jpg",
     title: "Gran Canaria Dolphin Cruise",
     island: "Gran Canaria",
     price: 45,

@@ -8,7 +8,7 @@ export function BadgePill({
   return (
     <span
       className={cn(
-        "rounded-full bg-black/70 px-2 py-1 text-[10px] text-white",
+        "rounded-full bg-black/70 px-2 py-1 text-[10px]",
         className
       )}
     >

@@ -1,0 +1,13 @@
+{
+  "common": {
+    "from": "From",
+    "to": "To",
+    "price": "Price",
+    "date": "Date",
+    "search": "Search",
+    "submit": "Submit",
+    "reset": "Reset",
+    "quantity": "Quantity",
+    "total": "Total"
+  }
+}

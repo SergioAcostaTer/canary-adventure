@@ -1,21 +1,55 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+
+type Theme = "light" | "dark" | "system";
 
 export default function useTheme() {
-  const getInitialTheme = (): "light" | "dark" => {
-    if (typeof document === "undefined") return "dark";
-    const htmlTheme = document.documentElement.getAttribute("data-theme");
-    return htmlTheme === "dark" ? "dark" : "light";
+  const getInitialTheme = (): Theme => {
+    if (typeof window === "undefined") return "light"; // SSR fallback
+    const stored = localStorage.getItem("theme") as Theme | null;
+    if (stored) return stored;
+    return "system";
   };
 
-  const [theme, setTheme] = useState<"light" | "dark">(getInitialTheme);
+  const [theme, setTheme] = useState<Theme>(getInitialTheme);
+
+  // apply theme to <html>
+  const apply = useCallback((t: Theme) => {
+    const d = document.documentElement;
+
+    const effective: "light" | "dark" =
+      t === "system"
+        ? window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light"
+        : t;
+
+    d.setAttribute("data-theme", effective);
+    d.style.colorScheme = effective;
+    d.classList.toggle("dark", effective === "dark");
+  }, []);
+
+  // apply on mount + whenever theme changes
+  useEffect(() => {
+    apply(theme);
+    localStorage.setItem("theme", theme);
+  }, [theme, apply]);
+
+  // watch system preference if theme === "system"
+  useEffect(() => {
+    if (theme !== "system") return;
+    const mql = window.matchMedia("(prefers-color-scheme: dark)");
+
+    const listener = (e: MediaQueryListEvent) => {
+      apply(e.matches ? "dark" : "light");
+    };
+
+    mql.addEventListener("change", listener);
+    return () => mql.removeEventListener("change", listener);
+  }, [theme, apply]);
 
   const toggleTheme = () => {
-    const nextTheme = theme === "light" ? "dark" : "light";
-    document.documentElement.setAttribute("data-theme", nextTheme);
-    document.documentElement.style.colorScheme = nextTheme;
-    localStorage.setItem("theme", nextTheme);
-    setTheme(nextTheme);
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
 
-  return { theme, toggleTheme };
+  return { theme, setTheme, toggleTheme };
 }

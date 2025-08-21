@@ -1,0 +1,13 @@
+{
+  "common": {
+    "from": "Desde",
+    "to": "Hasta",
+    "price": "Precio",
+    "date": "Fecha",
+    "search": "Buscar",
+    "submit": "Enviar",
+    "reset": "Restablecer",
+    "quantity": "Cantidad",
+    "total": "Total"
+  }
+}
