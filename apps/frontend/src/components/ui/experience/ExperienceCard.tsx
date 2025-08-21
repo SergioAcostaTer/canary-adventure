@@ -60,18 +60,18 @@ export const ExperienceCard = React.forwardRef<
             imageHeightClass
           )}
         >
-          <Image
-            src={img}
-            alt={title}
-            loading="lazy"
-            className="h-full w-full object-cover"
-            width={320}
-            height={192}
-            quality={80}
-            placeholder="blur"
-            blurDataURL={img}
-            unoptimized
-          />
+          <div className="relative aspect-video w-full h-full">
+            <Image
+              src={img}
+              alt={title}
+              fill
+              className="object-cover"
+              quality={80}
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wIAAgMBgkz2dgAAAABJRU5ErkJggg=="
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 320px"
+            />
+          </div>
 
           {/* Badges */}
           {badges.length > 0 && (
