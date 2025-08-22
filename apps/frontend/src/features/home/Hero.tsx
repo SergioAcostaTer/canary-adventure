@@ -20,7 +20,7 @@ const AdventureHero: React.FC = () => {
           preload="metadata"
           poster="/videos/intro/intro.webp"
         >
-          {/* AV1 (if generated) */}
+          {/* AV1 first (if supported) */}
           <source
             src="/videos/intro/intro-720-av1.mp4"
             type="video/mp4; codecs=av01"
@@ -30,7 +30,7 @@ const AdventureHero: React.FC = () => {
             src="/videos/intro/intro-480-av1.mp4"
             type="video/mp4; codecs=av01"
           />
-          {/* VP9 primary */}
+          {/* VP9 WebM */}
           <source
             src="/videos/intro/intro-720.webm"
             type="video/webm"
