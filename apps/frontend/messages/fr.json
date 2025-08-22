@@ -9,5 +9,37 @@
     "reset": "Réinitialiser",
     "quantity": "Quantité",
     "total": "Total"
+  },
+  "experiences": {
+    "title": "Expériences",
+    "description": "Découvrez notre liste sélectionnée d’expériences.",
+    "noExperiences": "Aucune expérience trouvée.",
+    "filterBy": "Filtrer par",
+    "sortBy": "Trier par",
+    "viewDetails": "Voir les détails",
+    "bookNow": "Réserver maintenant"
+  },
+  "hero": {
+    "badge": "Expériences insulaires tendance",
+    "titleHighlight": "Planificateur de voyage IA",
+    "title": "pour des itinéraires personnalisés aux Îles Canaries",
+    "subtitle": "Obtenez un <strong>itinéraire personnalisé</strong> en quelques secondes grâce à notre <strong>planificateur de voyage IA</strong> pour plages, volcans et aventures inoubliables",
+    "buttons": {
+      "planTrip": {
+        "text": "Planifier le voyage",
+        "ariaLabel": "Créer un itinéraire personnalisé pour les Îles Canaries avec l’IA",
+        "title": "Planificateur de voyage IA pour les Îles Canaries"
+      },
+      "exploreExperiences": {
+        "text": "Explorer les expériences",
+        "ariaLabel": "Parcourez et réservez les meilleures expériences aux Îles Canaries",
+        "title": "Découvrez et réservez des activités aux Îles Canaries"
+      }
+    }
+  },
+  "features": {
+    "freeCancellation": "Annulation gratuite sur de nombreuses visites",
+    "instantBooking": "Réservation instantanée & paiements sécurisés",
+    "localGuides": "Guides locaux, avis très bien notés"
   }
 }

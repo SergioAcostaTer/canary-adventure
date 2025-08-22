@@ -9,5 +9,37 @@
     "reset": "Zurücksetzen",
     "quantity": "Menge",
     "total": "Gesamt"
+  },
+  "experiences": {
+    "title": "Erlebnisse",
+    "description": "Entdecke unsere sorgfältig ausgewählte Liste an Erlebnissen.",
+    "noExperiences": "Keine Erlebnisse gefunden.",
+    "filterBy": "Filtern nach",
+    "sortBy": "Sortieren nach",
+    "viewDetails": "Details ansehen",
+    "bookNow": "Jetzt buchen"
+  },
+  "hero": {
+    "badge": "Trendige Inselerlebnisse",
+    "titleHighlight": "KI-Reiseplaner",
+    "title": "für personalisierte Reiserouten auf den Kanarischen Inseln",
+    "subtitle": "Erhalte in Sekunden einen <strong>personalisierten Reiseplan</strong> mit unserem <strong>KI-Reiseplaner</strong> für Strände, Vulkane und unvergessliche Abenteuer",
+    "buttons": {
+      "planTrip": {
+        "text": "Reise planen",
+        "ariaLabel": "Erstelle mit KI eine personalisierte Reiseroute für die Kanarischen Inseln",
+        "title": "KI-Reiseplaner für die Kanarischen Inseln"
+      },
+      "exploreExperiences": {
+        "text": "Erlebnisse entdecken",
+        "ariaLabel": "Durchstöbere und buche Top-Erlebnisse auf den Kanarischen Inseln",
+        "title": "Aktivitäten auf den Kanarischen Inseln entdecken und buchen"
+      }
+    }
+  },
+  "features": {
+    "freeCancellation": "Kostenlose Stornierung bei vielen Touren",
+    "instantBooking": "Sofortige Buchung & sichere Zahlungen",
+    "localGuides": "Lokale Guides, top-bewertete Rezensionen"
   }
 }

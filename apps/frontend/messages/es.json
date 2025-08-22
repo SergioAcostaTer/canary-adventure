@@ -9,5 +9,37 @@
     "reset": "Restablecer",
     "quantity": "Cantidad",
     "total": "Total"
+  },
+  "experiences": {
+    "title": "Experiencias",
+    "description": "Explora nuestra lista seleccionada de experiencias.",
+    "noExperiences": "No se encontraron experiencias.",
+    "filterBy": "Filtrar por",
+    "sortBy": "Ordenar por",
+    "viewDetails": "Ver detalles",
+    "bookNow": "Reservar ahora"
+  },
+  "hero": {
+    "badge": "Experiencias isleñas de tendencia",
+    "titleHighlight": "Planificador de viajes con IA",
+    "title": "para itinerarios personalizados en las Islas Canarias",
+    "subtitle": "Obtén un <strong>itinerario personalizado</strong> en segundos con nuestro <strong>planificador de viajes con IA</strong> para playas, volcanes y aventuras inolvidables",
+    "buttons": {
+      "planTrip": {
+        "text": "Planear viaje",
+        "ariaLabel": "Crea un itinerario personalizado para las Islas Canarias con IA",
+        "title": "Planificador de viajes con IA para las Islas Canarias"
+      },
+      "exploreExperiences": {
+        "text": "Explorar experiencias",
+        "ariaLabel": "Explora y reserva experiencias destacadas en las Islas Canarias",
+        "title": "Descubre y reserva actividades en las Islas Canarias"
+      }
+    }
+  },
+  "features": {
+    "freeCancellation": "Cancelación gratuita en muchos tours",
+    "instantBooking": "Reserva instantánea y pagos seguros",
+    "localGuides": "Guías locales, reseñas destacadas"
   }
 }

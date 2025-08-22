@@ -18,5 +18,28 @@
     "sortBy": "Sort by",
     "viewDetails": "View Details",
     "bookNow": "Book Now"
+  },
+  "hero": {
+    "badge": "Trending island experiences",
+    "titleHighlight": "AI Travel Planner",
+    "title": "for Personalized Itineraries in the Canary Islands",
+    "subtitle": "Get a <strong>personalized itinerary</strong> in seconds with our <strong>AI travel planner</strong> for beaches, volcanoes, and unforgettable adventures",
+    "buttons": {
+      "planTrip": {
+        "text": "Plan trip",
+        "ariaLabel": "Create a personalized Canary Islands itinerary with AI",
+        "title": "AI trip planner for the Canary Islands"
+      },
+      "exploreExperiences": {
+        "text": "Explore experiences",
+        "ariaLabel": "Browse and book top-rated experiences in the Canary Islands",
+        "title": "Discover and book activities in the Canary Islands"
+      }
+    }
+  },
+  "features": {
+    "freeCancellation": "Free cancellation on many tours",
+    "instantBooking": "Instant booking & secure payments",
+    "localGuides": "Local guides, top-rated reviews"
   }
 }

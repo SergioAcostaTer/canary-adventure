@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import React from "react";
 
@@ -48,7 +49,7 @@ export const SecondButton = ({
 }: FirstButtonProps) => {
   const classes =
     "group flex items-center justify-center " +
-    "px-4 sm:px-6 py-2.5 sm:py-4 " + // responsive padding
+    "px-4 sm:px-6 py-2.5 sm:py-4 " +
     "text-sm sm:text-base md:text-lg font-bold " +
     "border-2 border-teal-400/80 hover:border-teal-300 " +
     "dark:border-teal-400 dark:hover:border-teal-300 " +
@@ -86,6 +87,7 @@ export const SecondButton = ({
 };
 
 const AdventureHero: React.FC = () => {
+  const t = useTranslations("hero");
   return (
     <div className="relative max-w-full overflow-hidden sm:rounded-2xl shadow-lg px-4 sm:mt-6 sm:mx-4">
       <div className="absolute inset-0 bg-white dark:bg-gray-900">
@@ -158,35 +160,35 @@ const AdventureHero: React.FC = () => {
               <path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09z" />
               <path d="M18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456z" />
             </svg>
-            Trending island experiences
+            {t("badge")}
           </span>
 
           <div className="mt-4 p-6 rounded-2xl bg-white/20 dark:bg-gray-900/30 backdrop-blur-md border border-white/30 dark:border-gray-700/30 shadow-2xl">
             <h1 className="text-xl md:text-4xl font-bold tracking-tight text-white dark:text-gray-100 drop-shadow-lg">
-              AI-Powered Adventures in the{" "}
               <span className="text-amber-400 dark:text-amber-300 drop-shadow-lg">
-                Canary Islands
-              </span>
+                {t("titleHighlight")}
+              </span>{" "}
+              {t("title")}
             </h1>
             <p className="mt-4 text-md md:text-xl text-gray-100 dark:text-gray-200 max-w-2xl mx-auto drop-shadow-md">
-              Get a <strong>personalized itinerary</strong> in seconds — from
-              beaches to volcanoes, our <strong>AI travel planner</strong> makes
-              exploring unforgettable.
+              {t.rich("subtitle", {
+                strong: (chunks) => <strong>{chunks}</strong>,
+              })}
             </p>
           </div>
 
           {/* Buttons - enhanced for visibility */}
           <div className="mt-8 flex flex-row gap-4 justify-center items-center text-sm sm:text-base">
             <FirstButton
-              text="Plan trip"
-              ariaLabel="Create a personalized Canary Islands itinerary with AI"
-              title="AI trip planner for the Canary Islands"
+              text={t("buttons.planTrip.text")}
+              ariaLabel={t("buttons.planTrip.ariaLabel")}
+              title={t("buttons.planTrip.title")}
               href="/planner"
             />
             <SecondButton
-              text="Explore experiences"
-              ariaLabel="Browse and book top-rated experiences in the Canary Islands"
-              title="Discover and book activities in the Canary Islands"
+              text={t("buttons.exploreExperiences.text")}
+              ariaLabel={t("buttons.exploreExperiences.ariaLabel")}
+              title={t("buttons.exploreExperiences.title")}
               href="/experiences"
             />
           </div>
