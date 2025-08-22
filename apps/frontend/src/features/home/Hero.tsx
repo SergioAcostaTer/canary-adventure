@@ -122,6 +122,13 @@ const AdventureHero: React.FC = () => {
             media="(min-width:640px)"
           />
           <source src="/videos/intro/intro-480.mp4" type="video/mp4" />
+          <track
+            kind="captions"
+            src="/videos/intro/no-audio.vtt"
+            srcLang="en"
+            label="English"
+            default
+          />
           Your browser does not support the video tag.
         </video>
 
