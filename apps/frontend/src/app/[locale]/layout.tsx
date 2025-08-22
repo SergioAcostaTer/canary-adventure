@@ -1,4 +1,5 @@
 // app/[locale]/layout.tsx (Locale Layout with SEO enhancements - Fixed)
+import { UserProvider } from "@/context/UserContext";
 import { Header } from "@/features/ui/header/Header";
 import { routing } from "@/i18n/routing";
 import type { Metadata, Viewport } from "next";
@@ -202,10 +203,12 @@ export default async function LocaleLayout({ children, params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <NextIntlClientProvider locale={locale} messages={messages}>
-        <Header />
-        <main className="max-w-7xl mx-auto bg-[var(--background)] text-[var(--foreground)]">
-          {children}
-        </main>
+        <UserProvider>
+          <Header />
+          <main className="max-w-7xl mx-auto bg-[var(--background)] text-[var(--foreground)]">
+            {children}
+          </main>
+        </UserProvider>
       </NextIntlClientProvider>
     </>
   );

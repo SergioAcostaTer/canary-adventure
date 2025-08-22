@@ -1,5 +1,6 @@
+"use client";
 import { Link } from "@/i18n/navigation";
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 
 type FirstButtonProps = {
   text: string;
@@ -85,12 +86,12 @@ export const SecondButton = ({
   );
 };
 
-export default async function AdventureHero() {
-  const t = await getTranslations("hero");
+export default function Hero() {
+  const t = useTranslations("hero");
   return (
     <div className="relative max-w-full overflow-hidden sm:rounded-2xl shadow-lg px-4 sm:mt-6 sm:mx-4">
       <div className="absolute inset-0 bg-white dark:bg-gray-900">
-        <video
+        {/*     <video
           className="w-full h-full object-cover"
           autoPlay
           loop
@@ -101,7 +102,6 @@ export default async function AdventureHero() {
           role="presentation"
           aria-hidden="true"
         >
-          {/* AV1 first (if supported) */}
           <source
             src="/videos/intro/intro-720-av1.mp4"
             type="video/mp4; codecs=av01"
@@ -111,29 +111,21 @@ export default async function AdventureHero() {
             src="/videos/intro/intro-480-av1.mp4"
             type="video/mp4; codecs=av01"
           />
-          {/* VP9 WebM */}
           <source
             src="/videos/intro/intro-720.webm"
             type="video/webm"
             media="(min-width:640px)"
           />
           <source src="/videos/intro/intro-480.webm" type="video/webm" />
-          {/* H.264 fallback */}
           <source
             src="/videos/intro/intro-720.mp4"
             type="video/mp4"
             media="(min-width:640px)"
           />
           <source src="/videos/intro/intro-480.mp4" type="video/mp4" />
-          {/*           <track
-            kind="captions"
-            src="/videos/intro/no-audio.vtt"
-            srcLang="en"
-            label="English"
-            default
-          /> */}
+      
           Your browser does not support the video tag.
-        </video>
+        </video> */}
 
         {/* Enhanced overlay for better content visibility */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50 dark:from-black/10 dark:via-black/20 dark:to-black/70" />

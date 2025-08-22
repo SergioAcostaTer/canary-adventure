@@ -1,6 +1,4 @@
 // app/layout.tsx
-import { UserProvider } from "@/context/UserContext";
-import { ThemeProvider } from "@/providers/ThemeProvider";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
@@ -83,9 +81,7 @@ export default async function RootLayout({
         />
       </head>
       <body className={`${poppins.variable} font-sans antialiased`}>
-        <ThemeProvider>
-          <UserProvider>{children}</UserProvider>
-        </ThemeProvider>
+        {children}
       </body>
     </html>
   );
