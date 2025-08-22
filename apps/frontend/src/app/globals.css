@@ -20,21 +20,7 @@
   --text-secondary: #6b7280; /* Tailwind gray-500 */
   --text-tertiary: #9ca3af; /* Tailwind gray-400 */
 
-  /* Smooth scroll can add main-thread work on mobile: keep only when users prefer it */
-  scroll-behavior: auto;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  html { scroll-behavior: smooth; }
-}
-
-/* Respect users who prefer reduced motion (cuts a lot of jank from animations) */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation: none !important;
-    transition: none !important;
-    scroll-behavior: auto !important;
-  }
+  scroll-behavior: smooth;
 }
 
 [data-theme="dark"] {
@@ -60,83 +46,13 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* ======== MOBILE REPAINT GUARDRAILS ======== */
 
-/* 1) Avoid full-viewport repaints from fixed backgrounds on mobile */
-@media (max-width: 768px) {
-  .bg-fixed,
-  [style*="background-attachment: fixed"] {
-    background-attachment: scroll !important;
-  }
-}
-
-/* 2) Contain offscreen sections so they don’t trigger layout/paint work */
-.section {
-  /* Add this class to big page sections (hero, features, footer…) */
-  content-visibility: auto;
-  contain-intrinsic-size: 1000px 800px; /* rough placeholder – adjust per section */
-}
-
-/* 3) Only promote elements you actually animate (compositor-friendly) */
-.composite {
-  /* Add this to cards/tiles that animate in/out or move */
-  will-change: transform, opacity;
-  transform: translateZ(0); /* create a layer without promoting huge parents */
-}
-
-/* 4) Heavy visual effects are costly on phones: dial down automatically */
-@media (max-width: 768px) {
-  .heavy-effect,
-  .blur,
-  .glass,
-  .frosted,
-  .backdrop {
-    filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    backdrop-filter: none !important;
-  }
-
-  /* Soften massive shadows on big elements */
-  .shadow-2xl, .shadow-xl, .shadow-lg {
-    /* Tailwind’s utilities map to box-shadow – reduce intensity on mobile */
-    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), 
-                var(--tw-ring-shadow, 0 0 #0000), 
-                0 1px 3px rgba(0,0,0,0.12), 
-                0 1px 2px rgba(0,0,0,0.24) !important;
-  }
-}
-
-/* 5) Fixed/translucent overlays repaint the whole screen – keep them cheap */
-.fixed-overlay {
-  position: fixed;
-  inset: 0;
-  /* no filters here; keep opacity changes only (compositor-friendly) */
-}
-
-/* 6) Videos often cause repaint spikes; keep them tame via CSS */
-video {
-  object-fit: cover;
-}
-@media (max-width: 768px) {
-  /* If you have a hero video, hide via a class swap and show a poster image on mobile */
-  .hero-video { display: none !important; }
-  .hero-poster { display: block !important; }
-}
-
-/* 7) Utility to stop expensive transitions for large components on mobile */
-@media (max-width: 768px) {
-  .no-mobile-anim, .no-mobile-anim * {
-    transition: none !important;
-    animation: none !important;
-  }
-}
-
-/* Keep images from being dragged/selected (your original) */
-.noselect, img {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+.noselect, img{
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }
