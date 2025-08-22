@@ -1,5 +1,6 @@
 // app/layout.tsx (SEO-Enhanced Root Layout)
 import { Header } from "@/features/ui/header/Header";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
@@ -66,6 +67,7 @@ export default function RootLayout({
           type="text/javascript"
           dangerouslySetInnerHTML={{ __html: themeScript }}
         />
+        <SpeedInsights />
       </head>
       <body className={`${poppins.variable} font-sans antialiased`}>
         <Header />
