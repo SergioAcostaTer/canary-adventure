@@ -202,14 +202,14 @@ export default async function LocaleLayout({ children, params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <NextIntlClientProvider locale={locale} messages={messages}>
-        <UserProvider>
+      <UserProvider>
+        <NextIntlClientProvider locale={locale} messages={messages}>
           <Header />
           <main className="max-w-7xl mx-auto bg-[var(--background)] text-[var(--foreground)]">
             {children}
           </main>
-        </UserProvider>
-      </NextIntlClientProvider>
+        </NextIntlClientProvider>
+      </UserProvider>
     </>
   );
 }

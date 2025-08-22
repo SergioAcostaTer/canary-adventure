@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils/cn";
 import { Star } from "lucide-react";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
 import { Card, CardContent } from "../cards";
@@ -50,8 +51,6 @@ export const ExperienceCard = React.forwardRef<
 
     const t = useTranslations("common");
 
-    console.log(img);
-
     const cardContent = (
       <>
         {/* Image Container */}
@@ -62,7 +61,7 @@ export const ExperienceCard = React.forwardRef<
           )}
         >
           <div className="relative aspect-video w-full h-full">
-            {/* <Image
+            <Image
               src={img}
               alt={title}
               fill
@@ -71,7 +70,7 @@ export const ExperienceCard = React.forwardRef<
               placeholder="blur"
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wIAAgMBgkz2dgAAAABJRU5ErkJggg=="
               sizes="300px"
-            /> */}
+            />
           </div>
 
           {/* Badges */}
