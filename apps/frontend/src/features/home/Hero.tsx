@@ -1,6 +1,5 @@
 import { Link } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
-import React from "react";
 
 type FirstButtonProps = {
   text: string;
@@ -86,7 +85,7 @@ export const SecondButton = ({
   );
 };
 
-const AdventureHero: React.FC = async () => {
+export default async function AdventureHero() {
   const t = await getTranslations("hero");
   return (
     <div className="relative max-w-full overflow-hidden sm:rounded-2xl shadow-lg px-4 sm:mt-6 sm:mx-4">
@@ -196,9 +195,7 @@ const AdventureHero: React.FC = async () => {
       </div>
     </div>
   );
-};
-
-export default AdventureHero;
+}
 
 {
   /* <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4 text-gray-100 dark:text-gray-200">
