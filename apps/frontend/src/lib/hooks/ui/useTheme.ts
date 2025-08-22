@@ -1,91 +1,98 @@
 // lib/hooks/ui/useTheme.ts
 "use client";
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-type Theme = 'light' | 'dark' | 'system';
+type Theme = "light" | "dark" | "system";
+
+function getCookie(name: string): string | null {
+  const m = document.cookie.match(new RegExp("(?:^|; )" + name + "=([^;]+)"));
+  return m ? decodeURIComponent(m[1]) : null;
+}
+
+function setThemeCookie(value: Theme) {
+  // 1 year, secure + lax; remove Secure if developing on http://localhost
+  document.cookie = `theme=${encodeURIComponent(value)}; Path=/; Max-Age=31536000; SameSite=Lax; Secure`;
+}
 
 export default function useTheme() {
-  const [theme, setTheme] = useState<Theme>('system');
-  const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>('light');
+  const [theme, setTheme] = useState<Theme>("system");
+  const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">("light");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
 
-    // Get initial theme from localStorage
-    const savedTheme = localStorage.getItem('theme') as Theme | null;
-    const initialTheme = savedTheme || 'system';
-    setTheme(initialTheme);
+    // Prefer cookie (SSR source of truth), fall back to localStorage, else 'system'
+    const cookieTheme = getCookie("theme") as Theme | null;
+    const storedTheme = (cookieTheme || (localStorage.getItem("theme") as Theme | null)) ?? "system";
 
-    // Function to resolve system theme
-    const resolveTheme = (currentTheme: Theme): 'light' | 'dark' => {
-      if (currentTheme === 'system') {
-        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    setTheme(storedTheme);
+
+    const resolve = (t: Theme): "light" | "dark" => {
+      if (t === "system") {
+        return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
       }
-      return currentTheme;
+      return t;
     };
 
-    // Set initial resolved theme
-    const resolved = resolveTheme(initialTheme);
-    setResolvedTheme(resolved);
-
-    // Apply theme to document
-    const applyTheme = (resolvedTheme: 'light' | 'dark') => {
-      document.documentElement.setAttribute('data-theme', resolvedTheme);
-      document.documentElement.style.colorScheme = resolvedTheme;
+    const apply = (v: "light" | "dark") => {
+      document.documentElement.setAttribute("data-theme", v);
+      (document.documentElement as HTMLElement).style.colorScheme = v;
     };
 
-    applyTheme(resolved);
+    const initialResolved = resolve(storedTheme);
+    setResolvedTheme(initialResolved);
+    apply(initialResolved);
 
-    // Listen for system theme changes when theme is 'system'
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const handleSystemThemeChange = () => {
-      if (theme === 'system') {
-        const newResolved = mediaQuery.matches ? 'dark' : 'light';
-        setResolvedTheme(newResolved);
-        applyTheme(newResolved);
+    // Track system changes if 'system'
+    const mq = window.matchMedia("(prefers-color-scheme: dark)");
+    const onChange = () => {
+      if (storedTheme === "system") {
+        const v = mq.matches ? "dark" : "light";
+        setResolvedTheme(v);
+        apply(v);
       }
     };
-
-    mediaQuery.addEventListener('change', handleSystemThemeChange);
-    return () => mediaQuery.removeEventListener('change', handleSystemThemeChange);
-  }, [theme]);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
 
   const toggleTheme = () => {
     if (!mounted) return;
+    const next = resolvedTheme === "light" ? "dark" : "light";
+    setTheme(next);
+    setResolvedTheme(next);
 
-    const newTheme = resolvedTheme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-    setResolvedTheme(newTheme);
+    // Persist
+    localStorage.setItem("theme", next);
+    setThemeCookie(next);
 
-    // Save to localStorage
-    localStorage.setItem('theme', newTheme);
-
-    // Apply immediately
-    document.documentElement.setAttribute('data-theme', newTheme);
-    document.documentElement.style.colorScheme = newTheme;
+    // Apply
+    document.documentElement.setAttribute("data-theme", next);
+    (document.documentElement as HTMLElement).style.colorScheme = next;
   };
 
-  const setThemeValue = (newTheme: Theme) => {
+  const setThemeValue = (next: Theme) => {
     if (!mounted) return;
 
-    setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
+    setTheme(next);
+    localStorage.setItem("theme", next);
+    setThemeCookie(next);
 
-    const resolved = newTheme === 'system'
-      ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
-      : newTheme;
+    const resolved = next === "system"
+      ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+      : next;
 
     setResolvedTheme(resolved);
-    document.documentElement.setAttribute('data-theme', resolved);
-    document.documentElement.style.colorScheme = resolved;
+    document.documentElement.setAttribute("data-theme", resolved);
+    (document.documentElement as HTMLElement).style.colorScheme = resolved;
   };
 
   return {
-    theme: resolvedTheme, // Return resolved theme for UI consistency
-    systemTheme: theme,   // Return actual theme setting
+    theme: resolvedTheme, // for UI (always 'light' | 'dark')
+    systemTheme: theme,   // the saved setting ('light' | 'dark' | 'system')
     toggleTheme,
     setTheme: setThemeValue,
-    mounted, // Export mounted state for components
+    mounted,
   };
 }

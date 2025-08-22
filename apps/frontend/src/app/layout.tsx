@@ -1,10 +1,11 @@
-// app/layout.tsx (SEO-Enhanced Root Layout - Final Version)
-import { ThemeProvider } from "@/providers/ThemeProvider";
+// app/layout.tsx
 import { UserProvider } from "@/context/UserContext";
 import { Header } from "@/features/ui/header/Header";
+import { ThemeProvider } from "@/providers/ThemeProvider";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
+import { cookies } from "next/headers";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -22,10 +23,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: {
-    default: "Canary Adventures",
-    template: "%s | Canary Adventures",
-  },
+  title: { default: "Canary Adventures", template: "%s | Canary Adventures" },
   description: "Enjoy the best adventures in the Canary Islands",
   keywords: ["canary islands", "adventures", "tourism", "travel"],
   authors: [{ name: "Canary Adventures" }],
@@ -42,22 +40,43 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {
-    // Add your verification IDs here
-    // google: 'your-google-verification-id',
-    // yandex: 'your-yandex-verification-id',
-  },
+  verification: {},
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
+  const cookieTheme = (await cookies()).get("theme")?.value;
+  const serverThemeAttr =
+    cookieTheme === "light" || cookieTheme === "dark" ? cookieTheme : undefined;
+
+  const initialThemeScript = `
+    (function(){
+      try {
+        var m = document.cookie.match(/(?:^|; )theme=([^;]+)/);
+        var raw = m ? decodeURIComponent(m[1]) : null;
+        var d = document.documentElement;
+        var set = function(v){ d.setAttribute('data-theme', v); d.style.colorScheme = v; };
+
+        if (!raw || raw === 'system') {
+          var isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          set(isDark ? 'dark' : 'light');
+        } else {
+          set(raw === 'dark' ? 'dark' : 'light');
+        }
+      } catch (e) {}
+    })();
+  `;
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      {...(serverThemeAttr ? { "data-theme": serverThemeAttr } : {})}
+    >
       <head>
         <SpeedInsights />
+        <script dangerouslySetInnerHTML={{ __html: initialThemeScript }} />
       </head>
       <body className={`${poppins.variable} font-sans antialiased`}>
         <ThemeProvider>
