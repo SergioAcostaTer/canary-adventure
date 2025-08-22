@@ -19,7 +19,7 @@ const Card: React.FC<{
 }) => (
   <div
     className={cn(
-      "rounded-3xl border border-black/10 bg-white shadow-sm",
+      "rounded-3xl border border-black/10 bg-white shadow-sm dark:border-white/20 dark:bg-gray-900",
       className
     )}
     role={role}

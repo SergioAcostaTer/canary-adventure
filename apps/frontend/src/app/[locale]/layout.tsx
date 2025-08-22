@@ -1,13 +1,20 @@
 // app/[locale]/layout.tsx (Locale Layout with SEO enhancements - Fixed)
 import { routing } from "@/i18n/routing";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 
 type Props = {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>; // Fix: params should be Promise in App Router
+  params: Promise<{ locale: string }>;
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0B0F19" },
+  ],
 };
 
 // ---- Config helpers ----
@@ -144,10 +151,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         "max-video-preview": -1,
       },
     },
-    themeColor: [
-      { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-      { media: "(prefers-color-scheme: dark)", color: "#0B0F19" },
-    ],
     icons: {
       icon: [
         { url: "/favicon.ico" },

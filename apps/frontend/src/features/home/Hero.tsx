@@ -9,7 +9,7 @@ import React from "react";
  */
 const AdventureHero: React.FC = () => {
   return (
-    <div className="relative max-w-full overflow-hidden sm:rounded-lg shadow-lg px-4 sm:mt-8 sm:mx-4">
+    <div className="relative max-w-full overflow-hidden sm:rounded-2xl shadow-lg px-4 sm:mt-8 sm:mx-4">
       <div className="absolute inset-0 bg-white dark:bg-gray-900">
         <video
           className="w-full h-full object-cover"
@@ -48,10 +48,10 @@ const AdventureHero: React.FC = () => {
         </video>
 
         {/* Enhanced overlay for better content visibility */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50 dark:from-black/60 dark:via-black/50 dark:to-black/70"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50 dark:from-black/10 dark:via-black/20 dark:to-black/70" />
 
         {/* Additional subtle overlay for extra contrast */}
-        <div className="absolute inset-0 bg-white/10 dark:bg-gray-900/20"></div>
+        <div className="absolute inset-0 bg-white/10 dark:bg-gray-900/20" />
       </div>
 
       {/* Content */}
@@ -140,13 +140,13 @@ const AdventureHero: React.FC = () => {
  */}
           {/* Buttons - enhanced for visibility */}
           <div className="mt-8 flex flex-row gap-4 justify-center items-center text-sm sm:text-base">
-            <button className="group flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-amber-500 hover:bg-amber-600 dark:bg-amber-600 dark:hover:bg-amber-700 text-white font-bold rounded-xl transition-all duration-300 shadow-xl hover:shadow-2xl backdrop-blur-sm border border-amber-400/50 dark:border-amber-500/50 min-h-[52px] sm:min-h-[56px]">
+            <button className="group flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-amber-500 hover:bg-amber-600 dark:bg-amber-600 dark:hover:bg-amber-700 text-white font-bold rounded-xl transition-all duration-300 shadow-xl hover:shadow-2xl backdrop-blur-sm border border-amber-400/50 dark:border-amber-500/50 min-h-[52px] sm:min-h-[56px] cursor-pointer">
               <span className="relative z-10 drop-shadow-sm">
                 Start planning
               </span>
             </button>
 
-            <button className="group flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 border-2 border-teal-400/80 hover:border-teal-300 dark:border-teal-400 dark:hover:border-teal-300 text-white hover:text-teal-100 dark:text-gray-100 dark:hover:text-teal-200 font-bold rounded-xl bg-white/20 hover:bg-white/30 dark:bg-gray-800/40 dark:hover:bg-gray-700/50 transition-all backdrop-blur-sm shadow-lg hover:shadow-xl min-h-[52px] sm:min-h-[56px]">
+            <button className="group flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 border-2 border-teal-400/80 hover:border-teal-300 dark:border-teal-400 dark:hover:border-teal-300 text-white hover:text-teal-100 dark:text-gray-100 dark:hover:text-teal-200 font-bold rounded-xl bg-white/20 hover:bg-white/30 dark:bg-gray-800/40 dark:hover:bg-gray-700/50 transition-all backdrop-blur-sm shadow-lg hover:shadow-xl min-h-[52px] sm:min-h-[56px] cursor-pointer">
               <span className="drop-shadow-sm">Browse experiences</span>
               <svg
                 className="ml-2 w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300 drop-shadow-sm"

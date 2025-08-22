@@ -125,11 +125,11 @@ export default function TrendingExperiences() {
       <div className="flex items-end justify-between gap-4">
         <h2
           id="trending-experiences-title"
-          className="text-2xl font-bold tracking-tight text-gray-900"
+          className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
         >
           Trending Experiences
         </h2>
-        <p className="text-sm text-gray-600 hidden sm:block">
+        <p className="text-sm text-gray-600 hidden sm:block dark:text-gray-300">
           Handpicked adventures across the Canary Islands
         </p>
       </div>
