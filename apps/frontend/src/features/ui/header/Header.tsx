@@ -8,7 +8,7 @@ import React from "react";
 import { UserAvatar } from "./UserAvatar";
 
 export const Header = (
-  { animation }: { animation: boolean } = { animation: false }
+  { animation }: { animation?: boolean } = { animation: false }
 ) => {
   const [hidden, setHidden] = React.useState(false);
   const lastYRef = React.useRef(0);
