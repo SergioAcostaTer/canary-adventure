@@ -1,5 +1,5 @@
+import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
 import React from "react";
 
 type FirstButtonProps = {
@@ -28,7 +28,7 @@ export const FirstButton = ({
 
   return (
     <Link
-      href={href}
+      href={href as never}
       prefetch
       aria-label={label}
       title={title ?? text}
@@ -63,7 +63,7 @@ export const SecondButton = ({
       className={classes}
       aria-label={ariaLabel}
       title={title}
-      href={href}
+      href={href as never}
       prefetch
     >
       <span className="drop-shadow-sm text-center whitespace-normal break-words">

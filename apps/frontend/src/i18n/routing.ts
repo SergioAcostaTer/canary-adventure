@@ -16,6 +16,12 @@ export const routing = defineRouting({
       es: '/experiencias/[slug]',
       de: '/erlebnisse/[slug]',
       fr: '/experiences/[slug]'
-    }
+    },
+    '/planner': {
+      en: '/planner',
+      es: '/planificador',
+      de: '/planer',
+      fr: '/planificateur'
+    },
   }
 });
