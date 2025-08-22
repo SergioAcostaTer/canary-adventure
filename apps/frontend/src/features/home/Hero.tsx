@@ -1,5 +1,5 @@
 import { Link } from "@/i18n/navigation";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import React from "react";
 
 type FirstButtonProps = {
@@ -86,8 +86,8 @@ export const SecondButton = ({
   );
 };
 
-const AdventureHero: React.FC = () => {
-  const t = useTranslations("hero");
+const AdventureHero: React.FC = async () => {
+  const t = await getTranslations("hero");
   return (
     <div className="relative max-w-full overflow-hidden sm:rounded-2xl shadow-lg px-4 sm:mt-6 sm:mx-4">
       <div className="absolute inset-0 bg-white dark:bg-gray-900">

@@ -1,6 +1,5 @@
 // app/layout.tsx
 import { UserProvider } from "@/context/UserContext";
-import { Header } from "@/features/ui/header/Header";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
@@ -86,12 +85,7 @@ export default async function RootLayout({
       </head>
       <body className={`${poppins.variable} font-sans antialiased`}>
         <ThemeProvider>
-          <UserProvider>
-            <Header />
-            <main className="max-w-7xl mx-auto bg-[var(--background)] text-[var(--foreground)]">
-              {children}
-            </main>
-          </UserProvider>
+          <UserProvider>{children}</UserProvider>
         </ThemeProvider>
       </body>
     </html>

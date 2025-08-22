@@ -1,4 +1,5 @@
 // app/[locale]/layout.tsx (Locale Layout with SEO enhancements - Fixed)
+import { Header } from "@/features/ui/header/Header";
 import { routing } from "@/i18n/routing";
 import type { Metadata, Viewport } from "next";
 import { NextIntlClientProvider } from "next-intl";
@@ -168,7 +169,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 // ---- Layout ----
 export default async function LocaleLayout({ children, params }: Props) {
-  const { locale } = await params; // Fix: await params
+  const { locale } = await params;
 
   // Validate locale
   if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
@@ -201,7 +202,10 @@ export default async function LocaleLayout({ children, params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <NextIntlClientProvider locale={locale} messages={messages}>
-        {children}
+        <Header />
+        <main className="max-w-7xl mx-auto bg-[var(--background)] text-[var(--foreground)]">
+          {children}
+        </main>
       </NextIntlClientProvider>
     </>
   );
