@@ -5,9 +5,8 @@ type FirstButtonProps = {
   text: string;
   ariaLabel?: string;
   title?: string;
-  href: string; // always required now
+  href: string;
 };
-
 export const FirstButton = ({
   text,
   ariaLabel,
@@ -16,11 +15,12 @@ export const FirstButton = ({
 }: FirstButtonProps) => {
   const classes =
     "group inline-flex items-center justify-center " +
-    "px-4 sm:px-6 py-2.5 sm:py-4 " + // responsive padding
-    "text-sm sm:text-base md:text-lg font-bold " + // responsive text
-    "bg-amber-500 hover:bg-amber-600 dark:bg-amber-600 dark:hover:bg-amber-700 " +
-    "text-white rounded-xl transition-all duration-300 shadow-xl hover:shadow-2xl " +
-    "backdrop-blur-sm border border-amber-400/50 dark:border-amber-500/50 " +
+    "px-4 sm:px-6 py-2.5 sm:py-4 " +
+    "text-sm sm:text-base md:text-lg font-bold " +
+    "bg-amber-600 hover:bg-amber-700 dark:bg-amber-500 dark:hover:bg-amber-400 " +
+    "text-white dark:text-black " +
+    "rounded-xl transition-all duration-300 shadow-xl hover:shadow-2xl " +
+    "border border-amber-700 dark:border-amber-300 " +
     "min-h-[48px] sm:min-h-[56px] cursor-pointer";
 
   const label = ariaLabel ?? text;
