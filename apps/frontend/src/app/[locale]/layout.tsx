@@ -1,4 +1,4 @@
-// app/[locale]/layout.tsx (Locale Layout with SEO enhancements)
+// app/[locale]/layout.tsx (Locale Layout with SEO enhancements - Fixed)
 import { routing } from "@/i18n/routing";
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
@@ -7,18 +7,18 @@ import { notFound } from "next/navigation";
 
 type Props = {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>; // Fix: params should be Promise in App Router
 };
 
 // ---- Config helpers ----
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
-  "https://canary-adventure.vercel.app"; // <-- set your real domain in NEXT_PUBLIC_SITE_URL
+  "https://canary-adventure.vercel.app";
 
-const DEFAULT_OG = "/og/og-default.png"; // place a global fallback OG image
-const LOCALE_OG = (locale: string) => `/og/og-${locale}.png`; // optional per-locale image
+const DEFAULT_OG = "/og/og-default.png";
+const LOCALE_OG = (locale: string) => `/og/og-${locale}.png`;
 
-// SEO copy per locale (title/description/keywords, tuned for Tours & Activities)
+// SEO copy per locale
 const localeMetadata = {
   en: {
     title: "Canary Adventures – Tours & Activities in the Canary Islands",
@@ -88,16 +88,15 @@ function getLocaleMeta(locale: string) {
 }
 
 function languageAlternates() {
-  // Build from routing.locales to stay DRY
   const langs = Object.fromEntries(
-    routing.locales.map((l) => [l, `/${l}`])
+    routing.locales.map((l) => [l, `${SITE_URL}/${l}`]) // Fix: use full URL
   ) as Record<string, string>;
-  return { ...langs, "x-default": "/en" };
+  return { ...langs, "x-default": `${SITE_URL}/en` }; // Fix: use full URL
 }
 
 // ---- Metadata ----
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { locale } = params;
+  const { locale } = await params; // Fix: await params
   const meta = getLocaleMeta(locale);
   const ogImage = LOCALE_OG(locale);
 
@@ -111,12 +110,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     keywords: Array.from(meta.keywords),
     applicationName: "Canary Adventures",
     alternates: {
-      canonical: `/${locale}`,
+      canonical: `${SITE_URL}/${locale}`, // Fix: use full URL
       languages: languageAlternates(),
     },
     openGraph: {
       type: "website",
-      url: `/${locale}`,
+      url: `${SITE_URL}/${locale}`, // Fix: use full URL
       siteName: "Canary Adventures",
       title: meta.title,
       description: meta.description,
@@ -131,7 +130,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: meta.title,
       description: meta.description,
       images: [ogImage, DEFAULT_OG],
-      creator: "@yourhandle", // optional: set your X/Twitter handle
+      creator: "@yourhandle",
     },
     robots: {
       index: true,
@@ -159,7 +158,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     manifest: "/site.webmanifest",
     other: {
-      // Helpful for analytics filters / debugging
       "hreflang-default": "en",
     },
   };
@@ -167,17 +165,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 // ---- Layout ----
 export default async function LocaleLayout({ children, params }: Props) {
-  const { locale } = params;
+  const { locale } = await params; // Fix: await params
 
   // Validate locale
   if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
     notFound();
   }
 
-  // Load messages on the server for this locale (next-intl v3+)
+  // Load messages on the server for this locale
   const messages = await getMessages({ locale });
 
-  // Optional JSON-LD for the Website entity (basic, localized)
+  // JSON-LD for the Website entity
   const meta = getLocaleMeta(locale);
   const jsonLd = {
     "@context": "https://schema.org",
@@ -194,17 +192,15 @@ export default async function LocaleLayout({ children, params }: Props) {
   };
 
   return (
-    <html lang={locale} suppressHydrationWarning>
-      <body>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          {children}
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <NextIntlClientProvider locale={locale} messages={messages}>
+        {children}
+      </NextIntlClientProvider>
+    </>
   );
 }
 

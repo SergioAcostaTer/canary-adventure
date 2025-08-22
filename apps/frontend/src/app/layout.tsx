@@ -1,4 +1,6 @@
-// app/layout.tsx (SEO-Enhanced Root Layout)
+// app/layout.tsx (SEO-Enhanced Root Layout - Final Version)
+import { ThemeProvider } from "@/components/theme-provider";
+import { UserProvider } from "@/context/UserContext";
 import { Header } from "@/features/ui/header/Header";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
@@ -13,9 +15,12 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Canary Adventures",
+  title: {
+    default: "Canary Adventures",
+    template: "%s | Canary Adventures",
+  },
   description: "Enjoy the best adventures in the Canary Islands",
-  keywords: "canary islands, adventures, tourism, travel",
+  keywords: ["canary islands", "adventures", "tourism", "travel"],
   authors: [{ name: "Canary Adventures" }],
   creator: "Canary Adventures",
   publisher: "Canary Adventures",
@@ -37,24 +42,6 @@ export const metadata: Metadata = {
   },
 };
 
-const themeScript = `
-!function(){
-  try {
-    var d = document.documentElement;
-    var e = localStorage.getItem('theme');
-    if (e === 'system' || (!e && true)) {
-      var t = '(prefers-color-scheme: dark)';
-      var m = window.matchMedia(t);
-      d.setAttribute('data-theme', m.matches ? 'dark' : 'light');
-      d.style.colorScheme = m.matches ? 'dark' : 'light';
-    } else if (e === 'light' || e === 'dark') {
-      d.setAttribute('data-theme', e);
-      d.style.colorScheme = e;
-    }
-  } catch(e){}
-}();
-`;
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -63,17 +50,17 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script
-          type="text/javascript"
-          dangerouslySetInnerHTML={{ __html: themeScript }}
-        />
         <SpeedInsights />
       </head>
       <body className={`${poppins.variable} font-sans antialiased`}>
-        <Header />
-        <main className="max-w-7xl mx-auto bg-[var(--background)] text-[var(--foreground)]">
-          {children}
-        </main>
+        <ThemeProvider>
+          <UserProvider>
+            <Header />
+            <main className="max-w-7xl mx-auto bg-[var(--background)] text-[var(--foreground)]">
+              {children}
+            </main>
+          </UserProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
