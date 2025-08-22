@@ -69,7 +69,7 @@ export const ExperienceCard = React.forwardRef<
               quality={80}
               placeholder="blur"
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wIAAgMBgkz2dgAAAABJRU5ErkJggg=="
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 320px"
+              sizes="300px"
             />
           </div>
 
