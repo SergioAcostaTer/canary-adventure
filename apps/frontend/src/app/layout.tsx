@@ -1,5 +1,5 @@
 // app/layout.tsx (SEO-Enhanced Root Layout - Final Version)
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import { UserProvider } from "@/context/UserContext";
 import { Header } from "@/features/ui/header/Header";
 import { SpeedInsights } from "@vercel/speed-insights/next";
