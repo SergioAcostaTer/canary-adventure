@@ -77,6 +77,12 @@ export default async function RootLayout({
       <head>
         <SpeedInsights />
         <script dangerouslySetInnerHTML={{ __html: initialThemeScript }} />
+        <link
+          rel="preload"
+          as="image"
+          href="/videos/intro/intro.webp"
+          fetchPriority="high"
+        />
       </head>
       <body className={`${poppins.variable} font-sans antialiased`}>
         <ThemeProvider>

@@ -97,6 +97,8 @@ const AdventureHero: React.FC = () => {
           playsInline
           preload="metadata"
           poster="/videos/intro/intro.webp"
+          role="presentation"
+          aria-hidden="true"
         >
           {/* AV1 first (if supported) */}
           <source
@@ -122,13 +124,13 @@ const AdventureHero: React.FC = () => {
             media="(min-width:640px)"
           />
           <source src="/videos/intro/intro-480.mp4" type="video/mp4" />
-          <track
+          {/*           <track
             kind="captions"
             src="/videos/intro/no-audio.vtt"
             srcLang="en"
             label="English"
             default
-          />
+          /> */}
           Your browser does not support the video tag.
         </video>
 
