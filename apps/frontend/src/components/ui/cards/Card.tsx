@@ -3,7 +3,6 @@ import { cn } from "@/lib/utils/cn";
 const Card: React.FC<{
   children: React.ReactNode;
   className?: string;
-  ref?: React.Ref<HTMLDivElement>;
   onClick?: React.MouseEventHandler<HTMLDivElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLDivElement>;
   role?: string;
@@ -11,7 +10,6 @@ const Card: React.FC<{
 }> = ({
   children,
   className,
-  ref,
   onClick,
   onKeyDown,
   role = "button",
@@ -23,7 +21,6 @@ const Card: React.FC<{
       className
     )}
     role={role}
-    ref={ref}
     onClick={onClick}
     onKeyDown={onKeyDown}
     tabIndex={tabIndex}
