@@ -2,33 +2,61 @@
   "name": "canary-adventure-frontend",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=18.18"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "preinstall": "node -e \"const v=process.versions.node.split('.')||[];if(+v[0]<18||(v[0]==='18'&&+v[1]<18)){console.error('Node >=18.18 required');process.exit(1)}\"",
+    "prepare": "husky"
   },
   "dependencies": {
-    "@react-oauth/google": "^0.12.2",
-    "@vercel/speed-insights": "^1.2.0",
-    "axios": "^1.8.2",
-    "lucide-react": "^0.487.0",
-    "next": "^15.2.5",
-    "next-intl": "^4.3.5",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-modal": "^3.16.3"
+    "@react-oauth/google": "0.12.2",
+    "@vercel/speed-insights": "1.2.0",
+    "axios": "1.11.0",
+    "lucide-react": "0.541.0",
+    "next": "15.5.0",
+    "next-intl": "4.3.5",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-modal": "3.16.3"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
+    "@eslint/eslintrc": "^3.1.0",
     "@tailwindcss/postcss": "^4.1.4",
     "@types/node": "^22.15.3",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "@types/react-modal": "^3.16.3",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/react-modal": "3.16.3",
     "eslint": "^8.57.0",
-    "eslint-config-next": "14.1.4",
+    "eslint-config-next": "^15.0.0",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
+    "prettier": "^3.3.3",
     "tailwindcss": "^4.1.4",
     "typescript": "^5.8.3"
-  }
+  },
+  "eslintConfig": {
+    "extends": "next/core-web-vitals"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix"
+    ],
+    "*.{css,md,json,mdx}": [
+      "prettier --write"
+    ]
+  },
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "maintained node versions"
+  ]
 }
