@@ -17,7 +17,8 @@ export function generateStaticParams() {
 export default function Home() {
   return (
     <div>
-      <AdventureHero />
+      {/* <AdventureHero /> */}
+      <TrendingExperiences />
       <TrendingExperiences />
     </div>
   );
