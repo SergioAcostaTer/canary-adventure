@@ -3,7 +3,6 @@ import { Star } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
-import * as React from "react";
 import { Card, CardContent } from "../cards";
 import { BadgePill } from "./BadgePill";
 
@@ -25,168 +24,147 @@ export type ExperienceCardProps = {
   className?: string;
 };
 
-export const ExperienceCard = React.forwardRef<
-  HTMLDivElement,
-  ExperienceCardProps
->(
-  (
-    {
-      img,
-      title,
-      island,
-      price,
-      offerPrice,
-      rating,
-      badges = [],
-      href,
-      widthClass = "min-w-[280px] max-w-[320px] w-full",
-      imageHeightClass = "h-48",
-      className,
-    },
-    ref
-  ) => {
-    const hasOffer = offerPrice != null;
-    const displayPrice = hasOffer ? offerPrice : price;
-    const originalPrice = hasOffer ? price : null;
+export function ExperienceCard({
+  img,
+  title,
+  island,
+  price,
+  offerPrice,
+  rating,
+  badges = [],
+  href,
+  widthClass = "min-w-[280px] max-w-[320px] w-full",
+  imageHeightClass = "h-48",
+  className,
+}: ExperienceCardProps) {
+  const hasOffer = offerPrice != null;
+  const displayPrice = hasOffer ? offerPrice : price;
+  const originalPrice = hasOffer ? price : null;
 
-    const t = useTranslations("common");
+  const t = useTranslations("common");
 
-    const cardContent = (
-      <>
-        {/* Image Container */}
-        <div
-          className={cn(
-            "relative w-full bg-gray-100 dark:bg-gray-800 overflow-hidden",
-            imageHeightClass
-          )}
-        >
-          <div className="relative aspect-video w-full h-full">
-            <Image
-              src={img}
-              alt={title}
-              fill
-              className="object-cover"
-              quality={80}
-              placeholder="blur"
-              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wIAAgMBgkz2dgAAAABJRU5ErkJggg=="
-              sizes="300px"
-            />
-          </div>
-
-          {/* Badges */}
-          {badges.length > 0 && (
-            <div className="absolute left-3 top-3 flex flex-wrap gap-2 max-w-[calc(100%-24px)]">
-              {badges.map((badge) => (
-                <BadgePill
-                  key={badge}
-                  className="shadow-sm bg-white/95 backdrop-blur-sm dark:bg-gray-900/95 text-gray-800 dark:text-gray-200"
-                >
-                  {badge}
-                </BadgePill>
-              ))}
-            </div>
-          )}
+  const cardContent = (
+    <>
+      {/* Image Container */}
+      <div
+        className={cn(
+          "relative w-full bg-gray-100 dark:bg-gray-800 overflow-hidden",
+          imageHeightClass
+        )}
+      >
+        <div className="relative aspect-video w-full h-full">
+          <Image
+            src={img}
+            alt={title}
+            fill
+            className="object-cover"
+            quality={80}
+            placeholder="blur"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wIAAgMBgkz2dgAAAABJRU5ErkJggg=="
+            sizes="300px"
+          />
         </div>
 
-        {/* Content */}
-        <CardContent className="p-4 bg-white dark:bg-gray-900">
-          {/* Island */}
-          <div className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1">
-            {island}
+        {/* Badges */}
+        {badges.length > 0 && (
+          <div className="absolute left-3 top-3 flex flex-wrap gap-2 max-w-[calc(100%-24px)]">
+            {badges.map((badge) => (
+              <BadgePill
+                key={badge}
+                className="shadow-sm bg-white/95 backdrop-blur-sm dark:bg-gray-900/95 text-gray-800 dark:text-gray-200"
+              >
+                {badge}
+              </BadgePill>
+            ))}
           </div>
+        )}
+      </div>
 
-          {/* Title */}
-          <h3 className="line-clamp-1 text-base font-semibold text-foreground leading-tight mb-2 min-h-6">
-            {title}
-          </h3>
+      {/* Content */}
+      <CardContent className="p-4 bg-white dark:bg-gray-900">
+        {/* Island */}
+        <div className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1">
+          {island}
+        </div>
 
-          {/* Price and Rating Row */}
-          <div className="flex items-end justify-between">
-            {/* Price Section */}
-            <div className="flex flex-col space-y-1">
-              <div className="flex items-baseline gap-2">
-                {displayPrice != null ? (
-                  <>
-                    <span className="text-md text-muted-foreground">
-                      {t("from")}{" "}
+        {/* Title */}
+        <h3 className="line-clamp-1 text-base font-semibold text-foreground leading-tight mb-2 min-h-6">
+          {title}
+        </h3>
+
+        {/* Price and Rating Row */}
+        <div className="flex items-end justify-between">
+          {/* Price Section */}
+          <div className="flex flex-col space-y-1">
+            <div className="flex items-baseline gap-2">
+              {displayPrice != null ? (
+                <>
+                  <span className="text-md text-muted-foreground">
+                    {t("from")}{" "}
+                  </span>
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-xl font-bold text-foreground">
+                      €{displayPrice}
                     </span>
-                    <div className="flex items-baseline gap-2">
-                      <span className="text-xl font-bold text-foreground">
-                        €{displayPrice}
+                    {originalPrice && (
+                      <span className="text-md text-muted-foreground line-through font-medium text-gray-500 dark:text-gray-400">
+                        €{originalPrice}
                       </span>
-                      {originalPrice && (
-                        <span className="text-md text-muted-foreground line-through font-medium text-gray-500 dark:text-gray-400">
-                          €{originalPrice}
-                        </span>
-                      )}
-                    </div>
-                  </>
-                ) : (
-                  <span className="text-xl font-bold text-foreground">
-                    FREE
-                  </span>
-                )}
-              </div>
-            </div>
-
-            {/* Rating Section */}
-            <div className="flex flex-col items-end">
-              {rating != null ? (
-                <div className="flex items-center gap-1.5">
-                  <Star className="h-4 w-4 fill-yellow-500 stroke-yellow-500 dark:fill-yellow-400 dark:stroke-yellow-400" />
-                  <span className="text-sm font-semibold text-foreground">
-                    {rating}
-                  </span>
-                </div>
+                    )}
+                  </div>
+                </>
               ) : (
-                <span className="text-xs text-muted-foreground">
-                  No rating yet
+                <span className="text-xl font-bold text-foreground">
+                  FREE
                 </span>
               )}
             </div>
           </div>
-        </CardContent>
-      </>
-    );
 
-    const cardClassName = cn(
-      widthClass,
-      "group overflow-hidden transition-all duration-200 ease-in-out",
-      "bg-card border border-border",
-      "hover:border-border/80 hover:shadow-md",
-      "focus-within:border-ring focus-within:ring-2 focus-within:ring-ring/20",
-      href && "cursor-pointer",
-      className
-    );
+          {/* Rating Section */}
+          <div className="flex flex-col items-end">
+            {rating != null ? (
+              <div className="flex items-center gap-1.5">
+                <Star className="h-4 w-4 fill-yellow-500 stroke-yellow-500 dark:fill-yellow-400 dark:stroke-yellow-400" />
+                <span className="text-sm font-semibold text-foreground">
+                  {rating}
+                </span>
+              </div>
+            ) : (
+              <span className="text-xs text-muted-foreground">
+                No rating yet
+              </span>
+            )}
+          </div>
+        </div>
+      </CardContent>
+    </>
+  );
 
-    const ariaLabel = `${title} in ${island} - From €${displayPrice}${
-      hasOffer ? " (Special Offer)" : ""
-    }`;
+  const cardClassName = cn(
+    widthClass,
+    "group overflow-hidden transition-all duration-200 ease-in-out",
+    "bg-card border border-border",
+    "hover:border-border/80 hover:shadow-md",
+    "focus-within:border-ring focus-within:ring-2 focus-within:ring-ring/20",
+    href && "cursor-pointer",
+    className
+  );
 
-    if (href) {
-      return (
-        <Link
-          href={href}
-          aria-label={ariaLabel}
-          className="block w-full"
-          passHref
-        >
-          <Card ref={ref} className={cardClassName}>
-            {cardContent}
-          </Card>
-        </Link>
-      );
-    }
+  const ariaLabel = `${title} in ${island} - From €${displayPrice}${
+    hasOffer ? " (Special Offer)" : ""
+  }`;
 
+  if (href) {
     return (
-      <Card ref={ref} className={cardClassName}>
-        {cardContent}
-      </Card>
+      <Link href={href} aria-label={ariaLabel} className="block w-full" passHref>
+        <Card className={cardClassName}>{cardContent}</Card>
+      </Link>
     );
   }
-);
 
-ExperienceCard.displayName = "ExperienceCard";
+  return <Card className={cardClassName}>{cardContent}</Card>;
+}
 
 export function ExperienceCardSkeleton({
   widthClass = "min-w-[280px] max-w-[320px] w-full",
