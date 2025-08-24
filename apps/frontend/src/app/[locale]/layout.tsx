@@ -4,7 +4,7 @@ import { Header } from "@/modules/core/components/Header";
 import { routing } from "@/i18n/routing";
 import type { Metadata, Viewport } from "next";
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
+import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
 type Props = {
@@ -179,6 +179,8 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   // Load messages on the server for this locale
   const messages = await getMessages({ locale });
+
+  setRequestLocale(locale);
 
   // JSON-LD for the Website entity
   const meta = getLocaleMeta(locale);

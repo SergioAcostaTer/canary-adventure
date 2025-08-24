@@ -1,11 +1,12 @@
 "use client";
 
-import { IconButton } from "@/modules/core/components/Button";
+import { IconButton } from "@/modules/core/components/buttons/IconButton";
 import { ToggleThemeButton } from "@/modules/core/components/ToggleThemeButton";
 import { Globe, Heart, LucideIcon, Search } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { UserAvatar } from "./avatar/UserAvatar";
+import LanguageSwitcher from "./buttons/LanguageSwitcher";
 
 export const Header = (
   { animation }: { animation?: boolean } = { animation: false }
@@ -92,11 +93,12 @@ export const Header = (
             [
               ["Buscar", Search],
               ["Favoritos", Heart],
-              ["ES/EUR €", Globe],
             ] as [string, LucideIcon][]
           ).map(([label, Icon], i) => (
             <IconButton key={i} icon={Icon} label={label} />
           ))}
+
+          <LanguageSwitcher />
 
           <ToggleThemeButton />
           <UserAvatar />
