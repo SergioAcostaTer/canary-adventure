@@ -20,7 +20,7 @@ const poppins = Poppins({
 
 type Props = {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
+  params: any;
 };
 
 export const viewport: Viewport = {
@@ -193,7 +193,7 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   setRequestLocale(locale);
 
-  const messages = await getMessages({ locale });
+  const messages = await getMessages();
   const cookieTheme = (await cookies()).get("theme")?.value;
   const serverThemeAttr =
     cookieTheme === "light" || cookieTheme === "dark" ? cookieTheme : undefined;
