@@ -1,4 +1,3 @@
-import { cn } from "@/lib/utils/cn";
 import * as React from "react";
 
 export function BadgePill({
@@ -7,10 +6,7 @@ export function BadgePill({
 }: React.PropsWithChildren<{ className?: string }>) {
   return (
     <span
-      className={cn(
-        "rounded-full bg-black/70 px-2 py-1 text-[10px]",
-        className
-      )}
+      className={`rounded-full bg-black/70 px-2 py-1 text-[10px] ${className ?? ""}`}
     >
       {children}
     </span>

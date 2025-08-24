@@ -1,5 +1,5 @@
+import TrendingExperiences from "@/components/ui/experience/ExperienceCard";
 import AdventureHero from "@/features/home/Hero";
-import TrendingExperiences from "@/features/home/TrendingExperiences";
 
 export const revalidate = 3600; // 1 hour
 
@@ -17,8 +17,7 @@ export function generateStaticParams() {
 export default function Home() {
   return (
     <div>
-      {/* <AdventureHero /> */}
-      <TrendingExperiences />
+      <AdventureHero />
       <TrendingExperiences />
     </div>
   );
