@@ -69,11 +69,11 @@ export function ExperienceCard({
       </div>
 
       <div className="flex-1 p-4 flex flex-col">
-        <div className="mb-1 text-xs uppercase text-gray-500">
+        <div className="mb-1 text-xs uppercase font-medium text-[var(--text-card-secondary)]">
           {island}
         </div>
-        
-        <h3 className="mb-3 font-semibold flex-1">
+
+        <h3 className="mb-3 font-semibold flex-1 text-[var(--text-card-primary)]">
           {title}
         </h3>
 
@@ -83,10 +83,10 @@ export function ExperienceCard({
               <span className="text-xl font-bold text-green-600">FREE</span>
             ) : (
               <>
-                <span className="text-sm text-gray-500">{t("from")}</span>
+                <span className="text-sm text-[var(--text-card-secondary)]">{t("from")}</span>
                 <span className="text-xl font-bold">€{displayPrice}</span>
                 {hasDiscount && (
-                  <span className="text-sm text-gray-400 line-through">
+                  <span className="text-sm line-through text-[var(--text-card-primary)]">
                     €{price}
                   </span>
                 )}

@@ -4,13 +4,14 @@ interface IconButtonProps {
   icon: LucideIcon;
   label?: string;
   onClick?: () => void;
+  className?: string;
 }
 
-export const IconButton = ({ icon: Icon, label, onClick }: IconButtonProps) => {
+export const IconButton = ({ icon: Icon, label, onClick, className }: IconButtonProps) => {
   return (
     <div
       onClick={onClick}
-      className="flex flex-col items-center cursor-pointer group"
+      className={`flex flex-col items-center cursor-pointer group ${className}`}
     >
       <Icon
         size={24}

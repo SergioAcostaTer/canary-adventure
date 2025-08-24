@@ -2,7 +2,7 @@
 
 import { IconButton } from "@/modules/core/components/buttons/IconButton";
 import { ToggleThemeButton } from "@/modules/core/components/ToggleThemeButton";
-import { LucideIcon, Search } from "lucide-react";
+import { Heart, Search } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { UserAvatar } from "./avatar/UserAvatar";
@@ -49,7 +49,7 @@ export const Header = (
 
   return (
     <>
-  {/* <div className="relative z-40 bg-[var(--brand-yellow)] text-neutral-900 border-b border-black/10">
+      {/* <div className="relative z-40 bg-[var(--brand-yellow)] text-neutral-900 border-b border-black/10">
     <div className="relative mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-2.5">
       <div className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1 text-sm sm:text-base font-medium">
         <Sparkles
@@ -76,7 +76,6 @@ export const Header = (
     </div>
   </div> */}
 
-
       {/* Main Header */}
       <header
         className={[
@@ -102,16 +101,16 @@ export const Header = (
             </Link>
 
             {/* Search bar */}
-            <div className="hidden sm:flex flex-1 h-12 border border-[var(--header-border)] rounded-full overflow-hidden shadow-sm transition-shadow hover:shadow-md max-w-[500px]">
+            <div className="hidden sm:flex flex-1 h-12 border border-[var(--header-border)] rounded-full overflow-hidden shadow-sm max-w-[500px] cursor-text focus-within:ring-1 focus-within:ring-black/30">
               <div className="flex items-center flex-1 px-4">
                 <Search size={18} className="text-[var(--icon-default)] mr-2" />
                 <input
                   type="text"
                   placeholder="Encuentra lugares y actividades"
-                  className="w-full text-sm bg-transparent focus:outline-none text-[var(--foreground)]"
+                  className="w-full text-sm bg-transparent focus:outline-none text-[var(--foreground)] h-full"
                 />
               </div>
-              <button className="bg-[var(--brand-primary)] hover:bg-[var(--brand-primary-hover)] transition-colors duration-200 text-white font-semibold px-5 text-sm rounded-full m-1">
+              <button className="bg-[var(--brand-yellow)] hover:bg-[var(--brand-yellow-hover)] transition-colors duration-200 text-[var(--brand-yellow-text)] font-semibold px-5 text-sm rounded-full m-1 cursor-pointer">
                 Search
               </button>
             </div>
@@ -119,13 +118,16 @@ export const Header = (
 
           {/* Right-side icons and theme toggle */}
           <div className="flex items-center gap-4 sm:gap-6 text-xs sm:text-sm font-medium text-[var(--text-muted)]">
-            {(
-              [
-                ["Search", Search],
-              ] as [string, LucideIcon][]
-            ).map(([label, Icon], i) => (
-              <IconButton key={i} icon={Icon} label={label} />
-            ))}
+            <IconButton
+              icon={Heart}
+              label="Saved"
+              className="hidden sm:inline-flex"
+            />
+            <IconButton
+              icon={Search}
+              label="Open search"
+              className="sm:hidden"
+            />
 
             <LanguageSwitcher />
 

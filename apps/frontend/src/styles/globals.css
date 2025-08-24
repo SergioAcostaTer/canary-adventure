@@ -12,7 +12,9 @@
   /* Canary Adventure brand colors */
   --brand-primary: #0071eb;
   --brand-primary-hover: #005bb5;
-  --brand-yellow: #facc15; /* Tailwind yellow-400 */
+  --brand-yellow: #fccc0c; /* Tailwind yellow-400 */
+  --brand-yellow-hover: #eab308; /* Tailwind yellow-500 */
+  --brand-yellow-text: #000000; /* Tailwind yellow-800 */
   --icon-default: #6b7280; /* Tailwind gray-500 */
   --text-muted: #4b5563; /* Tailwind gray-600 */
 
@@ -20,7 +22,9 @@
   --text-secondary: #6b7280; /* Tailwind gray-500 */
   --text-tertiary: #9ca3af; /* Tailwind gray-400 */
 
-  --bg-experience-card: #f3f4f6;
+  --bg-experience-card: #f3f4f6;         
+  --text-card-primary: #0f172a;          
+  --text-card-secondary: #475569;    
 }
 
 [data-theme="dark"] {
@@ -33,13 +37,17 @@
   --brand-primary: #3399ff;
   --brand-primary-hover: #2670cc;
   --brand-yellow: #facc15;
+  --brand-yellow-hover: #eab308;
+  --brand-yellow-text: #000000;
   --icon-default: #9ca3af;
   --text-muted: #d1d5db;
   --text-primary: #ededed;
   --text-secondary: #9ca3af;
   --text-tertiary: #6b7280;
 
-  --bg-experience-card: #161616;
+  --bg-experience-card: #1c1c1c;           
+  --text-card-primary: #f8fafc;          
+  --text-card-secondary: #cbd5e1;   
 }
 
 body {
@@ -47,13 +55,11 @@ body {
   color: var(--foreground);
 }
 
-
 .noselect, img{
   -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome, Edge, Opera and Firefox */
+  -webkit-user-select: none;   /* Safari */
+  -khtml-user-select: none;    /* Konqueror HTML */
+  -moz-user-select: none;      /* Old versions of Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none;           /* Non-prefixed: Chrome, Edge, Opera, Firefox */
 }
