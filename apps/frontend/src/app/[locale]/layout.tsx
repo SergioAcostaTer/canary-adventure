@@ -35,8 +35,7 @@ const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
   "https://canary-adventure.vercel.app";
 
-const DEFAULT_OG = "/og/og-default.png";
-const LOCALE_OG = (locale: string) => `/og/og-${locale}.png`;
+const DEFAULT_OG = "/og/og.png";
 
 // SEO copy per locale
 const localeMetadata = {
@@ -118,7 +117,7 @@ function languageAlternates() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const meta = getLocaleMeta(locale);
-  const ogImage = LOCALE_OG(locale);
+  const ogImage = `${SITE_URL}/og/${locale}.png`;
 
   return {
     metadataBase: new URL(SITE_URL),
@@ -153,7 +152,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: meta.title,
       description: meta.description,
       images: [ogImage, DEFAULT_OG],
-      creator: "@yourhandle",
     },
     robots: {
       index: true,
