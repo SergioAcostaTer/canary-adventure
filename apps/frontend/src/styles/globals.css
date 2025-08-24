@@ -19,8 +19,6 @@
   --text-primary: #171717; /* Tailwind gray-900 */
   --text-secondary: #6b7280; /* Tailwind gray-500 */
   --text-tertiary: #9ca3af; /* Tailwind gray-400 */
-
-  scroll-behavior: smooth;
 }
 
 [data-theme="dark"] {
