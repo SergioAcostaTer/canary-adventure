@@ -1,46 +1,42 @@
 'use client';
 
-import React, {useRef} from 'react';
-import {useLocale} from 'next-intl';
-import {usePathname, useRouter} from 'next/navigation';
-import {Globe} from 'lucide-react';
+import React, { useRef } from 'react';
+import { useLocale } from 'next-intl';
+import { usePathname, useRouter } from 'next/navigation';
+import { Globe } from 'lucide-react';
 
-// Minimal, dependency-free language switcher button for Next.js App Router + next-intl.
-// Assumes locales are prefixed in the URL: /en, /es, /de, /fr
-// Place this component anywhere in a client layout/component.
+// Professional, responsive language selector for Next.js App Router + next-intl.
+// No external UI deps (Tailwind CSS classes only). Matches an "IconButton" vibe.
+// - URL strategy: locale prefix in pathname (/en, /es, /de, /fr)
+// - Keyboard & screen-reader friendly
+// - Responsive: icon-only on xs, icon + label on sm+
 
 const LOCALES = ['en', 'es', 'de', 'fr'] as const;
-type Locale = typeof LOCALES[number];
+type Locale = (typeof LOCALES)[number];
 
 const LANG_LABEL: Record<Locale, string> = {
   en: 'EN',
   es: 'ES',
   de: 'DE',
-  fr: 'FR'
-};
-
-const CURRENCY_LABEL: Record<Locale, string> = {
-  en: 'USD $',
-  es: 'EUR €',
-  de: 'EUR €',
-  fr: 'EUR €'
+  fr: 'FR',
 };
 
 function replaceLocaleInPath(pathname: string, next: Locale) {
   if (!pathname || pathname === '/') return `/${next}`;
   const parts = pathname.split('/');
-  // parts[0] === '' because pathname starts with '/'
   if (LOCALES.includes(parts[1] as Locale)) {
     parts[1] = next;
     return parts.join('/') || '/';
   }
-  // No locale prefix found; prepend it
   return `/${next}${pathname.startsWith('/') ? '' : '/'}${pathname}`;
 }
 
-export default function LanguageSwitcher(
-  {className}: {className?: string}
-) {
+export interface LanguageSwitcherProps {
+  className?: string;
+  compact?: boolean;
+}
+
+export default function LanguageSwitcher({ className, compact }: LanguageSwitcherProps) {
   const router = useRouter();
   const pathname = usePathname();
   const locale = useLocale() as Locale;
@@ -49,44 +45,70 @@ export default function LanguageSwitcher(
   const onSelect = (next: Locale) => {
     const target = replaceLocaleInPath(pathname || '/', next);
     router.replace(target);
-    // close the dropdown
     if (detailsRef.current) detailsRef.current.open = false;
   };
 
-  const label = `${LANG_LABEL[locale]}/${CURRENCY_LABEL[locale]}`;
+  const shortLabel = LANG_LABEL[locale];
 
   return (
-    <div className={['relative inline-block', className].filter(Boolean).join(' ')}>
-      <details ref={detailsRef} className="group [&_summary::-webkit-details-marker]:hidden">
+    <div className={["relative inline-block", className].filter(Boolean).join(' ')}>
+      <details
+        ref={detailsRef}
+        className="group [&_summary::-webkit-details-marker]:hidden"
+      >
         <summary
           aria-label="Change language"
-          className="flex items-center gap-2 rounded-2xl border px-3 py-2 text-sm font-medium shadow-sm hover:bg-gray-50 dark:hover:bg-neutral-900 cursor-pointer select-none"
+          className={[
+            'flex items-center gap-2 cursor-pointer select-none',
+            'rounded-2xl border shadow-sm backdrop-blur',
+            compact ? 'px-2 py-1.5' : 'px-3 py-2',
+            'hover:bg-gray-50 dark:hover:bg-neutral-900',
+            'focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-primary,#3b82f6)]',
+            'transition-colors',
+          ].join(' ')}
         >
-          <Globe className="size-4" aria-hidden />
-          <span>{label}</span>
+          <div className="flex flex-col items-center text-center group/icon">
+            <Globe
+              size={20}
+              className="text-[var(--icon-default,currentColor)] group-hover/icon:text-[var(--brand-primary,#3b82f6)] transition-colors"
+              aria-hidden
+            />
+            <span className="hidden sm:block text-[10px] sm:text-xs mt-1 group-hover/icon:text-[var(--brand-primary,#3b82f6)] transition-colors">
+              {shortLabel}
+            </span>
+          </div>
         </summary>
+
         <div
-          className="absolute right-0 z-50 mt-2 w-44 overflow-hidden rounded-xl border bg-white/95 backdrop-blur p-1 shadow-lg dark:bg-neutral-900/95"
           role="menu"
+          className="absolute right-0 z-50 mt-2 w-32 overflow-hidden rounded-xl border bg-white/95 dark:bg-neutral-900/95 shadow-lg backdrop-blur"
         >
-          {LOCALES.map((code) => (
-            <button
-              key={code}
-              role="menuitemradio"
-              aria-checked={locale === code}
-              onClick={() => onSelect(code)}
-              className={[
-                'flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm',
-                'hover:bg-gray-100 dark:hover:bg-neutral-800',
-                locale === code ? 'font-semibold' : 'font-normal'
-              ].join(' ')}
-            >
-              <span>{LANG_LABEL[code]} • {CURRENCY_LABEL[code]}</span>
-              {locale === code && (
-                <span className="text-xs" aria-hidden>✓</span>
-              )}
-            </button>
-          ))}
+          <div className="p-1">
+            {LOCALES.map((code) => {
+              const active = locale === code;
+              return (
+                <button
+                  key={code}
+                  role="menuitemradio"
+                  aria-checked={active}
+                  onClick={() => onSelect(code)}
+                  className={[
+                    'flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm',
+                    'hover:bg-gray-100 dark:hover:bg-neutral-800',
+                    active ? 'font-semibold text-[var(--brand-primary,#3b82f6)]' : 'font-normal',
+                    'transition-colors',
+                  ].join(' ')}
+                >
+                  <span>{LANG_LABEL[code]}</span>
+                  {active && (
+                    <span className="text-xs" aria-hidden>
+                      ✓
+                    </span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
         </div>
       </details>
     </div>

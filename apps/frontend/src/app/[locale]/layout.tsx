@@ -9,7 +9,7 @@ import { notFound } from "next/navigation";
 
 type Props = {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
+  params: { locale: string };
 };
 
 export const viewport: Viewport = {
@@ -170,17 +170,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 // ---- Layout ----
 export default async function LocaleLayout({ children, params }: Props) {
-  const { locale } = await params;
+  const { locale } = params;
 
   // Validate locale
   if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
     notFound();
   }
 
+  setRequestLocale(locale);
+
   // Load messages on the server for this locale
   const messages = await getMessages({ locale });
-
-  setRequestLocale(locale);
 
   // JSON-LD for the Website entity
   const meta = getLocaleMeta(locale);
