@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <div className="flex items-center justify-center px-4 min-h-[calc(100vh-80px)] bg-gray-50 dark:bg-gray-900">
+    <div className="flex items-center justify-center px-4 min-h-[calc(dvh-80px)] bg-gray-50 dark:bg-gray-900">
       <div className="text-center max-w-md mx-auto p-8 rounded-2xl shadow-lg bg-white/80 dark:bg-gray-800/60 backdrop-blur-md border border-gray-200 dark:border-gray-700">
         {/* Icon wrapper */}
         <div className="w-16 h-16 mx-auto mb-6 bg-red-100 dark:bg-red-900/40 rounded-full flex items-center justify-center shadow-md">
