@@ -24,9 +24,9 @@
 }
 
 [data-theme="dark"] {
-  --background: #0D0D0D;
+  --background: #111111;
   --foreground: #ededed;
-  --header-background: #171717;
+  --header-background: #111111;
   --header-foreground: #ededed;
   --header-border: #333333;
 
@@ -39,7 +39,7 @@
   --text-secondary: #9ca3af;
   --text-tertiary: #6b7280;
 
-  --bg-experience-card: #1E1E1E;
+  --bg-experience-card: #161616;
 }
 
 body {

@@ -2,7 +2,7 @@
 
 import { IconButton } from "@/modules/core/components/buttons/IconButton";
 import { ToggleThemeButton } from "@/modules/core/components/ToggleThemeButton";
-import { Heart, LucideIcon, Search } from "lucide-react";
+import { LucideIcon, Search } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { UserAvatar } from "./avatar/UserAvatar";
@@ -122,7 +122,6 @@ export const Header = (
             {(
               [
                 ["Search", Search],
-                ["Saved", Heart],
               ] as [string, LucideIcon][]
             ).map(([label, Icon], i) => (
               <IconButton key={i} icon={Icon} label={label} />
