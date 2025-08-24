@@ -7,10 +7,11 @@ export const revalidate = 3600; // 1 hour
 export const dynamic = "force-static";
 
 type Props = {
-  params: { locale: Locale };
+  params: Promise<{ locale: Locale }>;
 };
 
-export default async function Home({ params: { locale } }: Props) {
+export default async function Home({ params }: Props) {
+  const { locale } = await params;
   setRequestLocale(locale);
 
   return (
