@@ -1,9 +1,21 @@
 
-import { BadgePill } from "@/components/ui/experience/BadgePill";
 import { Star } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
+
+function BadgePill({
+  children,
+  className,
+}: React.PropsWithChildren<{ className?: string }>) {
+  return (
+    <span
+      className={`rounded-full bg-black/70 px-2 py-1 text-[10px] ${className ?? ""}`}
+    >
+      {children}
+    </span>
+  );
+}
 
 export interface ExperienceCardProps {
   img: string;

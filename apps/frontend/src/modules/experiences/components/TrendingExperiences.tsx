@@ -1,4 +1,4 @@
-import { ExperienceCard } from "@/components/ui/experience/ExperienceCard";
+import { ExperienceCard } from "@/modules/experiences/components/ExperienceCard";
 
 const TRENDING = [
   {

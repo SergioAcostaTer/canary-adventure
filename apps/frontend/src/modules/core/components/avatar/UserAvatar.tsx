@@ -1,6 +1,6 @@
 "use client";
 
-import { useUser } from "@/context/UserContext";
+import { useUser } from "@/modules/core/context/UserContext";
 import { User } from "@/types/user";
 import { User as UserIcon } from "lucide-react";
 import Image from "next/image";

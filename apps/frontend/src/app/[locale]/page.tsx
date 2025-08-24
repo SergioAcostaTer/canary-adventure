@@ -1,5 +1,5 @@
-import AdventureHero from "@/features/home/Hero";
-import TrendingExperiences from "@/features/home/TrendingExperiences";
+import AdventureHero from "@/modules/core/components/Hero";
+import TrendingExperiences from "@/modules/experiences/components/TrendingExperiences";
 
 export const revalidate = 3600; // 1 hour
 

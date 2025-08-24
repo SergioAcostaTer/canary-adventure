@@ -1,4 +1,4 @@
-import GoogleSignInButton from "@/features/ui/auth/GoogleSignInButton";
+import GoogleSignInButton from "@/modules/core/components/GoogleSignInButton";
 import { Suspense } from "react";
 
 // Server Component - handles SSR

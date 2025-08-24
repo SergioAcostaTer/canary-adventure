@@ -1,6 +1,6 @@
 // app/[locale]/layout.tsx (Locale Layout with SEO enhancements - Fixed)
-import { UserProvider } from "@/context/UserContext";
-import { Header } from "@/features/ui/header/Header";
+import { UserProvider } from "@/modules/core/context/UserContext";
+import { Header } from "@/modules/core/components/Header";
 import { routing } from "@/i18n/routing";
 import type { Metadata, Viewport } from "next";
 import { NextIntlClientProvider } from "next-intl";

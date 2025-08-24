@@ -1,11 +1,11 @@
 "use client";
 
-import { IconButton } from "@/components/ui/header/Button";
-import { ToggleThemeButton } from "@/features/shared/ToggleThemeButton";
+import { IconButton } from "@/modules/core/components/Button";
+import { ToggleThemeButton } from "@/modules/core/components/ToggleThemeButton";
 import { Globe, Heart, LucideIcon, Search } from "lucide-react";
 import Link from "next/link";
 import React from "react";
-import { UserAvatar } from "./UserAvatar";
+import { UserAvatar } from "./avatar/UserAvatar";
 
 export const Header = (
   { animation }: { animation?: boolean } = { animation: false }
