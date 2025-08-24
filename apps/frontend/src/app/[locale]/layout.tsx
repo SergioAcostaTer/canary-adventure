@@ -396,7 +396,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     
     // Geo tagging for location-based business
-    // @ts-ignore - These are valid meta tags but not in Next.js types
+    // @ts-expect-error - Next.js types are incomplete here
     geo: {
       region: "ES-CN",
       placename: "Canary Islands",
