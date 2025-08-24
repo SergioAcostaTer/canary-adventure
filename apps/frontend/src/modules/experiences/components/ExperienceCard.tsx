@@ -105,7 +105,7 @@ export function ExperienceCard({
     </>
   );
 
-  const cardClass = `rounded-3xl border border-black/20 bg-white shadow-xs dark:border-white/20 dark:bg-gray-900 w-full group overflow-hidden transition-all duration-200 ease-in-out bg-card border border-border hover:border-border/80 hover:shadow-md focus-within:border-ring focus-within:ring-2 focus-within:ring-ring/20 cursor-pointer h-full ${className}`;
+  const cardClass = `rounded-3xl border border-black/20 bg-[var(--bg-experience-card)] shadow-xs dark:border-white/20 w-full group overflow-hidden transition-all duration-200 ease-in-out bg-card border border-border hover:border-border/80 hover:shadow-md focus-within:border-ring focus-within:ring-2 focus-within:ring-ring/20 cursor-pointer h-full ${className}`;
 
   return href ? (
     <Link href={href} className="block h-full">

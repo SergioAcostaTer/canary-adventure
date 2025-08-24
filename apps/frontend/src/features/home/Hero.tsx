@@ -162,14 +162,14 @@ export default async function Hero() {
             {t("badge")}
           </span>
 
-          <div className="mt-4 p-4 rounded-2xl bg-white/20 dark:bg-gray-900/30 backdrop-blur-md border border-white/30 dark:border-gray-700/30 shadow-2xl flex flex-col gap-4">
+          <div className="mt-4 p-6 rounded-2xl bg-white/20 dark:bg-gray-900/30 backdrop-blur-md border border-white/30 dark:border-gray-700/30 shadow-2xl">
             <h1 className="text-xl md:text-4xl font-bold tracking-tight text-white dark:text-gray-100 drop-shadow-lg">
               <span className="text-amber-400 dark:text-amber-300 drop-shadow-lg">
                 {t("titleHighlight")}
               </span>{" "}
               {t("title")}
             </h1>
-            <p className="text-md md:text-xl text-gray-100 dark:text-gray-200 max-w-2xl mx-auto drop-shadow-md">
+            <p className="mt-4 text-md md:text-xl text-gray-100 dark:text-gray-200 max-w-2xl mx-auto drop-shadow-md">
               {t.rich("subtitle", {
                 strong: (chunks) => <strong>{chunks}</strong>,
               })}

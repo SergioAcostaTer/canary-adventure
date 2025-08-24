@@ -2,7 +2,7 @@
 
 import { IconButton } from "@/modules/core/components/buttons/IconButton";
 import { ToggleThemeButton } from "@/modules/core/components/ToggleThemeButton";
-import { Heart, LucideIcon, Search, X, Sparkles } from "lucide-react";
+import { Heart, LucideIcon, Search } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { UserAvatar } from "./avatar/UserAvatar";
@@ -12,7 +12,6 @@ export const Header = (
   { animation }: { animation?: boolean } = { animation: false }
 ) => {
   const [hidden, setHidden] = React.useState(false);
-  const [bannerVisible, setBannerVisible] = React.useState(true);
   const lastYRef = React.useRef(0);
   const tickingRef = React.useRef(false);
   const THRESHOLD = 80;
@@ -47,10 +46,6 @@ export const Header = (
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, [animation]);
-
-  const closeBanner = () => {
-    setBannerVisible(false);
-  };
 
   return (
     <>
@@ -88,7 +83,7 @@ export const Header = (
           "sticky top-0 z-50 w-full h-[80px]",
           "bg-[var(--header-background)] text-[var(--header-foreground)] border-[var(--header-border)] border-b",
           // smooth slide + performance hint
-          "transition-transform duration-300 ease-out will-change-transform",
+          "transition-transform duration-200 ease-out will-change-transform",
           hidden ? "-translate-y-full" : "translate-y-0",
         ].join(" ")}
         aria-hidden={hidden}
@@ -117,7 +112,7 @@ export const Header = (
                 />
               </div>
               <button className="bg-[var(--brand-primary)] hover:bg-[var(--brand-primary-hover)] transition-colors duration-200 text-white font-semibold px-5 text-sm rounded-full m-1">
-                Buscar
+                Search
               </button>
             </div>
           </div>
@@ -126,8 +121,8 @@ export const Header = (
           <div className="flex items-center gap-4 sm:gap-6 text-xs sm:text-sm font-medium text-[var(--text-muted)]">
             {(
               [
-                ["Buscar", Search],
-                ["Favoritos", Heart],
+                ["Search", Search],
+                ["Saved", Heart],
               ] as [string, LucideIcon][]
             ).map(([label, Icon], i) => (
               <IconButton key={i} icon={Icon} label={label} />

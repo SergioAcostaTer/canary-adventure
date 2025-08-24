@@ -27,7 +27,7 @@ export default function NotFound() {
             className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white rounded-xl 
               bg-amber-500 hover:bg-amber-600 dark:bg-amber-600 dark:hover:bg-amber-700
               shadow-md hover:shadow-lg border border-amber-400/50 dark:border-amber-500/50
-              transition-all duration-300"
+              transition-all duration-200"
           >
             Go Home
           </Link>
@@ -38,7 +38,7 @@ export default function NotFound() {
               border border-teal-400 hover:border-teal-300 dark:border-teal-400 dark:hover:border-teal-300
               text-gray-800 hover:text-teal-600 dark:text-gray-100 dark:hover:text-teal-200
               bg-white/70 hover:bg-white/90 dark:bg-gray-700/50 dark:hover:bg-gray-700/70
-              shadow-sm hover:shadow-md transition-all duration-300"
+              shadow-sm hover:shadow-md transition-all duration-200"
           >
             Contact Support
           </Link>

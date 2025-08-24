@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useRef } from 'react';
+import { Globe } from 'lucide-react';
 import { useLocale } from 'next-intl';
 import { usePathname, useRouter } from 'next/navigation';
-import { Globe } from 'lucide-react';
+import { useRef } from 'react';
 
 // Professional, responsive language selector for Next.js App Router + next-intl.
 // No external UI deps (Tailwind CSS classes only). Matches an "IconButton" vibe.
@@ -33,10 +33,9 @@ function replaceLocaleInPath(pathname: string, next: Locale) {
 
 export interface LanguageSwitcherProps {
   className?: string;
-  compact?: boolean;
 }
 
-export default function LanguageSwitcher({ className, compact }: LanguageSwitcherProps) {
+export default function LanguageSwitcher({ className }: LanguageSwitcherProps) {
   const router = useRouter();
   const pathname = usePathname();
   const locale = useLocale() as Locale;
@@ -61,7 +60,6 @@ export default function LanguageSwitcher({ className, compact }: LanguageSwitche
           className={[
             'flex items-center gap-2 cursor-pointer select-none',
             'rounded-2xl backdrop-blur',
-            compact ? 'px-2 py-1.5' : 'px-3 py-2',
             'hover:bg-gray-50 dark:hover:bg-neutral-900',
             'focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-primary,#3b82f6)]',
             'transition-colors',
@@ -69,7 +67,7 @@ export default function LanguageSwitcher({ className, compact }: LanguageSwitche
         >
           <div className="flex flex-col items-center text-center group/icon">
             <Globe
-              size={20}
+              size={24}
               className="text-[var(--icon-default,currentColor)] group-hover/icon:text-[var(--brand-primary,#3b82f6)] transition-colors"
               aria-hidden
             />
