@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": ">=18.18"
+    "node": ">=20.0.0"
   },
   "scripts": {
     "dev": "next dev --turbopack",
@@ -12,10 +12,6 @@
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "typecheck": "tsc --noEmit",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "preinstall": "node -e \"const v=process.versions.node.split('.')||[];if(+v[0]<18||(v[0]==='18'&&+v[1]<18)){console.error('Node >=18.18 required');process.exit(1)}\"",
-    "prepare": "husky"
   },
   "dependencies": {
     "@react-oauth/google": "0.12.2",

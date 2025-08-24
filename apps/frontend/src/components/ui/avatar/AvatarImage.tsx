@@ -1,4 +1,3 @@
-import { cn } from "@/lib/utils/cn";
 import React from "react";
 
 const AvatarImage = React.forwardRef<
@@ -7,7 +6,7 @@ const AvatarImage = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <img
     ref={ref}
-    className={cn("aspect-square h-full w-full object-cover", className)}
+    className={`aspect-square h-full w-full object-cover ${className}`}
     {...props}
   />
 ));
