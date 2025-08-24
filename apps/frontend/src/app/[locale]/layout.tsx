@@ -1,15 +1,27 @@
-// app/[locale]/layout.tsx (Locale Layout with SEO enhancements - Fixed)
+// app/[locale]/layout.tsx (Merged Layout with SEO, Theme, and Font)
 import { UserProvider } from "@/modules/core/context/UserContext";
 import { Header } from "@/modules/core/components/Header";
 import { routing } from "@/i18n/routing";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
+import { Poppins } from "next/font/google";
 import { notFound } from "next/navigation";
+import { cookies } from "next/headers";
+import { use } from "react";
+import "../globals.css";
+
+const poppins = Poppins({
+  variable: "--font-poppins",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
 
 type Props = {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 };
 
 export const viewport: Viewport = {
@@ -98,14 +110,14 @@ function getLocaleMeta(locale: string) {
 
 function languageAlternates() {
   const langs = Object.fromEntries(
-    routing.locales.map((l) => [l, `${SITE_URL}/${l}`]) // Fix: use full URL
+    routing.locales.map((l) => [l, `${SITE_URL}/${l}`])
   ) as Record<string, string>;
-  return { ...langs, "x-default": `${SITE_URL}/en` }; // Fix: use full URL
+  return { ...langs, "x-default": `${SITE_URL}/en` };
 }
 
 // ---- Metadata ----
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { locale } = await params; // Fix: await params
+  const { locale } = await params;
   const meta = getLocaleMeta(locale);
   const ogImage = LOCALE_OG(locale);
 
@@ -117,14 +129,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     description: meta.description,
     keywords: Array.from(meta.keywords),
+    authors: [{ name: "Canary Adventures" }],
+    creator: "Canary Adventures",
+    publisher: "Canary Adventures",
     applicationName: "Canary Adventures",
     alternates: {
-      canonical: `${SITE_URL}/${locale}`, // Fix: use full URL
+      canonical: `${SITE_URL}/${locale}`,
       languages: languageAlternates(),
     },
     openGraph: {
       type: "website",
-      url: `${SITE_URL}/${locale}`, // Fix: use full URL
+      url: `${SITE_URL}/${locale}`,
       siteName: "Canary Adventures",
       title: meta.title,
       description: meta.description,
@@ -162,6 +177,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180" }],
     },
     manifest: "/site.webmanifest",
+    verification: {},
     other: {
       "hreflang-default": "en",
     },
@@ -170,19 +186,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 // ---- Layout ----
 export default async function LocaleLayout({ children, params }: Props) {
-  const { locale } = params;
+  const { locale } = await params;
 
-  // Validate locale
   if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
     notFound();
   }
 
   setRequestLocale(locale);
 
-  // Load messages on the server for this locale
   const messages = await getMessages({ locale });
+  const cookieTheme = (await cookies()).get("theme")?.value;
+  const serverThemeAttr =
+    cookieTheme === "light" || cookieTheme === "dark" ? cookieTheme : undefined;
 
-  // JSON-LD for the Website entity
   const meta = getLocaleMeta(locale);
   const jsonLd = {
     "@context": "https://schema.org",
@@ -198,21 +214,55 @@ export default async function LocaleLayout({ children, params }: Props) {
     },
   };
 
+  const initialThemeScript = `
+    (function(){
+      try {
+        var m = document.cookie.match(/(?:^|; )theme=([^;]+)/);
+        var raw = m ? decodeURIComponent(m[1]) : null;
+        var d = document.documentElement;
+        var set = function(v){ d.setAttribute('data-theme', v); d.style.colorScheme = v; };
+
+        if (!raw || raw === 'system') {
+          var isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          set(isDark ? 'dark' : 'light');
+        } else {
+          set(raw === 'dark' ? 'dark' : 'light');
+        }
+      } catch (e) {}
+    })();
+  `;
+
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <UserProvider>
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          <Header />
-          <main className="max-w-7xl mx-auto bg-[var(--background)] text-[var(--foreground)]">
-            {children}
-          </main>
-        </NextIntlClientProvider>
-      </UserProvider>
-    </>
+    <html
+      lang={locale}
+      suppressHydrationWarning
+      {...(serverThemeAttr ? { "data-theme": serverThemeAttr } : {})}
+    >
+      <head>
+        <SpeedInsights />
+        <script dangerouslySetInnerHTML={{ __html: initialThemeScript }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <link
+          rel="preload"
+          as="image"
+          href="/videos/intro/intro.webp"
+          fetchPriority="high"
+        />
+      </head>
+      <body className={`${poppins.variable} font-sans antialiased`}>
+        <UserProvider>
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            <Header />
+            <main className="max-w-7xl mx-auto bg-[var(--background)] text-[var(--foreground)]">
+              {children}
+            </main>
+          </NextIntlClientProvider>
+        </UserProvider>
+      </body>
+    </html>
   );
 }
 
