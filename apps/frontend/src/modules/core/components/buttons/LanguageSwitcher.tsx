@@ -60,7 +60,7 @@ export default function LanguageSwitcher({ className, compact }: LanguageSwitche
           aria-label="Change language"
           className={[
             'flex items-center gap-2 cursor-pointer select-none',
-            'rounded-2xl border shadow-sm backdrop-blur',
+            'rounded-2xl shadow-sm backdrop-blur',
             compact ? 'px-2 py-1.5' : 'px-3 py-2',
             'hover:bg-gray-50 dark:hover:bg-neutral-900',
             'focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-primary,#3b82f6)]',
@@ -81,7 +81,7 @@ export default function LanguageSwitcher({ className, compact }: LanguageSwitche
 
         <div
           role="menu"
-          className="absolute right-0 z-50 mt-2 w-32 overflow-hidden rounded-xl border bg-white/95 dark:bg-neutral-900/95 shadow-lg backdrop-blur"
+          className="absolute right-0 z-50 mt-2 w-32 overflow-hidden rounded-xl bg-white/95 dark:bg-neutral-900/95 shadow-lg backdrop-blur"
         >
           <div className="p-1">
             {LOCALES.map((code) => {
