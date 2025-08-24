@@ -2,7 +2,7 @@
 
 import { IconButton } from "@/modules/core/components/buttons/IconButton";
 import { ToggleThemeButton } from "@/modules/core/components/ToggleThemeButton";
-import { Globe, Heart, LucideIcon, Search } from "lucide-react";
+import { Heart, LucideIcon, Search } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { UserAvatar } from "./avatar/UserAvatar";

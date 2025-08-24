@@ -20,7 +20,7 @@ const poppins = Poppins({
 
 type Props = {
   children: React.ReactNode;
-  params: any;
+  params: Promise<{ locale: string }>;
 };
 
 export const viewport: Viewport = {
