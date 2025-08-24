@@ -9,8 +9,7 @@ import { getMessages, setRequestLocale } from "next-intl/server";
 import { Poppins } from "next/font/google";
 import { notFound } from "next/navigation";
 import { cookies } from "next/headers";
-import { use } from "react";
-import "../globals.css";
+import "@/styles/globals.css";
 
 const poppins = Poppins({
   variable: "--font-poppins",
