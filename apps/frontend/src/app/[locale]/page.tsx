@@ -1,5 +1,5 @@
 import AdventureHero from "@/modules/core/components/Hero";
-import TrendingExperiences from "@/modules/experiences/components/TrendingExperiences";
+import TrendingPlaces from "@/modules/experiences/components/TrendingPlaces";
 import { Locale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 
@@ -17,7 +17,7 @@ export default async function Home({ params }: Props) {
   return (
     <div>
       <AdventureHero />
-      <TrendingExperiences />
+      <TrendingPlaces />
     </div>
   );
 }

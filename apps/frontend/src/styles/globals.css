@@ -4,6 +4,9 @@
 
 :root {
   --background: #ffffff;
+  --border-primary: #dcdfe4;
+  --label-primary: #1a2b49;
+  --label-secondary: #63687a;
   --foreground: #171717;
   --header-background: #f8f8f8;
   --header-foreground: #171717;
@@ -22,13 +25,16 @@
   --text-secondary: #6b7280; /* Tailwind gray-500 */
   --text-tertiary: #9ca3af; /* Tailwind gray-400 */
 
-  --bg-experience-card: #f3f4f6;         
-  --text-card-primary: #0f172a;          
-  --text-card-secondary: #475569;    
+  --bg-experience-card: #f3f4f6;
+  --text-card-primary: #0f172a;
+  --text-card-secondary: #475569;
 }
 
 [data-theme="dark"] {
   --background: #111111;
+  --border-primary: #333333;
+  --label-primary: #eeeeee; 
+  --label-secondary: #e4e8ee;
   --foreground: #ededed;
   --header-background: #111111;
   --header-foreground: #ededed;
@@ -45,9 +51,9 @@
   --text-secondary: #9ca3af;
   --text-tertiary: #6b7280;
 
-  --bg-experience-card: #1c1c1c;           
-  --text-card-primary: #f8fafc;          
-  --text-card-secondary: #cbd5e1;   
+  --bg-experience-card: #1c1c1c;
+  --text-card-primary: #f8fafc;
+  --text-card-secondary: #cbd5e1;
 }
 
 body {
@@ -55,11 +61,12 @@ body {
   color: var(--foreground);
 }
 
-.noselect, img{
+.noselect,
+img {
   -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none;   /* Safari */
-  -khtml-user-select: none;    /* Konqueror HTML */
-  -moz-user-select: none;      /* Old versions of Firefox */
-  -ms-user-select: none;       /* Internet Explorer/Edge */
-  user-select: none;           /* Non-prefixed: Chrome, Edge, Opera, Firefox */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed: Chrome, Edge, Opera, Firefox */
 }
