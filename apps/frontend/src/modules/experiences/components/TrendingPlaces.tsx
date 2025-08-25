@@ -24,7 +24,7 @@ type Place = {
 const PLACES: Place[] = [
   {
     img: "https://www.volcanoteide.com/source/roques-de-garcia.webp",
-    title: "Teide National Park",
+    title: "Teide National Park Volcano Trails",
     island: "Tenerife",
     duration: 360, // ~6h
     rating: 4.9,
@@ -36,7 +36,7 @@ const PLACES: Place[] = [
   },
   {
     img: "https://live.staticflickr.com/1275/1251152959_98054e7e7c_c.jpg",
-    title: "Playa de Famara",
+    title: "Playa de Famara Surf and Beach Escape",
     island: "Lanzarote",
     duration: 480, // full beach day
     rating: 4.8,
@@ -48,7 +48,7 @@ const PLACES: Place[] = [
   },
   {
     img: "https://upload.wikimedia.org/wikipedia/commons/2/2a/La_gomera_%28344678704%29.jpg",
-    title: "Garajonay National Park",
+    title: "Garajonay National Park Rainforest Walks",
     island: "La Gomera",
     duration: 240, // ~4h
     rating: 4.7,
@@ -56,11 +56,11 @@ const PLACES: Place[] = [
     group: ["family", "friends"],
     badges: ["Rainforest", "UNESCO"],
     href: "/places/garajonay-national-park",
-    featured: false,
+    featured: true,
   },
   {
     img: "https://images.musement.com/cover/0171/19/thumb_17018734_cover_header.jpg?w=1200&h=630&q=95&fit=crop",
-    title: "Puerto Rico Marina",
+    title: "Puerto Rico Marina and Coastal Promenade",
     island: "Gran Canaria",
     duration: 120, // ~2h
     rating: 4.6,
@@ -72,7 +72,7 @@ const PLACES: Place[] = [
   },
   {
     img: "https://i2.pickpik.com/photos/932/214/476/away-volcano-canary-islands-la-palma-preview.jpg",
-    title: "Roque de los Muchachos",
+    title: "Roque de los Muchachos Sky Observatory",
     island: "La Palma",
     duration: 90, // ~1.5h
     rating: 4.9,
@@ -80,11 +80,11 @@ const PLACES: Place[] = [
     group: ["couples", "friends", "solo"],
     badges: ["Observatory", "Above the clouds"],
     href: "/places/roque-de-los-muchachos",
-    featured: true,
+    featured: false,
   },
   {
     img: "https://dunebuggy.es/wp-content/uploads/2022/02/ADRENALINE-STOP.jpg",
-    title: "Parque Natural de Corralejo",
+    title: "Parque Natural de Corralejo Sand Dunes",
     island: "Fuerteventura",
     duration: 180, // ~3h
     rating: 4.5,
@@ -92,11 +92,11 @@ const PLACES: Place[] = [
     group: ["friends", "family"],
     badges: ["Sand dunes", "Photo spots"],
     href: "/places/corralejo-dunes",
-    featured: false,
+    featured: true,
   },
   {
     img: "https://d2p1cf6997m1ir.cloudfront.net/media/thumbnails/a0/db/a0dbcdfa61296c66fb3c6230bb32bba6.webp",
-    title: "La Restinga Marine Reserve",
+    title: "La Restinga Marine Reserve Diving Experience",
     island: "El Hierro",
     duration: 300, // ~5h
     rating: 4.8,
@@ -108,7 +108,7 @@ const PLACES: Place[] = [
   },
   {
     img: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/18/b0/c7/13/face-your-fears-and-ride.jpg?w=1200&h=1200&s=1",
-    title: "Siam Park",
+    title: "Siam Park Tenerife Water Kingdom",
     island: "Tenerife",
     duration: 480, // full day
     rating: 4.7,
@@ -121,11 +121,6 @@ const PLACES: Place[] = [
 ];
 
 export default function TrendingPlaces() {
-  // Optional: bring featured items to the front
-  const items = [...PLACES].sort(
-    (a, b) => Number(b.featured) - Number(a.featured)
-  );
-
   return (
     <section
       aria-labelledby="trending-places-title"
@@ -144,7 +139,7 @@ export default function TrendingPlaces() {
       </div>
 
       <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
-        {items.map((item) => (
+        {PLACES.map((item) => (
           <PlaceCard key={item.title} {...item} />
         ))}
       </div>

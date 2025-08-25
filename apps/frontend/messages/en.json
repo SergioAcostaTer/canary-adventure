@@ -9,7 +9,10 @@
     "reset": "Reset",
     "quantity": "Quantity",
     "total": "Total",
-    "free": "FREE"
+    "free": "FREE",
+    "featured": "Featured",
+    "featuredAndRating": "Featured · Rating: {rating} ⭐",
+    "like": "Like"
   },
   "experiences": {
     "title": "Experiences",

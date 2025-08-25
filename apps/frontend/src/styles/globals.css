@@ -7,6 +7,7 @@
   --border-primary: #dcdfe4;
   --label-primary: #1a2b49;
   --label-secondary: #63687a;
+  --label-strong: #c72a3d;
   --foreground: #171717;
   --header-background: #f8f8f8;
   --header-foreground: #171717;
@@ -33,7 +34,8 @@
 [data-theme="dark"] {
   --background: #111111;
   --border-primary: #333333;
-  --label-primary: #eeeeee; 
+  --label-primary: #eeeeee;
+  --label-strong: #c72a3d;
   --label-secondary: #e4e8ee;
   --foreground: #ededed;
   --header-background: #111111;

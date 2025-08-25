@@ -8,7 +8,11 @@
     "submit": "Absenden",
     "reset": "Zurücksetzen",
     "quantity": "Menge",
-    "total": "Gesamt"
+    "total": "Gesamt",
+    "free": "KOSTENLOS",
+    "featured": "Empfohlen",
+    "featuredAndRating": "Empfohlen · Bewertung: {rating} ⭐",
+    "like": "Gefällt mir"
   },
   "experiences": {
     "title": "Erlebnisse",

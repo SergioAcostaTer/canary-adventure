@@ -8,7 +8,11 @@
     "submit": "Enviar",
     "reset": "Restablecer",
     "quantity": "Cantidad",
-    "total": "Total"
+    "total": "Total",
+    "free": "GRATIS",
+    "featured": "Destacado",
+    "featuredAndRating": "Destacado · Valoración: {rating} ⭐",
+    "like": "Me gusta"
   },
   "experiences": {
     "title": "Experiencias",

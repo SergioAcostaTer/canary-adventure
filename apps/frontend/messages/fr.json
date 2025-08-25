@@ -8,7 +8,11 @@
     "submit": "Soumettre",
     "reset": "Réinitialiser",
     "quantity": "Quantité",
-    "total": "Total"
+    "total": "Total",
+    "free": "GRATUIT",
+    "featured": "En vedette",
+    "featuredAndRating": "En vedette · Note : {rating} ⭐",
+    "like": "Aimer"
   },
   "experiences": {
     "title": "Expériences",
