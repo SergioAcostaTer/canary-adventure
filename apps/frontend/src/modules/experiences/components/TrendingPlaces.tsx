@@ -1,6 +1,6 @@
 // TrendingPlaces.tsx
 import { getTranslations } from "next-intl/server";
-import { PlaceCard } from "./PlaceCard";
+import PlaceCard from "./PlaceCard";
 
 type Place = {
   img: string;

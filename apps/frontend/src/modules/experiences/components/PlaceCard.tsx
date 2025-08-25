@@ -2,7 +2,7 @@ import { Link } from "@/i18n/navigation";
 import { calculateApproxDuration } from "@/lib/utils/calculateAproxDuration";
 import Stars from "@/modules/core/components/stars/Stars";
 import { Heart } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 
 export interface ExperienceCardProps {
@@ -16,7 +16,7 @@ export interface ExperienceCardProps {
   className?: string;
 }
 
-export function PlaceCard({
+export default async function PlaceCard({
   img,
   title,
   island,
@@ -26,7 +26,7 @@ export function PlaceCard({
   featured,
   className = "",
 }: ExperienceCardProps) {
-  const t = useTranslations("common");
+  const t = await getTranslations("common");
 
   const labels = duration
     ? [calculateApproxDuration(duration), t("free")]
@@ -43,7 +43,7 @@ export function PlaceCard({
             alt={title}
             fill
             className="object-cover group-hover:scale-110 transition-transform duration-500"
-            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1280px) 33vw, 25vw"
+            sizes="300px"
           />
         </div>
 
