@@ -1,4 +1,5 @@
 // TrendingPlaces.tsx
+import { getTranslations } from "next-intl/server";
 import { PlaceCard } from "./PlaceCard";
 
 type Place = {
@@ -120,7 +121,8 @@ const PLACES: Place[] = [
   },
 ];
 
-export default function TrendingPlaces() {
+export default async function TrendingPlaces() {
+  const t = await getTranslations("places");
   return (
     <section
       aria-labelledby="trending-places-title"
@@ -131,10 +133,10 @@ export default function TrendingPlaces() {
           id="trending-places-title"
           className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
         >
-          Trending Places
+          {t("trendingPlaces")}
         </h2>
         <p className="text-sm text-gray-600 hidden sm:block dark:text-gray-300">
-          Handpicked spots across the Canary Islands
+          {t("trendingPlacesSubtitle")}
         </p>
       </div>
 

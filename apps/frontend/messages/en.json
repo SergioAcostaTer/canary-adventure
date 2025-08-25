@@ -14,6 +14,10 @@
     "featuredAndRating": "Featured · Rating: {rating} ⭐",
     "like": "Like"
   },
+  "places": {
+    "trendingPlaces": "Trending Places",
+    "trendingPlacesSubtitle": "Handpicked spots across the Canary Islands"
+  },
   "experiences": {
     "title": "Experiences",
     "description": "Explore our curated list of experiences.",

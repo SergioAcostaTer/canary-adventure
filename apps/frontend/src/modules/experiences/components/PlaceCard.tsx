@@ -47,7 +47,7 @@ const LikeButton = () => {
       aria-label={t("like")}
       className="absolute top-3 right-3 w-10 h-10 rounded-full bg-white/90 backdrop-blur flex items-center justify-center hover:bg-white transition cursor-pointer"
     >
-      <Heart className="w-6 h-6 text-[var(--foreground)]" />
+      <Heart className="w-6 h-6 text-black/70" />
     </button>
   );
 };
@@ -82,7 +82,7 @@ export function PlaceCard({
 
   const content = (
     <div className="p-[8px_12px_0] flex flex-col gap-1 pb-3 justify-between flex-1 h-full">
-      <div>
+      <div className="flex flex-col gap-[4px] mb-1">
         <p className="text-sm text-[var(--label-secondary)] font-semibold">
           {island?.toLocaleUpperCase()}
         </p>

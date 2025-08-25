@@ -14,6 +14,10 @@
     "featuredAndRating": "Destacado · Valoración: {rating} ⭐",
     "like": "Me gusta"
   },
+  "places": {
+    "trendingPlaces": "Lugares de tendencia",
+    "trendingPlacesSubtitle": "Lugares seleccionados en las Islas Canarias"
+  },
   "experiences": {
     "title": "Experiencias",
     "description": "Explora nuestra lista seleccionada de experiencias.",
