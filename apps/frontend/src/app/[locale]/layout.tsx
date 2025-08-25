@@ -652,12 +652,14 @@ export default async function LocaleLayout({ children, params }: Props) {
           as="video"
           href="/videos/intro/intro-480.webm"
           type="video/webm"
+          fetchPriority="high"
         />
         <link
           rel="preload"
           as="video"
           href="/videos/intro/intro-480.mp4"
           type="video/mp4"
+          fetchPriority="high"
         />
 
         {/* Critical scripts */}
