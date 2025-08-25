@@ -1,15 +1,15 @@
 // app/[locale]/layout.tsx (Maximum SEO & Sharing Optimizations)
-import { UserProvider } from "@/modules/core/context/UserContext";
-import { Header } from "@/modules/core/components/Header";
 import { routing } from "@/i18n/routing";
+import { Header } from "@/modules/core/components/Header";
+import { UserProvider } from "@/modules/core/context/UserContext";
+import "@/styles/globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { Poppins } from "next/font/google";
-import { notFound } from "next/navigation";
 import { cookies, headers } from "next/headers";
-import "@/styles/globals.css";
+import { notFound } from "next/navigation";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -59,7 +59,7 @@ const localeMetadata = {
       "Canary Islands activities",
       "Canary Islands excursions",
       "Canary Islands adventures",
-      
+
       // Island-specific
       "Tenerife tours",
       "Tenerife excursions",
@@ -74,7 +74,7 @@ const localeMetadata = {
       "La Palma volcano",
       "La Gomera whale watching",
       "El Hierro diving",
-      
+
       // Activity types
       "whale watching Canary Islands",
       "hiking Canary Islands",
@@ -86,7 +86,7 @@ const localeMetadata = {
       "stargazing tours",
       "wine tasting",
       "cultural tours",
-      
+
       // Long-tail keywords
       "best things to do Canary Islands",
       "Canary Islands vacation activities",
@@ -95,7 +95,8 @@ const localeMetadata = {
       "outdoor adventures Spain",
       "Atlantic Ocean tours",
     ],
-    ogAlt: "Discover the best tours and activities in the Canary Islands with Canary Adventures",
+    ogAlt:
+      "Discover the best tours and activities in the Canary Islands with Canary Adventures",
   },
   es: {
     title: "Canary Adventures – Mejores Tours y Actividades en Islas Canarias",
@@ -124,7 +125,8 @@ const localeMetadata = {
       "turismo activo Canarias",
       "actividades familiares Canarias",
     ],
-    ogAlt: "Descubre los mejores tours y actividades en las Islas Canarias con Canary Adventures",
+    ogAlt:
+      "Descubre los mejores tours y actividades en las Islas Canarias con Canary Adventures",
   },
   de: {
     title: "Canary Adventures – Beste Touren & Aktivitäten auf den Kanaren",
@@ -152,7 +154,8 @@ const localeMetadata = {
       "was unternehmen Kanaren",
       "Familienaktivitäten Kanaren",
     ],
-    ogAlt: "Entdecke die besten Touren und Aktivitäten auf den Kanarischen Inseln mit Canary Adventures",
+    ogAlt:
+      "Entdecke die besten Touren und Aktivitäten auf den Kanarischen Inseln mit Canary Adventures",
   },
   fr: {
     title: "Canary Adventures – Meilleurs Tours et Activités aux Îles Canaries",
@@ -180,7 +183,8 @@ const localeMetadata = {
       "vacances Canaries",
       "activités familiales Canaries",
     ],
-    ogAlt: "Découvrez les meilleurs tours et activités aux Îles Canaries avec Canary Adventures",
+    ogAlt:
+      "Découvrez les meilleurs tours et activités aux Îles Canaries avec Canary Adventures",
   },
 } as const;
 
@@ -199,7 +203,7 @@ function languageAlternates() {
 // Get user agent for better targeting
 async function getUserAgent() {
   const headersList = await headers();
-  return headersList.get('user-agent') || '';
+  return headersList.get("user-agent") || "";
 }
 
 // ---- Enhanced Metadata ----
@@ -208,10 +212,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const meta = getLocaleMeta(locale);
   const ogImage = `${SITE_URL}/og/og.png`;
   const userAgent = await getUserAgent();
-  
+
   // Detect mobile for optimized descriptions
   const isMobile = /Mobile|Android|iPhone|iPad/i.test(userAgent);
-  const description = isMobile 
+  const description = isMobile
     ? meta.description.substring(0, 120) + "..."
     : meta.description;
 
@@ -225,14 +229,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     keywords: Array.from(new Set(meta.keywords)).join(", "),
     authors: [
       { name: SITE_NAME, url: SITE_URL },
-      { name: "Canary Islands Tour Experts" }
+      { name: "Canary Islands Tour Experts" },
     ],
     creator: SITE_NAME,
     publisher: SITE_NAME,
     applicationName: SITE_NAME,
     category: "Travel & Tourism",
     classification: "Travel Services",
-    
+
     // Enhanced alternates
     alternates: {
       canonical: `${SITE_URL}/${locale}`,
@@ -242,7 +246,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         "application/atom+xml": `${SITE_URL}/atom.xml`,
       },
     },
-    
+
     // Enhanced OpenGraph
     openGraph: {
       type: "website",
@@ -250,10 +254,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       siteName: SITE_NAME,
       title: meta.title,
       description,
-      locale: locale.replace('-', '_'),
+      locale: locale.replace("-", "_"),
       alternateLocale: routing.locales
-        .filter(l => l !== locale)
-        .map(l => l.replace('-', '_')),
+        .filter((l) => l !== locale)
+        .map((l) => l.replace("-", "_")),
       images: [
         {
           url: ogImage,
@@ -286,7 +290,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         },
       ],
     },
-    
+
     // Enhanced Twitter/X
     twitter: {
       card: "summary_large_image",
@@ -303,7 +307,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         },
       ],
     },
-    
+
     // Apple-specific meta tags
     appleWebApp: {
       capable: true,
@@ -312,15 +316,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       startupImage: [
         {
           url: "/startup/iphone.png",
-          media: "(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)",
+          media:
+            "(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)",
         },
         {
-          url: "/startup/ipad.png", 
-          media: "(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)",
+          url: "/startup/ipad.png",
+          media:
+            "(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)",
         },
       ],
     },
-    
+
     // Enhanced robots
     robots: {
       index: true,
@@ -335,7 +341,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         "max-video-preview": -1,
       },
     },
-    
+
     // Enhanced icons
     icons: {
       icon: [
@@ -347,9 +353,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         { url: "/icons/icon-512.png", sizes: "512x512", type: "image/png" },
       ],
       apple: [
-        { url: "/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
-        { url: "/icons/apple-touch-icon-152x152.png", sizes: "152x152", type: "image/png" },
-        { url: "/icons/apple-touch-icon-167x167.png", sizes: "167x167", type: "image/png" },
+        {
+          url: "/icons/apple-touch-icon.png",
+          sizes: "180x180",
+          type: "image/png",
+        },
+        {
+          url: "/icons/apple-touch-icon-152x152.png",
+          sizes: "152x152",
+          type: "image/png",
+        },
+        {
+          url: "/icons/apple-touch-icon-167x167.png",
+          sizes: "167x167",
+          type: "image/png",
+        },
       ],
       other: [
         {
@@ -363,9 +381,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         },
       ],
     },
-    
+
     manifest: "/site.webmanifest",
-    
+
     // Verification tags for various services
     verification: {
       google: process.env.GOOGLE_VERIFICATION, // TODO: Add your actual verification code
@@ -377,7 +395,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         "p:domain_verify": process.env.PINTEREST_VERIFICATION || "",
       },
     },
-    
+
     // Additional meta tags
     other: {
       "hreflang-default": "en",
@@ -388,13 +406,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       "mobile-web-capable": "yes",
       "apple-mobile-web-app-capable": "yes",
       "apple-mobile-web-app-status-bar-style": "black-translucent",
-      "HandheldFriendly": "True",
-      "MobileOptimized": "320",
-      "referrer": "no-referrer-when-downgrade",
+      HandheldFriendly: "True",
+      MobileOptimized: "320",
+      referrer: "no-referrer-when-downgrade",
       "color-scheme": "light dark",
       "supported-color-schemes": "light dark",
     },
-    
+
     // Geo tagging for location-based business
     // @ts-expect-error - Next.js types are incomplete here
     geo: {
@@ -423,7 +441,7 @@ export default async function LocaleLayout({ children, params }: Props) {
     cookieTheme === "light" || cookieTheme === "dark" ? cookieTheme : undefined;
 
   const meta = getLocaleMeta(locale);
-  
+
   // Enhanced JSON-LD structured data
   const jsonLd = {
     "@context": "https://schema.org",
@@ -478,7 +496,8 @@ export default async function LocaleLayout({ children, params }: Props) {
         "@type": "TouristDestination",
         "@id": `${SITE_URL}/#destination`,
         name: "Canary Islands",
-        description: "Beautiful Atlantic archipelago perfect for outdoor adventures and tours",
+        description:
+          "Beautiful Atlantic archipelago perfect for outdoor adventures and tours",
         geo: {
           "@type": "GeoCoordinates",
           latitude: 28.2916,
@@ -490,7 +509,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         },
         touristType: [
           "Adventure Travelers",
-          "Nature Lovers", 
+          "Nature Lovers",
           "Families",
           "Photography Enthusiasts",
         ],
@@ -505,7 +524,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           "@type": "Place",
           name: "Canary Islands",
           geo: {
-            "@type": "GeoCoordinates", 
+            "@type": "GeoCoordinates",
             latitude: 28.2916,
             longitude: -16.6291,
           },
@@ -599,17 +618,21 @@ export default async function LocaleLayout({ children, params }: Props) {
     >
       <head>
         {/* Critical CSS should be inlined here for better performance */}
-        
+
         {/* Preconnect to external domains */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin=""
+        />
         <link rel="preconnect" href="https://www.google-analytics.com" />
         <link rel="preconnect" href="https://vitals.vercel-insights.com" />
-        
+
         {/* DNS prefetch for external resources */}
         <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
         <link rel="dns-prefetch" href="https://unpkg.com" />
-        
+
         {/* Preload critical resources */}
         <link
           rel="preload"
@@ -623,10 +646,23 @@ export default async function LocaleLayout({ children, params }: Props) {
           href={`/og/og.png`}
           fetchPriority="high"
         />
-        
+
+        <link
+          rel="preload"
+          as="video"
+          href="/videos/intro/intro-480.webm"
+          type="video/webm"
+        />
+        <link
+          rel="preload"
+          as="video"
+          href="/videos/intro/intro-480.mp4"
+          type="video/mp4"
+        />
+
         {/* Critical scripts */}
         <script dangerouslySetInnerHTML={{ __html: initialThemeScript }} />
-        
+
         {/* Structured data */}
         <script
           type="application/ld+json"
@@ -636,41 +672,44 @@ export default async function LocaleLayout({ children, params }: Props) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
         />
-        
+
         {/* Additional meta tags for better sharing */}
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        
+        <meta
+          name="apple-mobile-web-app-status-bar-style"
+          content="black-translucent"
+        />
+
         {/* Geo tags for location-based business */}
         <meta name="geo.region" content="ES-CN" />
         <meta name="geo.placename" content="Canary Islands" />
         <meta name="geo.position" content="28.2916;-16.6291" />
         <meta name="ICBM" content="28.2916, -16.6291" />
-        
+
         {/* Security headers */}
         <meta name="referrer" content="no-referrer-when-downgrade" />
-        
+
         {/* Performance optimization script */}
         <script dangerouslySetInnerHTML={{ __html: performanceScript }} />
-        
+
         {/* Speed Insights */}
         <SpeedInsights />
       </head>
       <body className={`${poppins.variable} font-sans antialiased`}>
         {/* Skip to main content for accessibility */}
-        <a 
-          href="#main-content" 
+        <a
+          href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-blue-600 text-white px-4 py-2 rounded z-50"
         >
           Skip to main content
         </a>
-        
+
         <UserProvider>
           <NextIntlClientProvider locale={locale} messages={messages}>
             <Header />
-            <main 
+            <main
               id="main-content"
               className="max-w-7xl mx-auto bg-[var(--background)] text-[var(--foreground)]"
               role="main"
